@@ -1,0 +1,335 @@
+//----Основной файл стилей----
+//Импорт:
+@import "_fonts"; //1)шрифты
+@import "_mixins";//2)миксины
+@import "_vars";//3)переменные
+
+//Общие стили:
+//1)Частичное обнуление браузерных стилей
+*,*:after,*:before{
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+//2)Стили для линии
+.row{
+  display: flex;
+}
+//3)Колонки
+.col{
+  display: flex;
+  flex-direction: column;
+}
+//4)Общие стили для секции
+section{
+  border: 1px solid $primary-col;
+  grid-column: 1/7;
+  //background-color: $primary-col;
+  padding: 14px 0;
+  h2{
+    margin:14px 0;
+  }
+}
+//5)Ссылки
+a{
+  text-decoration: none;
+
+}
+//6)Полоса прокрутки
+::-webkit-scrollbar {
+  width: 20px; /* ширина для вертикального скролла */
+  height: 8px; /* высота для горизонтального скролла */
+  background-color: #143861;
+}
+
+/* ползунок скроллбара */
+::-webkit-scrollbar-thumb {
+  background-color: $primary-col;
+  border: 1px solid white;
+
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background-color: #253861;
+}
+
+//Тело:
+body{
+  font-family: PoiretOne, 'sans-serif';
+  font-size: 18px;
+}
+//Обёртка:
+.wrapper{
+  display: grid;
+  grid-template-columns: 1fr repeat(4,minmax(250px,1fr)) 1fr;
+  grid-template-rows:repeat(5,minmax(300px,auto)) 100px;
+}
+
+//Шапка
+.header{
+  border: 1px solid $primary-col;
+  grid-column: 1/7;
+  height: 100vh;
+  display: grid;
+  grid-template-columns: repeat(12,1fr);
+  //1)Общие стили для столбов в шапке
+  >.col{
+    border: 2px solid $primary-col;
+  }
+  //2)Лого-контейнер
+  .logo-container{
+    grid-column: 1/5;
+    justify-content: space-between;
+    .logo{
+      justify-content: center;
+      align-items: center;
+      background-color: $primary-col;
+      width: 100%;
+      height: 200px;
+      a{
+        font-size: 1.5em;
+        font-family: PoiretOne, 'sans-serif';
+        font-weight: bold;
+        color:white;
+      }
+    }
+    .banner{
+      font-size: 3.3em;
+      font-family: 'Montserrat', sans-serif;
+      z-index: 1;
+      padding-left: 20px;
+      .highlighted-text{
+        padding: 4px;
+        background-color: red;
+        color:white;
+      }
+    }
+
+  }
+  .info-container{
+    grid-column: 5/11;
+    //инфо-блоки
+    .info-part{
+      width: 100%;
+      height: 0;
+      opacity: 0;
+      overflow: hidden;
+    }
+    //Активный инфо-блек
+    .info-part-active{
+      height: 100%;
+      opacity:1;
+      transition: all 0.6s ease-out;
+      justify-content: space-between;
+    }
+
+    #what-is-it{
+      p{
+        padding: 14px;
+        font-size: 1.1em;
+      }
+    }
+    #who-we-are{
+
+    }
+    #why-its-cool{
+      align-items: center;
+      img{
+        width: 80%;
+      }
+    }
+  }
+  .info-nav-container{
+    grid-column: 11/13;
+    justify-content: center;
+    background-color: $primary-col;
+    nav{
+      padding: 20px 7px;
+      a{
+        font-size: 1.2em;
+        margin:14px 0;
+        color:white;
+      }
+    }
+  }
+}
+//Стили секций
+//1)Наша команда
+#our-team{
+  align-items: center;
+  background-color:$accent-white-col;
+  .team-container{
+    max-width: 1280px;
+    width: 100%;
+    justify-content: space-evenly;
+    margin: 14px 0;
+    .teammate{
+      box-shadow: 2px 4px 8px 0 rgba(0,0,0,0.5);
+      width: 250px;
+      border-radius: 20px;
+      background-color: white;
+      height: 360px;
+      overflow: hidden;
+      .teammate-top{
+        height: 130px;
+        background-color: red;
+        align-items: center;
+        //padding: 10px 0;
+        h3{
+          padding: 7px;
+          color:white;
+          text-align: center;
+        }
+      }
+      .teammate-img{
+        width: 120px;
+        height: 120px;
+        border-radius: 50%;
+        z-index: 2;
+        position: relative;
+        align-self: center;
+        top: -65px;
+      }
+      .teammate-text{
+        margin-top: -30px;
+        padding: 7px;
+        text-align: center;
+      }
+    }
+  }
+}
+//2)Топ продукции
+#top{
+  align-items: center;
+  background-image: url("../img/back-left.jpg");
+  background-size: cover;
+  border-bottom:40px solid $primary-col;
+  .top-container{
+    flex-wrap: wrap;
+    justify-content: space-evenly;
+    .top-product{
+      width: 350px;
+      height: 170px;
+      background-color: rgba(252, 237, 237, 0.8);
+      margin: 14px;
+      .top-product-img{
+
+        align-items: center;
+        justify-content: center;
+        background-color: $light-gray-col;
+        width: 40%;
+        img{
+          max-height: 80%;
+          max-width: 100%;
+        }
+      }
+      .top-product-text{
+        align-items: center;
+        justify-content: space-evenly;
+        text-align: center;
+        .row{
+          justify-content: center;
+          align-items: center;
+          .top-product-link{ //TODO миксины!
+            background-color: red;
+            color: white;
+            padding: 8px 12px;
+            margin-right: 15px;
+
+          }
+          .top-product-price{
+            color:red;
+            font-weight:bold;
+          }
+
+        }
+      }
+    }
+  }
+}
+//Демо-пример
+#demo-example{
+  align-items: center;
+  border-right:40px solid $primary-col;
+  .demo-container{
+    align-items: center;
+    margin:20px 0;
+  }
+}
+#personal-model{
+  align-items: center;
+  background-image: url("../img/back-right.jpg");
+  background-size: cover;
+  .personal-model-text{
+    max-width: 500px;
+  }
+  .personal-container{
+    justify-content: space-evenly;
+    max-width:1280px;
+    width: 100%;
+    margin:24px 0;
+    .personal-card{
+      width: 290px;
+      height: 460px;
+      box-shadow: 2px 4px 8px 0 rgba(0,0,0,0.5);
+      background-color: rgba(252, 237, 237, 0.85);
+      justify-content: space-between;
+      .personal-card-img{
+        width: 100%;
+        height: 170px;
+        object-fit: contain;
+        background-color: $light-gray-col;
+      }
+      .personal-card-text{
+        padding: 14px;
+        text-align: center;
+        .row{
+          justify-content: space-between;
+          align-items: center;
+          margin: 10px;
+          .personal-card-link{ //TODO миксины!
+            background-color: red;
+            color: white;
+            padding: 8px 12px;
+            margin-right: 15px;
+
+          }
+          .personal-card-price{
+            color:red;
+            font-weight:bold;
+          }
+        }
+      }
+    }
+  }
+}
+
+//Подвал
+.footer{
+  grid-column: 1/7;
+  background-color: $primary-col;
+  justify-content: center;
+  color:white;
+  .footer-container{
+    align-items: center;
+    justify-content: space-between;
+    font-size: 0.8em;
+    height: 100%;
+    width: 100%;
+    max-width: 1280px;
+    .col{
+      justify-content: space-evenly;
+      align-items: center;
+      height: 100%;
+    }
+    .contacts{
+      font-size: 1em;
+      font-weight: bold;
+    }
+  }
+}
+
+//Импорт(продолжение):
+@import '_media';//4)медизапросы
+@import "_keyframes";//5)анимации
+
