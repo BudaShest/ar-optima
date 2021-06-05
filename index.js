@@ -3,8 +3,11 @@
 const express = require('express'); //Подключаем модуль express
 const bodyParser = require('body-parser'); //Модуль
 const path = require('path');
+;
 /*Важные объекты*/
 const app = express();
+
+
 
 /*Настрйока app*/
 //1)Настройка отображения
@@ -13,6 +16,7 @@ app.set('view engine','hbs');
 app.use(bodyParser.urlencoded({extended:false}));
 //3)Определеяем каталог, где хранятся статические рессурсы
 app.use(express.static(path.join(__dirname,'public')))
+
 
 /*Другие важные константы*/
 const PORT = process.env.PORT || 3000; //Контсанта, содержащая порт

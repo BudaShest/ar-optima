@@ -5,6 +5,7 @@ module.exports = class Product{
         this.#connection = connection;
     }
 
+    //TODO тест на промисах
     getAllProducts(){
         return this.#connection.query('SELECT * FROM product')
             .then(([rows,fields])=>{
@@ -15,4 +16,10 @@ module.exports = class Product{
 
             )
     }
+
+    //TODO тест на async
+    // async getAllProducts(){
+    //     let [rows,fields] = await this.#connection.query('SELECT * FROM product');
+    //     console.log(rows)
+    // }
 }

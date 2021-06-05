@@ -35,7 +35,7 @@ module.exports = class Employee{
 
     addEmployer(firstName,surname,age,positionId,description,stack){
         return this.#connection.query('INSERT INTO employee (firstname, surname, age, description, avatar, position_id, technology_stack) VALUES (?,?,?,?,"employee-def.png",?,?)',[firstName,surname,age,description,positionId,stack])
-            .then(res=>res.insertId)
+            .then(res=>res.insertId) //TODO не работает lastInsert
             .catch(err=>err)
     }
 

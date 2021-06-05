@@ -1,0 +1,23 @@
+[33mcommit 44aea2aece15b1c7fabb1899da23d6a3fbe5744c[m[33m ([m[1;36mHEAD -> [m[1;32mmaster[m[33m, [m[1;31morigin/master[m[33m)[m
+Author: BudaShest <budashest@gmail.com>
+Date:   Sat Jun 5 14:03:30 2021 +0500
+
+    работает вставка и более менее каркас админки готов"
+
+[33mcommit b61083b64a5040dda632f66128875902f62b6061[m
+Author: BudaShest <budashest@gmail.com>
+Date:   Thu Jun 3 16:13:02 2021 +0500
+
+    новая структура, всё работает, если что вернуься сюда
+
+[33mcommit c7d6882fb171cf2d11fe64fe9f8e98e33392e2ba[m
+Author: BudaShest <budashest@gmail.com>
+Date:   Thu Jun 3 14:19:31 2021 +0500
+
+    до изменении файовой структуры
+
+[33mcommit ef8cc68441158fbb4e138c236d0257faf5e1f00e[m
+Author: BudaShest <budashest@gmail.com>
+Date:   Wed Jun 2 15:42:39 2021 +0500
+
+    initial commit

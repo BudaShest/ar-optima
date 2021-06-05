@@ -1,13 +1,16 @@
+const connection = require('../../db/connect');
+
+
 const Employee = require('../models/employee');
 const Position = require('../models/position');
 const User = require('../models/user');
 const Product = require('../models/product');
 
-const connection = require('../../db/connect');
 const employeeWorker = new Employee(connection);
 const positionWorker = new Position(connection);
 const userWorker = new User(connection);
 const productWorker = new Product(connection);
+
 
 module.exports.getPanel= function (request,response){
     employeeWorker.getAllEmployers().then(employers=>{
@@ -30,6 +33,7 @@ module.exports.getPanel= function (request,response){
             })
         })
     });
+    productWorker.getAllProducts();
 }
 
 module.exports.addEmployer = function (request,response){
@@ -39,6 +43,8 @@ module.exports.addEmployer = function (request,response){
     const positionId = request.body.employPosition;
     const description = request.body.employDescription;
     const stack = request.body.employStack;
+    console.log(request.file);
+
     employeeWorker.addEmployer(firstname,surname,age,positionId,description,stack)
         .then(data=>console.log(data))
         .catch(err=>console.log(err))

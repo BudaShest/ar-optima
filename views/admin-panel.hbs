@@ -32,7 +32,7 @@
             <div class="col section-part first-part">
                 <div class="col ">
                     <h2>Добавить сотрудника</h2>
-                    <form action="admin/addEmployer" class="employers-form col" method="post">
+                    <form action="admin/add" class="employers-form col" method="post" enctype="multipart/form-data">
                         <fieldset class="col">
                             <legend>Личные данные</legend>
                             <label for="employ-firstname-input">Имя:</label>
@@ -42,7 +42,7 @@
                             <label for="employ-age-input">Возраст:</label>
                             <input name="employAge" type="number" id="employ-age-input">
                             <label for="employ-avatar-input">Аватар:</label>
-                            <input type="file" id="employ-avatar-input">
+                            <input name="employAvatar" type="file" id="employ-avatar-input">
                         </fieldset>
                         <fieldset class="col">
                             <legend>Описание и навыки</legend>
