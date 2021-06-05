@@ -3,6 +3,7 @@
 @import "fonts"; //1)шрифты
 @import "mixins";//2)миксины
 @import "vars";//3)переменные
+@import "admin"; //4)стили админ-панели
 
 //Общие стили:
 //1)Частичное обнуление браузерных стилей
@@ -218,42 +219,7 @@ body{
     flex-wrap: wrap;
     justify-content: space-evenly;
     .top-product{
-      width: 350px;
-      height: 170px;
-      background-color: rgba(252, 237, 237, 0.8);
-      margin: 14px;
-      .top-product-img{
-
-        align-items: center;
-        justify-content: center;
-        background-color: $light-gray-col;
-        width: 40%;
-        img{
-          max-height: 80%;
-          max-width: 100%;
-        }
-      }
-      .top-product-text{
-        align-items: center;
-        justify-content: space-evenly;
-        text-align: center;
-        .row{
-          justify-content: center;
-          align-items: center;
-          .top-product-link{ //TODO миксины!
-            background-color: red;
-            color: white;
-            padding: 8px 12px;
-            margin-right: 15px;
-
-          }
-          .top-product-price{
-            color:red;
-            font-weight:bold;
-          }
-
-        }
-      }
+      @include card();
     }
   }
 }

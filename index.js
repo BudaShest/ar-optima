@@ -21,8 +21,10 @@ const PORT = process.env.PORT || 3000; //Контсанта, содержаща�
 /*Роутинг с помощью Express*/
 //1)Объекты роутеры
 const homeRouter = require('./routes/homeRouter');
+const adminRouter = require('./routes/adminRouter');
 //2)Привязка объектов к соответсвующим url
 app.use('/', homeRouter);
+app.use('/admin',adminRouter);
 
 
 //Обработка несуществущей страницы

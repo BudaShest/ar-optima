@@ -1,0 +1,212 @@
+<!doctype html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <link rel="stylesheet" href="/css/style.css">
+    <script defer src="/js/admin-panel.js"></script>
+</head>
+<body>
+    <div class="admin-toggler">
+
+    </div>
+    <div class="admin-modal col">
+        <header class="row">
+            <h1>Меню</h1>
+            <button class="admin-modal-close-btn">X</button>
+        </header>
+        <nav class="col">
+            <a data-target="admin-employers" class="nav-link" href="#">Сотрудники</a>
+            <a data-target="admin-positions" class="nav-link" href="#">Вакансии</a>
+            <a data-target="admin-users" class="nav-link" href="#">Пользователи</a>
+            <a data-target="admin-products" class="nav-link" href="#">Товары</a>
+            <a data-target="admin-services" class="nav-link" href="#">Услуги</a>
+            <a data-target="admin-works" class="nav-link" href="#">В работе</a>
+        </nav>
+    </div>
+    <div class="admin-wrapper">
+        <section id="admin-employers" class="row">
+            <div class="col section-part first-part">
+                <div class="col ">
+                    <h2>Добавить сотрудника</h2>
+                    <form action="admin/addEmployer" class="employers-form col" method="post">
+                        <fieldset class="col">
+                            <legend>Личные данные</legend>
+                            <label for="employ-firstname-input">Имя:</label>
+                            <input name="employFirstname" type="text" id="employ-firstname-input">
+                            <label for="employ-surname-input">Фамилия:</label>
+                            <input name="employSurname" type="text" id="employ-surname-input">
+                            <label for="employ-age-input">Возраст:</label>
+                            <input name="employAge" type="number" id="employ-age-input">
+                            <label for="employ-avatar-input">Аватар:</label>
+                            <input type="file" id="employ-avatar-input">
+                        </fieldset>
+                        <fieldset class="col">
+                            <legend>Описание и навыки</legend>
+                            <label for="employ-position-select">Должность:</label>
+                            <select name="employPosition" id="employ-position-select">
+                                {{#each allPositions}}
+                                    <option value="{{this.id}}">{{this.name}}</option>
+                                {{/each}}
+                            </select>
+                            <label for="employ-description-textarea">Описание:</label>
+                            <textarea name="employDescription" id="employ-description-textarea" cols="30" rows="10"></textarea>
+                            <label for="employ-stack-textarea">Стек технологий:</label>
+                            <textarea name="employStack" id="employ-stack-textarea" cols="30" rows="10"></textarea>
+                        </fieldset>
+                        <div class="row form-controls">
+                            <button>ОК</button>
+                            <button>Стереть</button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+            <div class="col section-part second-part">
+                <div class="col">
+                    <h3>Все сотрудники</h3>
+                    <div class="all-records all-employers row">
+                        {{#each allEmployers}}
+                            <div class="card employer row">
+                                <div class="col card-img">
+                                    <img src="/img/team/{{this.avatar}}" alt="">
+                                </div>
+                                <div class="col card-text">
+                                    <h3>{{this.name}}</h3>
+                                    <h4>{{this.firstname}} {{this.surname}}</h4>
+                                    <div class="row">
+                                        <a href="#" class="card-link">Перейти</a>
+                                        <img src="/img/icons/{{this.icon}}" class="card-icon" alt="">
+                                    </div>
+                                </div>
+                            </div>
+                        {{/each}}
+                    </div>
+                </div>
+            </div>
+        </section>
+        <section id="admin-positions" class="row">
+            <div class="col section-part first-part">
+                <div class="col">
+                    <h2>Добавить вакансию</h2>
+                    <form action="" class="col" enctype="multipart/form-data">
+                        <label for="position-name-input">Название:</label>
+                        <input type="text" id="position-name-input">
+                        <label for="position-icon-input">Иконка:</label>
+                        <input type="file" id="position-icon-input">
+                        <label for="position-main-checkbox">Ключевая?</label>
+                        <input type="checkbox" id="position-main-checkbox">
+                        <div class="row form-controls">
+                            <button>ОК</button>
+                            <button>Стереть</button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+            <div class="col section-part second-part">
+                <div class="col">
+                    <h3>Всё вакансии</h3>
+                    <div class="all-records all-positions row">
+                        {{#each allPositions}}
+                            <div class="card position row">
+                                <div class="col card-img">
+                                    <img src="/img/icons/{{this.icon}}" alt="">
+                                </div>
+                                <div class="col card-text">
+                                    <h3>{{this.name}}</h3>
+                                    <div class="row">
+                                        <a class="card-link" href="#">Перейти</a>
+                                        <span>{{this.is_main}}</span>
+                                    </div>
+                                </div>
+                            </div>
+                        {{/each}}
+                    </div>
+                </div>
+            </div>
+        </section>
+        <section id="admin-users" class="row">
+            <div class="col section-part first-part">
+                <div class="col">
+                    <h2>Настройки пользователей</h2>
+                </div>
+            </div>
+            <div class="col section-part second-part">
+                <div class="col">
+                    <h3>Все пользователи</h3>
+                    <div class="all-records all-users row">
+                        {{#each allUsers}}
+                            <div class="card user row">
+                                <div class="col card-img">
+                                    <img src="/img/users/{{this.avatar}}" alt="">
+                                </div>
+                                <div class="col card-text">
+                                    <h3>{{this.login}}</h3>
+                                    <h4>{{this.name}}</h4>
+                                    <div class="row">
+                                        <a class="card-link" href="#">Перейти</a>
+                                    </div>
+                                </div>
+                            </div>
+                        {{/each}}
+                    </div>
+                </div>
+            </div>
+        </section>
+        <section id="admin-products" class="row">
+            <div class="col section-part first-part">
+                <div class="col">
+                    <h2>Добавить продукт</h2>
+                    <form action="" class="col">
+                        <label for="product-name-input">Название:</label>
+                        <input type="text" id="product-name-input">
+                        <label for="product-second-name-input">Второй название:</label>
+                        <input type="text" id="product-second-name-input">
+                        <label for="product-description-textarea">Описание:</label>
+                        <textarea name="" id="product-description-textarea" cols="30" rows="10"></textarea>
+                        <label for="product-author-select">Автор:</label>
+                        <select name="" id="product-author-select">
+                            <option value=""></option>
+                        </select>
+                        <label for="product-price-input">Цена:</label>
+                        <input type="text" id="product-price-input">
+                        <div class="row form-controls">
+                            <button>OK</button>
+                            <button>Стереть</button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+            <div class="col section-part second-part">
+                <div class="col">
+                    <h3>Все товары</h3>
+                    <div class="all-records all-products row">
+                        {{#each AllProducts}}
+                            <div class="card product row">
+                                <div class="col card-img">
+                                    <img src="/img/users/" alt="">
+                                </div>
+                                <div class="col card-text">
+                                    <h3></h3>
+                                    <h4></h4>
+                                    <div class="row">
+                                        <a class="card-link" href="#">Перейти</a>
+                                    </div>
+                                </div>
+                            </div>
+                        {{/each}}
+                    </div>
+                </div>
+            </div>
+        </section>
+        <section id="admin-services" class="row">
+
+        </section>
+        <section id="admin-works" class="row">
+
+        </section>
+    </div>
+</body>
+</html>

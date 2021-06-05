@@ -5,17 +5,36 @@ module.exports = class User{
         this.#connection = connection;
     }
 
-
-
     getAllUsers(){
-        this.#connection.query('SELECT * FROM user')
-            .then(res=>{
-
+        return this.#connection.query('SELECT u.id as id, login, password,avatar,role_id,name FROM user u INNER JOIN roles r ON u.role_id = r.id')
+            .then(([rows,fields])=>{
+                return rows;
             })
-        
+            .catch(err=>{
+                console.log(err)
+            })
+            .finally(
+
+            )
+    }
+
+    getUser(){
+
+    }
+
+    searchUser(){
+
     }
 
     insertUser(){
+
+    }
+
+    deleteUser(){
+
+    }
+
+    updateUser(){
 
     }
 
