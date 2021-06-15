@@ -192,6 +192,8 @@ body{
         position: relative;
         align-self: center;
         top: -65px;
+        object-fit: contain;
+        background-color: grey;
       }
       .teammate-text{
         margin-top: -50px;

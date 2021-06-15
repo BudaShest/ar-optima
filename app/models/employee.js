@@ -6,37 +6,38 @@ module.exports = class Employee{
         this.#connection = connection
     }
 
-    getAllEmployers(){ //TODO возможно образец
-        return this.#connection.query('SELECT e.id AS id,firstname,surname,description,avatar,position_id,technology_stack,name,icon FROM employee e INNER JOIN position p ON e.position_id = p.id')
-            .then(([rows,fields])=>{
-                return rows;
-            })
-            .catch(err=>{
-                console.error(err)
 
-            })
-            .finally( //TODO нужно ли это?
-                // this.#connection.close()
-            )
+    async getAllEmployers(){
+        try{
+            const [rows,fields] = await this.#connection.query('SELECT e.id AS id,firstname,surname,description,avatar,position_id,technology_stack,name,icon FROM employee e INNER JOIN position p ON e.position_id = p.id');
+            return rows;
+        }catch (e){
+            console.error('Ошибка запроса: ' + e);
+        }finally {
+            //Результат запроса + закрывать подключение к бд
+            console.log();
+        }
     }
 
-    getMainEmployers(){
-        return this.#connection.query('SELECT e.id AS id,firstname,surname,description,avatar,position_id,technology_stack,name,icon FROM employee e INNER JOIN position p ON e.position_id = p.id WHERE is_main = 1')
-            .then(([rows,fields])=>{
-                return rows;
-            })
-            .catch(err=>{
-                console.error(err)
-            })
-            .finally(
-                // this.#connection.close()
-            )
+    async getMainEmployers(){
+        try {
+            const [rows,fields] = await this.#connection.query('SELECT e.id AS id,firstname,surname,description,avatar,position_id,technology_stack,name,icon FROM employee e INNER JOIN position p ON e.position_id = p.id WHERE is_main = 1 ORDER BY e.id LIMIT 3');
+            return rows;
+        }catch (e){
+            console.error('Ошбика запроса: ' + e);
+        }finally {
+
+        }
     }
 
-    addEmployer(firstName,surname,age,positionId,description,stack){
-        return this.#connection.query('INSERT INTO employee (firstname, surname, age, description, avatar, position_id, technology_stack) VALUES (?,?,?,?,"employee-def.png",?,?)',[firstName,surname,age,description,positionId,stack])
-            .then(res=>res.insertId) //TODO не работает lastInsert
-            .catch(err=>err)
+    async addEmployer(firstName,surname,age,positionId,avatar,description,stack){
+        try{
+            await this.#connection.query('INSERT INTO employee (firstname, surname, age, description, avatar, position_id, technology_stack) VALUES (?,?,?,?,?,?,?)',[firstName,surname,age,description,avatar,positionId,stack]);
+        }catch (e){
+            console.error('Ошибка запроса:' + e)
+        }finally {
+
+        }
     }
 
 }

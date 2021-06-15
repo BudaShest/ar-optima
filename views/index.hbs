@@ -63,12 +63,11 @@
                         <div class="col teammate-top">
                             <h3>{{this.name}}</h3>
                         </div>
-<!--                        TODO аватар-->
-                        <img src="/img/team/anon.jpg" alt="" class="teammate-img">
+                        <img src="/img/uploads/{{this.avatar}}" alt="Аватарка" class="teammate-img">
                         <div class="col teammate-text">
                             <h4>{{this.firstname}} {{this.surname}}</h4>
                             <p>{{this.description}}</p>
-                            <img src="/img/icons/{{this.icon}}" class="teammate-icon" alt="Иконка специальности">
+                            <img src="/img/uploads/{{this.icon}}" class="teammate-icon" alt="Иконка специальности">
                         </div>
                     </div>
                 {{/each}}

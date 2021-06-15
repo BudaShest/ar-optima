@@ -32,7 +32,7 @@
             <div class="col section-part first-part">
                 <div class="col ">
                     <h2>Добавить сотрудника</h2>
-                    <form action="admin/add" class="employers-form col" method="post" enctype="multipart/form-data">
+                    <form action="admin/addEmployer" class="employers-form col" method="post" enctype="multipart/form-data">
                         <fieldset class="col">
                             <legend>Личные данные</legend>
                             <label for="employ-firstname-input">Имя:</label>
@@ -71,14 +71,14 @@
                         {{#each allEmployers}}
                             <div class="card employer row">
                                 <div class="col card-img">
-                                    <img src="/img/team/{{this.avatar}}" alt="">
+                                    <img src="img/uploads/{{this.avatar}}" alt="">
                                 </div>
                                 <div class="col card-text">
                                     <h3>{{this.name}}</h3>
                                     <h4>{{this.firstname}} {{this.surname}}</h4>
                                     <div class="row">
                                         <a href="#" class="card-link">Перейти</a>
-                                        <img src="/img/icons/{{this.icon}}" class="card-icon" alt="">
+                                        <img src="/img/uploads/{{this.icon}}" class="card-icon" alt="">
                                     </div>
                                 </div>
                             </div>
@@ -91,13 +91,13 @@
             <div class="col section-part first-part">
                 <div class="col">
                     <h2>Добавить вакансию</h2>
-                    <form action="" class="col" enctype="multipart/form-data">
+                    <form action="admin/addPosition" class="col" enctype="multipart/form-data" method="post">
                         <label for="position-name-input">Название:</label>
-                        <input type="text" id="position-name-input">
+                        <input name="positionName" type="text" id="position-name-input">
                         <label for="position-icon-input">Иконка:</label>
-                        <input type="file" id="position-icon-input">
+                        <input name="positionIcon" type="file" id="position-icon-input">
                         <label for="position-main-checkbox">Ключевая?</label>
-                        <input type="checkbox" id="position-main-checkbox">
+                        <input name="positionIsMain" type="checkbox" id="position-main-checkbox">
                         <div class="row form-controls">
                             <button>ОК</button>
                             <button>Стереть</button>
@@ -112,7 +112,7 @@
                         {{#each allPositions}}
                             <div class="card position row">
                                 <div class="col card-img">
-                                    <img src="/img/icons/{{this.icon}}" alt="">
+                                    <img src="/img/uploads/{{this.icon}}" alt="Иконка специальности">
                                 </div>
                                 <div class="col card-text">
                                     <h3>{{this.name}}</h3>
@@ -159,19 +159,23 @@
             <div class="col section-part first-part">
                 <div class="col">
                     <h2>Добавить продукт</h2>
-                    <form action="" class="col">
+                    <form action="admin/addProduct" class="col" method="post" enctype="multipart/form-data">
                         <label for="product-name-input">Название:</label>
-                        <input type="text" id="product-name-input">
+                        <input name="productName" type="text" id="product-name-input">
                         <label for="product-second-name-input">Второй название:</label>
-                        <input type="text" id="product-second-name-input">
+                        <input name="productSecondName" type="text" id="product-second-name-input">
                         <label for="product-description-textarea">Описание:</label>
-                        <textarea name="" id="product-description-textarea" cols="30" rows="10"></textarea>
+                        <textarea name="productDescription" id="product-description-textarea" cols="30" rows="10"></textarea>
+                        <label for="product-images-input">Картинки:</label>
+                        <input name="productImages" type="file" multiple id="product-images-input">
                         <label for="product-author-select">Автор:</label>
-                        <select name="" id="product-author-select">
-                            <option value=""></option>
+                        <select name="productAuthor" id="product-author-select">
+                            {{#each allEmployers}}
+                                <option value="{{this.id}}">{{this.surname}} {{this.firstname}}</option>
+                            {{/each}}
                         </select>
                         <label for="product-price-input">Цена:</label>
-                        <input type="text" id="product-price-input">
+                        <input name="productText" type="text" id="product-price-input">
                         <div class="row form-controls">
                             <button>OK</button>
                             <button>Стереть</button>
@@ -183,14 +187,14 @@
                 <div class="col">
                     <h3>Все товары</h3>
                     <div class="all-records all-products row">
-                        {{#each AllProducts}}
+                        {{#each allProducts}}
                             <div class="card product row">
                                 <div class="col card-img">
-                                    <img src="/img/users/" alt="">
+                                    <img src="/img/uploads/" alt="">
                                 </div>
                                 <div class="col card-text">
-                                    <h3></h3>
-                                    <h4></h4>
+                                    <h3>{{this.name}}</h3>
+                                    <h4>{{this.second_name}}</h4>
                                     <div class="row">
                                         <a class="card-link" href="#">Перейти</a>
                                     </div>
