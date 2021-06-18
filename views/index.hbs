@@ -10,11 +10,12 @@
     <script defer src="/js/homepage.js"></script>
 </head>
 <body>
+    {{> modalMenu}}
     <div class="wrapper">
         <header class="header">
             <div class="col logo-container">
                 <div class="logo row">
-                    <a href="#">AR-OPTIMA</a>
+                    <a href="/">AR-OPTIMA</a>
                 </div>
                 <div class="banner">
                     <span class="highlighted-text">ДОПОЛНЕННАЯ</span> РЕАЛЬНОСТЬ В ТВОЁМ ДОМЕ
@@ -48,6 +49,7 @@
                 </div>
             </div>
             <div class="col info-nav-container">
+                {{>modalToggler}}
                 <nav class="col">
                     <a class="info-nav-link" data-target="what-is-it" href="#">Что это такое?</a>
                     <a class="info-nav-link" data-target="who-we-are" href="#">Кто мы такие?</a>
@@ -59,129 +61,40 @@
             <h2>Наша Команда</h2>
             <div class="team-container row">
                 {{#each mainEmployers}}
-                    <div class="teammate col">
-                        <div class="col teammate-top">
-                            <h3>{{this.name}}</h3>
+                    <a href="teammate?teammateId={{this.id}}">
+                        <div class="teammate col">
+                            <div class="col teammate-top">
+                                <h3>{{this.name}}</h3>
+                            </div>
+                            <img src="/img/uploads/{{this.avatar}}" alt="Аватарка" class="teammate-img">
+                            <div class="col teammate-text">
+                                <h4>{{this.firstname}} {{this.surname}}</h4>
+                                <p>{{this.description}}</p>
+                                <img src="/img/uploads/{{this.icon}}" class="teammate-icon" alt="Иконка специальности">
+                            </div>
                         </div>
-                        <img src="/img/uploads/{{this.avatar}}" alt="Аватарка" class="teammate-img">
-                        <div class="col teammate-text">
-                            <h4>{{this.firstname}} {{this.surname}}</h4>
-                            <p>{{this.description}}</p>
-                            <img src="/img/uploads/{{this.icon}}" class="teammate-icon" alt="Иконка специальности">
-                        </div>
-                    </div>
+                    </a>
                 {{/each}}
             </div>
         </section>
         <section id="top" class="col">
             <h2>Топ</h2>
             <div class="top-container row">
-                <div class="top-product row">
-                    <div class="col top-product-img card-img">
-                        <img src="/img/products/first-prod.png" alt="">
-                    </div>
-                    <div class="col top-product-text card-text">
-                        <h3>Ваша надпись</h3>
-                        <h4>Абсолютно любая надпись</h4>
-                        <div class="row">
-                            <a class="top-product-link card-link link-to" href="#">Перейти</a>
-                            <span class="top-product-price  card-price">3000₽</span>
+                {{#each topProducts}}
+                    <div class="top-product row">
+                        <div class="col top-product-img card-img">
+                            <img src="/img/uploads/{{this.image}}" alt="">
+                        </div>
+                        <div class="col top-product-text card-text">
+                            <h3>{{this.name}}</h3>
+                            <h4>{{this.second_name}}</h4>
+                            <div class="row">
+                                <a class="top-product-link card-link link-to" href="#">Перейти</a>
+                                <span class="top-product-price  card-price">{{this.price}}₽</span>
+                            </div>
                         </div>
                     </div>
-                </div>
-                <div class="top-product row">
-                    <div class="col top-product-img">
-                        <img src="/img/products/gold-liom.png" alt="">
-                    </div>
-                    <div class="col top-product-text">
-                        <h3>Золотой лев</h3>
-                        <h4>Хоть что-то золотое дома</h4>
-                        <div class="row">
-                            <a class="top-product-link" href="#">Перейти</a>
-                            <span class="top-product-price">6700₽</span>
-                        </div>
-                    </div>
-                </div>
-                <div class="top-product row">
-                    <div class="col top-product-img">
-                        <img src="/img/products/chair.png" alt="">
-                    </div>
-                    <div class="col top-product-text">
-                        <h3>Деревянный стул</h3>
-                        <h4>Почти как из IKEA</h4>
-                        <div class="row">
-                            <a class="top-product-link" href="#">Перейти</a>
-                            <span class="top-product-price">12000₽</span>
-                        </div>
-                    </div>
-                </div>
-                <div class="top-product row">
-                    <div class="col top-product-img">
-                        <img src="/img/products/molekula.png" alt="">
-                    </div>
-                    <div class="col top-product-text">
-                        <h3>Молекула</h3>
-                        <h4>Ваш брат по разуму!</h4>
-                        <div class="row">
-                            <a class="top-product-link" href="#">Перейти</a>
-                            <span class="top-product-price">8900₽</span>
-                        </div>
-                    </div>
-                </div>
-                <div class="top-product row">
-                    <div class="col top-product-img">
-                        <img src="/img/products/tajmahal.png" alt="">
-                    </div>
-                    <div class="col top-product-text">
-                        <h3>Тадж Махал</h3>
-                        <h4>Фанатам архитектуры</h4>
-                        <div class="row">
-                            <a class="top-product-link" href="#">Перейти</a>
-                            <span class="top-product-price">24700₽</span>
-                        </div>
-                    </div>
-                </div>
-                <div class="top-product row">
-                    <div class="col top-product-img">
-                        <img src="/img/products/scorpio.png" alt="">
-                    </div>
-                    <div class="col top-product-text">
-                        <h3>Кубоскорпион</h3>
-                        <h4>Скорпион из кубиков</h4>
-                        <span>Автор: <strong>Артёмий Лебедев</strong></span>
-                        <div class="row">
-                            <a class="top-product-link" href="#">Перейти</a>
-                            <span class="top-product-price">333000₽</span>
-                        </div>
-                    </div>
-                </div>
-                <div class="top-product row">
-                    <div class="col top-product-img">
-                        <img src="/img/products/sonicgirl.png" alt="">
-                    </div>
-                    <div class="col top-product-text">
-                        <h3>Эми Роуз</h3>
-                        <h4>Розовая ежиха из Соника</h4>
-                        <span>Автор: <strong>Эдвард Сноуден</strong></span>
-                        <div class="row">
-                            <a class="top-product-link" href="#">Перейти</a>
-                            <span class="top-product-price">134000₽</span>
-                        </div>
-                    </div>
-                </div>
-                <div class="top-product row">
-                    <div class="col top-product-img">
-                        <img src="/img/products/house.png" alt="">
-                    </div>
-                    <div class="col top-product-text">
-                        <h3>Дом</h3>
-                        <h4>Просто дом</h4>
-                        <div class="row">
-                            <a class="top-product-link" href="#">Перейти</a>
-                            <span class="top-product-price">3000₽</span>
-                        </div>
-                    </div>
-                </div>
+                {{/each}}
             </div>
         </section>
         <section id="demo-example" class="col">
@@ -194,21 +107,22 @@
             </div>
         </section>
         <section id="personal-model" class="col">
-
             <h2>Ваша собственная 3d-модель</h2>
             <p class="personal-model-text">Если вы занимаетесь 3d - дизайном или у вас уже есть nft-токены на какие-либо цифровые произведения, то мы поможем Вам создать вашу персоанльную дополненную реальность</p>
             <div class="personal-container row">
-                <div class="personal-card col">
-                    <img src="/img/personal/first-stage.png" alt="" class="personal-card-img">
-                    <div class="personal-card-text">
-                        <h3>У меня есть идея и ничего более</h3>
-                        <p>Если у вас есть идея или видение произведения, то мы готовы помочь вам с её реализцией и получением nft-токена на вашу интеллекутальную собственность</p>
-                        <div class="row">
-                            <a href="#" class="personal-card-link link-to">Перейти</a>
-                            <span class="personal-card-price price">от 20000₽</span>
+                {{#each topServices}}
+                    <div class="personal-card col">
+                        <img src="/img/uploads/{{this.image}}" alt="" class="personal-card-img">
+                        <div class="personal-card-text">
+                            <h3>{{this.header}}</h3>
+                            <p>{{this.description}}</p>
+                            <div class="row">
+                                <a href="#" class="personal-card-link link-to">Перейти</a>
+                                <span class="personal-card-price price">от {{this.price}}₽</span>
+                            </div>
                         </div>
                     </div>
-                </div>
+                {{/each}}
                 <div class="personal-card col">
                     <img src="/img/personal/second-stage.png" alt="" class="personal-card-img">
                     <div class="personal-card-text">
@@ -233,18 +147,7 @@
                 </div>
             </div>
         </section>
-        <footer class="footer row">
-            <div class="footer-container row">
-                <div class="col">
-                    <span>performed by AR-OPTIMA</span>
-                    <span>from Russia with love</span>
-                </div>
-                <div class="col contacts">
-                    <span>8-800-555-35-35</span>
-                    <span>ar.optima@mail.ru</span>
-                </div>
-            </div>
-        </footer>
+        {{> footer}}
     </div>
 </body>
 </html>

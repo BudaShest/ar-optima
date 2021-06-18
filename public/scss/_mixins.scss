@@ -79,3 +79,47 @@
     }
   }
 }
+
+@mixin teammateCard(){
+  box-shadow: 2px 4px 8px 0 rgba(0,0,0,0.5);
+  width: 250px;
+  border-radius: 20px;
+  background-color: white;
+  height: 420px;
+  overflow: hidden;
+  .teammate-top{
+    height: 130px;
+    background-color: red;
+    align-items: center;
+    //padding: 10px 0;
+    h3{
+      padding: 7px;
+      color:white;
+      text-align: center;
+    }
+  }
+  .teammate-img{
+    width: 120px;
+    height: 120px;
+    border-radius: 50%;
+    z-index: 2;
+    position: relative;
+    align-self: center;
+    top: -65px;
+    object-fit: contain;
+    background-color: grey;
+  }
+  .teammate-text{
+    margin-top: -50px;
+    padding: 7px;
+    text-align: center;
+    p{
+      height: 110px;
+    }
+    .teammate-icon{
+      width: 70px;
+      height: 70px;
+      align-self: center;
+    }
+  }
+}

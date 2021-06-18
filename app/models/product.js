@@ -7,7 +7,7 @@ module.exports = class Product{
 
     async getAllProducts(){
         try{
-           const [rows,fields] = await this.#connection.query('SELECT * FROM product');
+           const [rows,fields] = await this.#connection.query('SELECT p.id as id, name, description, author, price, second_name, image FROM product p INNER JOIN product_images pi on p.id = pi.product_id GROUP BY p.id');
            return rows;
         }catch (e){
             console.error('Ошибка запроса: ' + e);

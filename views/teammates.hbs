@@ -1,0 +1,59 @@
+<!doctype html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Вся команда</title>
+    <link rel="stylesheet" href="/css/style.css">
+</head>
+<body>
+    {{>modalMenu}}
+    <div class="wrapper wrapper-main">
+        {{>headerLight}}
+        <main class="main">
+            <div class="all-employers col">
+                <h3>Главные разработчики:</h3>
+                <div class="main-employers row">
+                    {{#each mainEmployers}}
+                        <a href="teammate?teammateId={{this.id}}">
+                        <div class="teammate col">
+                            <div class="col teammate-top">
+                                <h3>{{this.name}}</h3>
+                            </div>
+                            <img src="/img/uploads/{{this.avatar}}" alt="Аватарка" class="teammate-img">
+                            <div class="col teammate-text">
+                                <h4>{{this.firstname}} {{this.surname}}</h4>
+                                <p>{{this.description}}</p>
+                                <img src="/img/uploads/{{this.icon}}" class="teammate-icon" alt="Иконка специальности">
+                            </div>
+                        </div>
+                        </a>
+                    {{/each}}
+                </div>
+                <h4>Остальная команда:</h4>
+                <div class="rest-employers row">
+                    {{#each restEmployers}}
+                        <a href="teammate?teammateId={{this.id}}">
+                        <div class="teammate col">
+                            <div class="col teammate-top">
+                                <h3>{{this.name}}</h3>
+                            </div>
+                            <img src="/img/uploads/{{this.avatar}}" alt="Аватарка" class="teammate-img">
+                            <div class="col teammate-text">
+                                <h4>{{this.firstname}} {{this.surname}}</h4>
+                                <p>{{this.description}}</p>
+                                <img src="/img/uploads/{{this.icon}}" class="teammate-icon" alt="Иконка специальности">
+                            </div>
+                        </div>
+                        </a>
+                    {{/each}}
+                </div>
+            </div>
+        </main>
+        {{>footer}}
+    </div>
+
+</body>
+</html>

@@ -1,0 +1,44 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Наш товарищ</title>
+    <link rel="stylesheet" href="/css/style.css">
+</head>
+<body>
+    {{>modalMenu}}
+    <div class="wrapper wrapper-main">
+        {{>headerLight}}
+        <main class="main">
+            {{#with teammate}}
+                <div class="current-teammate-container col">
+                    <div class="current-teammate-top row">
+                        <div class="col current-teammate-avatar">
+                            <img src="/img/uploads/{{avatar}}" alt="">
+                        </div>
+                        <div class="col current-teammate-header">
+                            <h2>Имя: {{firstname}}</h2>
+                            <h3>Фамилия: {{surname}}</h3>
+                            <span>Возраст {{age}} лет/года</span>
+                            <div class="current-teammate-role row">
+                                <span>Должность: {{name}}</span>
+                                <img src="/img/uploads/{{icon}}" alt="">
+                            </div>
+                        </div>
+                    </div>
+                    <div class="current-teammate-text col">
+                        <h4>Описание:</h4>
+                        <p>{{description}}</p>
+                        <h4>Стек технологий:</h4>
+                        <p>{{technology_stack}}</p>
+                    </div>
+                </div>
+            {{/with}}
+        </main>
+        {{>footer}}
+    </div>
+</body>
+</html>

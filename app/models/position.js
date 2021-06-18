@@ -6,6 +6,7 @@ module.exports = class Position{
     }
 
 
+
     async getAllPositions(){
         try{
             const [rows,fields] = await this.#connection.query('SELECT * FROM position');

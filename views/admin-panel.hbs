@@ -8,6 +8,7 @@
     <title>Document</title>
     <link rel="stylesheet" href="/css/style.css">
     <script defer src="/js/admin-panel.js"></script>
+    <script src="https://cdn.tiny.cloud/1/lx1k5gva7psp1ywffg4ujjonc5dk9q44notypc4ns36d6s45/tinymce/5/tinymce.min.js" referrerpolicy="origin"></script>
 </head>
 <body>
     <div class="admin-toggler">
@@ -190,7 +191,7 @@
                         {{#each allProducts}}
                             <div class="card product row">
                                 <div class="col card-img">
-                                    <img src="/img/uploads/" alt="">
+                                    <img src="/img/uploads/{{this.image}}" alt="">
                                 </div>
                                 <div class="col card-text">
                                     <h3>{{this.name}}</h3>
@@ -206,11 +207,57 @@
             </div>
         </section>
         <section id="admin-services" class="row">
-
+            <div class="col section-part first-part">
+                <div class="col">
+                    <h2>Добавить услугу</h2>
+                    <form action="admin/addService" class="col" method="post" enctype="multipart/form-data">
+                        <label for="service-header-input">Заголовок:</label>
+                        <input name="serviceHeader" type="text" id="service-header-input">
+                        <label for="service-description-textarea">Описание:</label>
+                        <textarea name="serviceDescription" id="service-description-textarea" cols="30" rows="10"></textarea>
+                        <label for="service-image-input">Изображение:</label>
+                        <input name="serviceImage" type="file" id="service-image-input">
+                        <label for="service-price-input">Цена:</label>
+                        <input name="servicePrice" type="number" id="service-price-input">
+                        <div class="row form-controls">
+                            <button>ОК</button>
+                            <button>Стереть</button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+            <div class="col section-part second-part">
+                <div class="col">
+                    <h3>Все услуги:</h3>
+                    <div class="all-records all-services row">
+                        {{#each allServices}}
+                            <div class="card service row">
+                                <div class="col card-img">
+                                    <img src="/img/uploads/{{this.image}}" alt="">
+                                </div>
+                                <div class="col card-text">
+                                    <h3>{{this.header}}</h3>
+                                    <div class="row">
+                                        <a class="card-link" href="#">Перейти</a>
+                                    </div>
+                                </div>
+                            </div>
+                        {{/each}}
+                    </div>
+                </div>
+            </div>
         </section>
         <section id="admin-works" class="row">
 
         </section>
     </div>
+
+    <script>
+        tinymce.init({
+            selector: 'textarea',
+            plugins: 'advlist autolink lists link image charmap print preview hr anchor pagebreak',
+            toolbar_mode: 'floating',
+        });
+    </script>
 </body>
 </html>

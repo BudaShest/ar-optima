@@ -21,5 +21,6 @@ adminRouter.get('/',adminController.getPanel);
 adminRouter.post('/addEmployer',upload.single('employAvatar'),adminController.addEmployer);
 adminRouter.post('/addPosition',upload.single('positionIcon'),adminController.addPosition);
 adminRouter.post('/addProduct',upload.array('productImages',3),adminController.addProduct);
+adminRouter.post('/addService', upload.single('serviceImage'),adminController.addService);
 
 module.exports = adminRouter;

@@ -59,11 +59,114 @@ body{
   font-family: PoiretOne, 'sans-serif';
   font-size: 18px;
 }
-//Обёртка:
+//Модальное меню
+.modal-menu{
+  border: 2px solid white;
+  height: 100vh;
+  width: 0;
+  position: fixed;
+  right: 0;
+  top:0;
+  background-color: $primary-col;
+  z-index: 2;
+  overflow: hidden;
+  opacity: 0;
+  header{
+    height: 120px;
+    background-color: 2px solid white;
+    border: 2px solid white;
+    .col{
+      width: 50%;
+      justify-content: center;
+      align-items: center;
+      a{
+        color: white;
+      }
+      .user-avatar{
+        filter: invert(100%);
+      }
+      img{
+        object-fit: contain;
+        width: 60%;
+
+      }
+    }
+  }
+  .search-form{
+    border: 2px solid white;
+    color:white;
+    padding: 10px;
+    justify-content: space-evenly;
+    input{
+      background-color: white;
+    }
+    button{
+      padding: 10px;
+      color:white;
+      border:1px solid white;
+    }
+  }
+  nav{
+    margin: 14px 0;
+    a{
+      color:white;
+      font-size: 1.5em;
+      margin: 7px 0;
+      padding: 14px;
+    }
+  }
+}
+.modal-menu-active{
+  opacity: 1;
+  width: 255px;
+  transition:all 0.4s ease-out;
+}
+
+//Модальное мнею тоглер
+.side-menu{
+  width: 255px;
+  border:2px solid white;
+  height: 120px;
+  position: fixed;
+  color: white;
+  top:0;
+  right: 0;
+  background-color: rgba(65,81,103,0.5);
+  .col{
+    width: 50%;
+    justify-content: center;
+    align-items: center;
+    img{
+      object-fit: contain;
+      width: 60%;
+    }
+  }
+  .auth-block{
+
+    img{
+      filter: invert(100%);
+      margin: 10px;
+    }
+    a{
+      color: white;
+    }
+  }
+  .menu-block{
+
+  }
+}
+
+
+//Обёртка для главной страницы:
 .wrapper{
   display: grid;
   grid-template-columns: 1fr repeat(4,minmax(250px,1fr)) 1fr;
   grid-template-rows:repeat(5,minmax(300px,auto)) 100px;
+}
+//Обёртка для других страниц(переопределяет .wrapper)
+.wrapper-main{
+  grid-template-rows: 120px 1fr 100px;
+
 }
 
 //Шапка
@@ -146,6 +249,7 @@ body{
     justify-content: center;
     background-color: $primary-col;
     border:2px solid white;
+
     nav{
       padding: 20px 7px;
       a{
@@ -156,6 +260,25 @@ body{
     }
   }
 }
+
+//Облегченная шапка
+.header-light{
+  grid-column: 1/7;
+  background-color: $primary-col;
+  .logo-container{
+    color:white;
+    align-items: center;
+    justify-content: center;
+    .logo{
+      padding: 0 24px;
+      a{
+        font-size: 1.6em;
+        color:white;
+      }
+    }
+  }
+}
+
 //Стили секций
 //1)Наша команда
 #our-team{
@@ -167,47 +290,7 @@ body{
     justify-content: space-evenly;
     margin: 14px 0;
     .teammate{
-      box-shadow: 2px 4px 8px 0 rgba(0,0,0,0.5);
-      width: 250px;
-      border-radius: 20px;
-      background-color: white;
-      height: 420px;
-      overflow: hidden;
-      .teammate-top{
-        height: 130px;
-        background-color: red;
-        align-items: center;
-        //padding: 10px 0;
-        h3{
-          padding: 7px;
-          color:white;
-          text-align: center;
-        }
-      }
-      .teammate-img{
-        width: 120px;
-        height: 120px;
-        border-radius: 50%;
-        z-index: 2;
-        position: relative;
-        align-self: center;
-        top: -65px;
-        object-fit: contain;
-        background-color: grey;
-      }
-      .teammate-text{
-        margin-top: -50px;
-        padding: 7px;
-        text-align: center;
-        p{
-          height: 110px;
-        }
-        .teammate-icon{
-          width: 70px;
-          height: 70px;
-          align-self: center;
-        }
-      }
+      @include teammateCard();
     }
   }
 }
@@ -261,6 +344,10 @@ body{
       .personal-card-text{
         padding: 14px;
         text-align: center;
+        p{
+          max-height: 175px;
+          overflow: hidden;
+        }
         .row{
           justify-content: space-between;
           align-items: center;
@@ -281,7 +368,63 @@ body{
     }
   }
 }
+//Главный контент
+.main{
+  grid-column: 2/6;
+  //Все тиммейты
+  .all-employers{
+    margin:30px 0;
+    .main-employers, .rest-employers{
+      justify-content: space-between;
+      flex-wrap: wrap;
 
+    }
+    .main-employers .teammate, .rest-employers .teammate{
+      @include teammateCard();
+      margin: 14px 0;
+    }
+  }
+  //Один тиммейт
+  .current-teammate-container{
+    .current-teammate-top{
+      >.col{
+        width: 50%;
+        justify-content: center;
+        align-items: center;
+      }
+      .current-teammate-avatar{
+
+        img{
+          width: 80%;
+        }
+      }
+      .current-teammate-header{
+        >*{
+          margin:14px 0;
+        }
+        .current-teammate-role{
+          height: 100px;
+          align-items: center;
+          img{
+            height: 100%;
+          }
+          span{
+            font-size: 1.2em;
+
+          }
+        }
+      }
+    }
+    .current-teammate-text{
+      padding: 14px;
+      margin:24px 0;
+
+      h4{
+        margin: 20px 0;
+      }
+    }
+  }
+}
 //Подвал
 .footer{
   border: 2px solid white;

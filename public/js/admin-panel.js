@@ -22,6 +22,21 @@ navLinks.forEach(item=>item.addEventListener('click',function (){
     let activeSection = document.querySelector(selector);
     sections.forEach(item=>item.classList.remove('section-active'));
     activeSection.classList.add('section-active');
-
+    adminModal.classList.remove('admin-modal-active');
 }));
+
+//3)Навигация при загрузки страницы
+let linkTargets = [...navLinks].map(item=>item.dataset.target);
+
+window.onload = function (){
+    let currentUrl = new URL(window.location.href);
+    let currentHash = currentUrl.hash.slice(1);
+
+    if(linkTargets.includes(currentHash)){
+        let selector = "#" + currentHash;
+        let section = document.querySelector(selector);
+        sections.forEach(item=>item.classList.remove('section-active'));
+        section.classList.add('section-active');
+    }
+}
 

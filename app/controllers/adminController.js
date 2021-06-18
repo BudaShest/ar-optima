@@ -4,24 +4,27 @@ const Employee = require('../models/employee');
 const Position = require('../models/position');
 const User = require('../models/user');
 const Product = require('../models/product');
+const Service = require('../models/service');
 
 const employeeWorker = new Employee(connection);
 const positionWorker = new Position(connection);
 const userWorker = new User(connection);
 const productWorker = new Product(connection);
-
+const serviceWorker = new Service(connection);
 
 module.exports.getPanel=async function (request,response){
     let employers =await employeeWorker.getAllEmployers();
     let positions = await positionWorker.getAllPositions();
     let users = await userWorker.getAllUsers();
     let products = await productWorker.getAllProducts();
+    let services = await serviceWorker.getAllServices();
 
     response.render('admin-panel.hbs',{
         allEmployers:employers,
         allPositions:positions,
         allUsers:users,
-        allProducts:products
+        allProducts:products,
+        allServices:services
     })
 }
 
@@ -39,7 +42,7 @@ module.exports.addEmployer =async function (request,response){
     }
 
     await employeeWorker.addEmployer(firstname,surname,age,positionId,avatar,description,stack);
-    response.redirect('/admin');
+    response.redirect('/admin#admin-employers');
 }
 
 module.exports.addPosition = async function (request, response){
@@ -55,7 +58,7 @@ module.exports.addPosition = async function (request, response){
 
 
     await positionWorker.addPosition(name,icon,isMain);
-    response.redirect('/admin');
+    response.redirect('/admin#admin-positions');
 }
 
 module.exports.addProduct = async function (request, response){
@@ -66,5 +69,20 @@ module.exports.addProduct = async function (request, response){
     const price = request.body.productText;
     let fileNames = request.files.map(item=>item.filename);
     await productWorker.addProduct(name,description,authorId,price,secondName,fileNames);
-    response.redirect('/admin');
+    response.redirect('/admin#admin-products');
+}
+
+module.exports.addService = async function (request, response){
+    const header = request.body.serviceHeader;
+    const description = request.body.serviceDescription;
+    let image = "def-service.jpg";
+    const price = request.body.servicePrice;
+
+    if(request.file != undefined){
+        image = request.file.filename;
+    }
+
+    await serviceWorker.addService(header,description,image,price);
+    response.redirect('/admin#admin-services');
+
 }
