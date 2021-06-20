@@ -1,5 +1,24 @@
 /*Файл со стилями для админ-панели*/
 
+//Контекстное меню
+.admin-context-menu{
+  overflow: hidden;
+  position: absolute;
+  width: 0;
+  opacity: 0;
+  height:90px;
+  background-color: red;
+  z-index: 3;
+  button{
+    height: 50%;
+  }
+}
+.admin-context-menu-active{
+  width: 200px;
+  opacity: 1;
+  transition: all 0.3s ease-out;
+}
+//Меню админки
 .admin-toggler{
   width: 70px;
   height: 70px;
@@ -42,6 +61,7 @@
   transition: all 0.4s ease-out;
 }
 
+//Обёртка для админ-панели
 .admin-wrapper{
   height: 100vh;
   overflow: hidden;

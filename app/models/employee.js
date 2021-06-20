@@ -63,4 +63,15 @@ module.exports = class Employee{
 
     }
 
+    async deleteEmployer(id){
+        try{
+            const [rows,fields] = await this.#connection.query('DELETE FROM employee WHERE id = ?',[id]);
+
+        }catch (e){
+            console.error('Ошибка запроса: ' + e);
+        }finally {
+
+        }
+    }
+
 }

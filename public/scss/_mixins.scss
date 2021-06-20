@@ -123,3 +123,43 @@
     }
   }
 }
+
+@mixin serviceCard(){
+  width: 290px;
+  height: 460px;
+  box-shadow: 2px 4px 8px 0 rgba(0,0,0,0.5);
+  background-color: rgba(252, 237, 237, 0.85);
+  justify-content: space-between;
+  .personal-card-img{
+    width: 100%;
+    height: 170px;
+    object-fit: contain;
+    background-color: $light-gray-col;
+  }
+  .personal-card-text{
+    padding: 14px;
+    text-align: center;
+    height: 290px;
+    overflow: hidden;
+    >p{
+      max-height: 175px;
+      overflow: hidden;
+    }
+    .row{
+      justify-content: space-between;
+      align-items: center;
+      margin: 10px;
+      .personal-card-link{ //TODO миксины!
+        background-color: red;
+        color: white;
+        padding: 8px 12px;
+        margin-right: 15px;
+
+      }
+      .personal-card-price{
+        color:red;
+        font-weight:bold;
+      }
+    }
+  }
+}

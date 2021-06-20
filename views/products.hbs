@@ -7,6 +7,7 @@
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Все товары</title>
     <link rel="stylesheet" href="/css/style.css">
+    <script defer src="/js/script.js"></script>
 </head>
 <body>
     {{>modalMenu}}
@@ -25,7 +26,7 @@
                                 <h3>{{this.name}}</h3>
                                 <h4>{{this.second_name}}</h4>
                                 <div class="row">
-                                    <a class="top-product-link card-link link-to" href="#">Перейти</a>
+                                    <a class="top-product-link card-link link-to" href="/product?productId={{this.id}}">Перейти</a>
                                     <span class="top-product-price  card-price">{{this.price}}₽</span>
                                 </div>
                             </div>
@@ -43,7 +44,7 @@
                                 <h3>{{this.name}}</h3>
                                 <h4>{{this.second_name}}</h4>
                                 <div class="row">
-                                    <a class="top-product-link card-link link-to" href="#">Перейти</a>
+                                    <a class="top-product-link card-link link-to" href="/product?productId={{this.id}}">Перейти</a>
                                     <span class="top-product-price  card-price">{{this.price}}₽</span>
                                 </div>
                             </div>

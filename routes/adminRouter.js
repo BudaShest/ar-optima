@@ -22,5 +22,6 @@ adminRouter.post('/addEmployer',upload.single('employAvatar'),adminController.ad
 adminRouter.post('/addPosition',upload.single('positionIcon'),adminController.addPosition);
 adminRouter.post('/addProduct',upload.array('productImages',3),adminController.addProduct);
 adminRouter.post('/addService', upload.single('serviceImage'),adminController.addService);
+adminRouter.post('/moderate', adminController.moderate);
 
 module.exports = adminRouter;

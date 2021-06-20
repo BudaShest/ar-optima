@@ -40,3 +40,20 @@ window.onload = function (){
     }
 }
 
+//Контекстное меню
+let contextMenu = document.querySelector('.admin-context-menu');
+let moderateContext = document.querySelector('#contextModerateContext');
+let deleteBtn = document.querySelector('#contextDeleteBtn');
+
+window.addEventListener('contextmenu',function (e){
+    e.preventDefault();
+    if(e.target.closest('.card').classList.contains('card')){
+        contextMenu.classList.toggle('admin-context-menu-active');
+        contextMenu.style.top = e.clientY + "px";
+        contextMenu.style.left = e.clientX + "px";
+        deleteBtn.value = e.target.closest('.card').id;
+        moderateContext.value = e.target.closest('section').id;
+    }
+
+});
+

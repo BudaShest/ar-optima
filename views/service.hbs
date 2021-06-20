@@ -6,7 +6,10 @@
           content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Услуга</title>
-    <link rel="stylesheet" href="css/style.css">
+    <script defer src="/js/script.js"></script>
+    <link rel="stylesheet" href="/css/style.css">
+
+    <link rel="stylesheet" href="https://unpkg.com/swiper/swiper-bundle.min.css" />
 </head>
 <body>
     {{>modalMenu}}
@@ -17,12 +20,37 @@
             <div class="current-service-container col">
                 <h2>{{header}}</h2>
                 <img src="/img/uploads/{{image}}" alt="">
-                <p>{{description}}</p>
+                <p>{{inputHTML description}}</p>
                 <span>{{price}}</span>
             </div>
             {{/with}}
+            {{>bottomSlider}}
         </main>
         {{>footer}}
     </div>
+
+    <script type="module">
+        import Swiper from 'https://unpkg.com/swiper/swiper-bundle.esm.browser.min.js'
+        const swiper = new Swiper('.swiper-container',{
+            direction: 'vertical',
+            loop:true,
+
+            pagination:{
+                el:'.swiper-pagination',
+            },
+
+
+        });
+
+        const horizontalSwiper = new Swiper('.swiper-horizontal-container',{
+            loop:true,
+            navigation: {
+                nextEl: '.swiper-button-next',
+                prevEl: '.swiper-button-prev',
+            },
+            slidesPerView:3
+        });
+    </script>
+    <script src="https://unpkg.com/swiper/swiper-bundle.min.js"></script>
 </body>
 </html>

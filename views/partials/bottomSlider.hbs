@@ -1,0 +1,64 @@
+<div class="another-records">
+    <div class="swiper-container">
+        <!-- Additional required wrapper -->
+        <div class="swiper-wrapper">
+            <!-- Slides -->
+            <div class="swiper-slide">
+                <div class="swiper-horizontal-container">
+                    <!-- Additional required wrapper -->
+                    <div class="swiper-wrapper">
+                        <!-- Slides -->
+                        {{#each restServices}}
+                            <div class="swiper-slide">
+                                <div class="personal-card col">
+                                    <img src="/img/uploads/{{this.image}}" alt="" class="personal-card-img">
+                                    <div class="personal-card-text">
+                                        <h3>{{this.header}}</h3>
+                                        <p>{{inputHTML this.description}}</p>
+                                        <div class="row">
+                                            <a href="/service?serviceId={{this.id}}" class="personal-card-link link-to">Перейти</a>
+                                            <span class="personal-card-price price">от {{this.price}}₽</span>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        {{/each}}
+                    </div>
+                    <!-- If we need navigation buttons -->
+                    <div class="swiper-button-prev"></div>
+                    <div class="swiper-button-next"></div>
+                </div>
+            </div>
+            <div class="swiper-slide">
+                <div class="swiper-horizontal-container">
+                    <!-- Additional required wrapper -->
+                    <div class="swiper-wrapper">
+                        <!-- Slides -->
+                        {{#each restProducts}}
+                            <div class="swiper-slide">
+                                <div class="top-product row">
+                                    <div class="col top-product-img card-img">
+                                        <img src="/img/uploads/{{this.image}}" alt="">
+                                    </div>
+                                    <div class="col top-product-text card-text">
+                                        <h3>{{this.name}}</h3>
+                                        <h4>{{this.second_name}}</h4>
+                                        <div class="row">
+                                            <a class="top-product-link card-link link-to" href="product?productId={{this.id}}">Перейти</a>
+                                            <span class="top-product-price  card-price">{{this.price}}₽</span>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        {{/each}}
+                    </div>
+                    <!-- If we need navigation buttons -->
+                    <div class="swiper-button-prev"></div>
+                    <div class="swiper-button-next"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- If we need pagination -->
+    <div class="swiper-pagination"></div>
+</div>

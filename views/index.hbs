@@ -8,6 +8,7 @@
     <title>AR-OPTIMA</title>
     <link rel="stylesheet" href="/css/style.css">
     <script defer src="/js/homepage.js"></script>
+    <script defer src="/js/script.js"></script>
 </head>
 <body>
     {{> modalMenu}}
@@ -30,7 +31,8 @@
                 </div>
                 <div id="who-we-are" class="col info-part">
                     <h2>Кто мы такие?</h2>
-                    <p>Мы молодая и активная команда разработчиков и дизайнеров, занимающихся дополненной реалььностью. Мы уверены, что в этой технологии заложен огромный потенциал.</p>
+                    <p>Мы молодая и активная команда разработчиков и дизайнеров, занимающихся дополненной реалььностью. Мы уверены, что в этой технологии заложен огромный потенциал.
+                        <a href="/teammates">По этой ссылке</a> вы сможете ознакомиться со всей нашей командой и прглашёнными художниками.</p>
                     <p>Наша цель сделать дополненную реальность доступнее.</p>
                     <h3>Но где я могу это использовать?</h3>
 <!--                    <div class="row advantages">-->
@@ -115,7 +117,7 @@
                         <img src="/img/uploads/{{this.image}}" alt="" class="personal-card-img">
                         <div class="personal-card-text">
                             <h3>{{this.header}}</h3>
-                            <p>{{this.description}}</p>
+                            <p>{{inputHTML this.description}}</p>
                             <div class="row">
                                 <a href="/service?serviceId={{this.id}}" class="personal-card-link link-to">Перейти</a>
                                 <span class="personal-card-price price">от {{this.price}}₽</span>
@@ -123,28 +125,6 @@
                         </div>
                     </div>
                 {{/each}}
-                <div class="personal-card col">
-                    <img src="/img/personal/second-stage.png" alt="" class="personal-card-img">
-                    <div class="personal-card-text">
-                        <h3>У меня есть 3d-модель и ничего более</h3>
-                        <p>Мы поможем вам получить nft-токен, тем самым закрепив права на оригинал цифрового прозиведения, а также создадим 3d-визуализацию. Важно, чтобы вы являлись автором!</p>
-                        <div class="row">
-                            <a href="#" class="personal-card-link link-to">Перейти</a>
-                            <span class="personal-card-price price">от 10000₽</span>
-                        </div>
-                    </div>
-                </div>
-                <div class="personal-card col">
-                    <img src="/img/personal/third-stage.png" alt="" class="personal-card-img">
-                    <div class="personal-card-text">
-                        <h3>У меня есть 3d-модель и nft-токен</h3>
-                        <p>Вам нужна 3d-визуализиция вашего произведения в дополненной реальности? Хотите устроить у себе дома полноцценную высокотехнологичную художественную выставку? Просто свяжитесь с нами!</p>
-                        <div class="row">
-                            <a href="#" class="personal-card-link link-to">Перейти</a>
-                            <span class="personal-card-price price">от 3000₽</span>
-                        </div>
-                    </div>
-                </div>
             </div>
         </section>
         {{> footer}}

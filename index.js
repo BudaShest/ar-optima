@@ -8,7 +8,8 @@ const hbs = require('hbs');
 /*Важные объекты*/
 const app = express();
 
-
+/*Другие важные константы*/
+const PORT = process.env.PORT || 3000; //Контсанта, содержащая порт
 
 /*Настрйока app*/
 //1)Настройка отображения
@@ -19,9 +20,12 @@ app.use(bodyParser.urlencoded({extended:false}));
 app.use(express.static(path.join(__dirname,'public')))
 //4)Настроим путь до частичных прдеставлений(темплейтов)
 hbs.registerPartials(__dirname + "/views/partials");
+//5)Добавим хэлперов
+hbs.registerHelper('inputHTML', function (htmlString){
+   console.log(new hbs.SafeString(htmlString));
+   return new hbs.SafeString(htmlString);
+});
 
-/*Другие важные константы*/
-const PORT = process.env.PORT || 3000; //Контсанта, содержащая порт
 
 
 /*Роутинг с помощью Express*/

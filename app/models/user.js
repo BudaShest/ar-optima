@@ -28,8 +28,14 @@ module.exports = class User{
 
     }
 
-    async deleteUser(){
+    async deleteUser(id){
+        try{
+            const [rows,fields] = await this.#connection.query('DELETE FROM user WHERE id = ?',[id]);
+        }catch (e){
+            console.error('Ошибка запроса: ' + e);
+        }finally {
 
+        }
     }
 
     async updateUser(){

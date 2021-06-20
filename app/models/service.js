@@ -36,6 +36,27 @@ module.exports = class Service{
 
         }
     }
+
+    async getRestServices(id){
+        try{
+            const [rows,fields] = await this.#connection.query('SELECT * FROM service WHERE id != ?',[id]);
+            return rows;
+        }catch (e){
+            console.error('Ошибка запроса: ' + e);
+        }finally {
+
+        }
+    }
+
+    async deleteService(id){
+        try{
+            const [rows,fields] = await this.#connection.query('DELETE FROM service WHERE id = ?',[id]);
+        }catch(e){
+            console.error('Ошибка запроса: ' + e);
+        }finally {
+
+        }
+    }
 }
 
 

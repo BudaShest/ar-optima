@@ -27,4 +27,15 @@ module.exports = class Position{
 
         }
     }
+
+    async deletePosition(id){
+        try{
+            const [rows,fields] = await this.#connection.query('DELETE FROM position WHERE id = ?',[id]);
+        }catch (e){
+            console.error('Ошибка запроса: ' + e);
+        }finally {
+
+        }
+
+    }
 }

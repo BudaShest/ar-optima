@@ -17,7 +17,7 @@ module.exports = class Product{
         }
     }
 
-    //Получить топ 20 товаров
+    //Получить топ 8 товаров
     async getTopProducts(){
         try{
             const [rows,fields] = await this.#connection.query('SELECT p.id as id, name, description, author_id, price, second_name, image FROM product p INNER JOIN product_images pi ON p.id = pi.product_id GROUP BY p.id LIMIT 8');
@@ -41,8 +41,8 @@ module.exports = class Product{
         }
     }
 
-    //Получить остальные товары
-    async getRestProducts(){
+    //Получить обычные товары
+    async getNotSpecialProducts(){
         try{
             let [rows,fields] = await this.#connection.query('SELECT p.id as id, name, p.description as description, author_id, price, second_name, image FROM product p INNER JOIN product_images pi ON p.id = pi.product_id INNER JOIN employee e ON p.author_id = e.id WHERE e.position_id != 317 GROUP BY p.id');
             return rows;
@@ -83,6 +83,41 @@ module.exports = class Product{
             return rows;
         }catch (e){
             console.error('Ошибка запроса: ' + e)
+        }finally {
+
+        }
+    }
+
+    //Получить остальные продукты
+    async getRestProducts(productId){
+        try{
+            const [rows,fields] = await this.#connection.query('SELECT p.id as id, name, p.description as description, author_id, price, second_name, image, firstname,surname FROM product p INNER JOIN product_images pi ON p.id = pi.product_id INNER JOIN employee e ON p.author_id = e.id WHERE p.id != ?', [productId]);
+            return rows;
+        }catch (e){
+            console.error('Ошибка запроса: ' + e)
+        }finally {
+
+        }
+    }
+
+    //Получить товары определённого автора
+    async getProductsByAuthor(authorId){
+        try{
+            const [rows,fields] = await this.#connection.query('SELECT p.id as id, name, p.description as description, author_id, price, second_name, image, firstname,surname FROM product p INNER JOIN product_images pi ON p.id = pi.product_id INNER JOIN employee e ON p.author_id = e.id WHERE p.author_id = ?',[authorId]);
+            return rows;
+        }catch (e){
+            console.error('Ошибка запроса: ' + e);
+        }finally {
+
+        }
+    }
+
+    //Удалить товар
+    async deleteProduct(id){
+        try{
+            const [rows, fields] = await this.#connection.query('DELETE FROM product WHERE id = ?',[id]);
+        }catch (e){
+            console.error('Ошибка запроса: ' + e);
         }finally {
 
         }

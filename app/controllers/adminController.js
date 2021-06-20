@@ -86,3 +86,29 @@ module.exports.addService = async function (request, response){
     response.redirect('/admin#admin-services');
 
 }
+
+module.exports.moderate = async function (request,response){
+    if(request.body.deleteById !== undefined){
+        switch (request.body.moderateContext) {
+            case "admin-employers":
+                await employeeWorker.deleteEmployer();
+                response.redirect('/admin#admin-employers');
+                break;
+            case "admin-positions":
+                await positionWorker.deletePosition();
+                response.redirect('/admin#admin-positions');
+                break;
+            case "admin-users":
+                await userWorker.deleteUser();
+                response.redirect('/admin#admin-users');
+                break;
+            case "admin-products":
+                await productWorker.deleteProduct(request.body.deleteById);
+                response.redirect('/admin#admin-products');
+                break;
+        }
+    }else if(request.body.updateById !== undefined){
+
+    }
+
+}

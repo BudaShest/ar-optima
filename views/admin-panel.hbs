@@ -11,6 +11,11 @@
     <script src="https://cdn.tiny.cloud/1/lx1k5gva7psp1ywffg4ujjonc5dk9q44notypc4ns36d6s45/tinymce/5/tinymce.min.js" referrerpolicy="origin"></script>
 </head>
 <body>
+    <form method="post" action="admin/moderate" class="admin-context-menu col">
+        <input name="moderateContext" type="text" id="contextModerateContext">
+        <button name="updateById" id="contextUpdateBtn">Изменить</button>
+        <button name="deleteById" id="contextDeleteBtn">Удалить</button>
+    </form>
     <div class="admin-toggler">
 
     </div>
@@ -70,7 +75,7 @@
                     <h3>Все сотрудники</h3>
                     <div class="all-records all-employers row">
                         {{#each allEmployers}}
-                            <div class="card employer row">
+                            <div class="card employer row" id="{{this.id}}">
                                 <div class="col card-img">
                                     <img src="img/uploads/{{this.avatar}}" alt="">
                                 </div>
@@ -111,7 +116,7 @@
                     <h3>Всё вакансии</h3>
                     <div class="all-records all-positions row">
                         {{#each allPositions}}
-                            <div class="card position row">
+                            <div class="card position row" id="{{this.id}}">
                                 <div class="col card-img">
                                     <img src="/img/uploads/{{this.icon}}" alt="Иконка специальности">
                                 </div>
@@ -139,7 +144,7 @@
                     <h3>Все пользователи</h3>
                     <div class="all-records all-users row">
                         {{#each allUsers}}
-                            <div class="card user row">
+                            <div class="card user row" id="{{this.id}}">
                                 <div class="col card-img">
                                     <img src="/img/users/{{this.avatar}}" alt="">
                                 </div>
@@ -189,7 +194,7 @@
                     <h3>Все товары</h3>
                     <div class="all-records all-products row">
                         {{#each allProducts}}
-                            <div class="card product row">
+                            <div class="card product row" id="{{this.id}}">
                                 <div class="col card-img">
                                     <img src="/img/uploads/{{this.image}}" alt="">
                                 </div>
@@ -231,7 +236,7 @@
                     <h3>Все услуги:</h3>
                     <div class="all-records all-services row">
                         {{#each allServices}}
-                            <div class="card service row">
+                            <div class="card service row" id="{{this.id}}">
                                 <div class="col card-img">
                                     <img src="/img/uploads/{{this.image}}" alt="">
                                 </div>
