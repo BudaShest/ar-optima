@@ -1,0 +1,41 @@
+<!doctype html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Товар</title>
+    <link rel="stylesheet" href="/css/style.css">
+</head>
+<body>
+    {{>modalMenu}}
+    <div class="wrapper wrapper-main">
+        {{>headerLight}}
+        <main class="main">
+            {{#with product}}
+                <div class="current-product-container col">
+                    <div class="current-product-top row">
+                        <div class="col current-product-image">
+                            <img src="/img/uploads/{{image}}" alt="">
+                        </div>
+                        <div class="col current-product-header">
+                            <h2>{{name}}</h2>
+                            <h3>{{second_name}}</h3>
+                            <div class="current-product-author row">
+                                <span>{{firstname}} {{surname}}</span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="current-product-text">
+                        <h4>Описание:</h4>
+                        <p>{{description}}</p>
+                        <span>{{price}}</span>
+                    </div>
+                </div>
+            {{/with}}
+        </main>
+        {{>footer}}
+    </div>
+</body>
+</html>

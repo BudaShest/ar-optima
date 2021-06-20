@@ -31,12 +31,16 @@ const adminRouter = require('./routes/adminRouter');
 const teammateRouter = require('./routes/teammateRouter');
 const teammatesRouter = require('./routes/teammatesRouter');
 const productsRouter = require('./routes/productsRouter');
+const productRouter = require('./routes/productRouter');
+const serviceRouter = require('./routes/serviceRouter');
 //2)Привязка объектов к соответсвующим url
 app.use('/', homeRouter);
 app.use('/admin',adminRouter);
 app.use('/teammate', teammateRouter);
 app.use('/teammates',teammatesRouter);
 app.use('/products', productsRouter);
+app.use('/product',productRouter);
+app.use('/service', serviceRouter);
 //Обработка несуществущей страницы
 app.use(function (req,res,hext){
    res.status(404).send('<h1>Not Found</h1>');

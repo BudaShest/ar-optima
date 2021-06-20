@@ -5,9 +5,11 @@ const Product = require('../models/product');
 const productWorker = new Product(connection);
 
 module.exports.getAllProducts = async function (request,response){
-    let allProducts = await productWorker.getAllProducts();
+    let specialProducts = await productWorker.getSpecialProducts();
+    let restProducts = await productWorker.getRestProducts();
 
     response.render('products.hbs',{
-        allProducts:allProducts
+        specialProducts:specialProducts,
+        restProducts:restProducts
     })
 }

@@ -11,7 +11,7 @@ const serviceWorker = new Service(connection);
 //Контроллер для главной страницы
 module.exports.index =async function (request,response) {
     let mainEmployers =await employeeWorker.getMainEmployers();
-    let topProducts = await productWorker.getAllProducts();
+    let topProducts = await productWorker.getTopProducts();
     let topServices = await serviceWorker.getAllServices();
 
     response.render('index.hbs',{

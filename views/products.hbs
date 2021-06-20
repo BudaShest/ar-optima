@@ -11,19 +11,48 @@
 <body>
     {{>modalMenu}}
     <div class="wrapper wrapper-main">
-        {{headerLight}}
+        {{>headerLight}}
         <main class="main">
             <div class="all-products col">
                 <h3>Произведения известных авторов:</h3>
-                <div class="top-products row">
-                    {{}}
+                <div class="special-products row">
+                    {{#each specialProducts}}
+                        <div class="top-product row">
+                            <div class="col top-product-img card-img">
+                                <img src="/img/uploads/{{this.image}}" alt="">
+                            </div>
+                            <div class="col top-product-text card-text">
+                                <h3>{{this.name}}</h3>
+                                <h4>{{this.second_name}}</h4>
+                                <div class="row">
+                                    <a class="top-product-link card-link link-to" href="#">Перейти</a>
+                                    <span class="top-product-price  card-price">{{this.price}}₽</span>
+                                </div>
+                            </div>
+                        </div>
+                    {{/each}}
                 </div>
                 <h3>Наши рисульки</h3>
                 <div class="rest-products row">
-                    {{}}
+                    {{#each restProducts}}
+                        <div class="top-product row">
+                            <div class="col top-product-img card-img">
+                                <img src="/img/uploads/{{this.image}}" alt="">
+                            </div>
+                            <div class="col top-product-text card-text">
+                                <h3>{{this.name}}</h3>
+                                <h4>{{this.second_name}}</h4>
+                                <div class="row">
+                                    <a class="top-product-link card-link link-to" href="#">Перейти</a>
+                                    <span class="top-product-price  card-price">{{this.price}}₽</span>
+                                </div>
+                            </div>
+                        </div>
+                    {{/each}}
                 </div>
             </div>
         </main>
+        {{>footer}}
     </div>
 </body>
 </html>

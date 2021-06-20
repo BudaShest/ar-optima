@@ -25,6 +25,17 @@ module.exports = class Service{
 
         }
     }
+
+    async getService(id){
+        try{
+            const [rows,fields] = await this.#connection.query('SELECT * FROM service WHERE id = ?',[id]);
+            return rows;
+        }catch (e){
+            console.error('Ошибка запроса: ' + e);
+        }finally {
+
+        }
+    }
 }
 
 

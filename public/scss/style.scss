@@ -166,7 +166,7 @@ body{
 //Обёртка для других страниц(переопределяет .wrapper)
 .wrapper-main{
   grid-template-rows: 120px 1fr 100px;
-
+  min-height: 100vh;
 }
 
 //Шапка
@@ -421,6 +421,42 @@ body{
 
       h4{
         margin: 20px 0;
+      }
+    }
+  }
+  //Все товары
+  .all-products{
+    .special-products, .rest-products{
+      justify-content: space-between;
+      flex-wrap: wrap;
+    }
+    .special-products .top-product,.rest-products .top-product {
+      @include card();
+    }
+  }
+  .current-product-container{
+    .current-product-top{
+      margin:24px 0;
+      >.col{
+        width: 50%;
+        align-items: center;
+        justify-content: center;
+      }
+      .current-product-image{
+        img{
+          width: 80%;
+        }
+      }
+      .current-product-header{
+        >*{
+          margin:10px 0;
+        }
+      }
+    }
+    .current-product-text{
+      margin: 20px;
+      h4{
+        margin: 10px;
       }
     }
   }
