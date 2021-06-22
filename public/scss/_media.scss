@@ -1,0 +1,20 @@
+
+@media screen and (max-width: 1025px){
+  .wrapper{
+    grid-template-columns: repeat(4,minmax(auto,250px));
+  }
+  .header, section, .footer{
+    grid-column: 1/5;
+  }
+
+  #our-team{
+    .team-container{
+      flex-wrap: wrap;
+    }
+  }
+  #personal-model{
+    .personal-container{
+      flex-wrap: wrap;
+    }
+  }
+}

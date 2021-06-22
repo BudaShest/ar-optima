@@ -80,7 +80,7 @@ module.exports = class Product{
     async getProduct(productId){
         try{
             const [rows,fields] = await this.#connection.query('SELECT p.id as id, name, p.description as description, author_id, price, second_name, image, firstname,surname FROM product p INNER JOIN product_images pi ON p.id = pi.product_id INNER JOIN employee e ON p.author_id = e.id WHERE p.id = ?', [productId]);
-            return rows;
+            return rows[0];
         }catch (e){
             console.error('Ошибка запроса: ' + e)
         }finally {
@@ -116,6 +116,17 @@ module.exports = class Product{
     async deleteProduct(id){
         try{
             const [rows, fields] = await this.#connection.query('DELETE FROM product WHERE id = ?',[id]);
+        }catch (e){
+            console.error('Ошибка запроса: ' + e);
+        }finally {
+
+        }
+    }
+
+    //Обновить продукт
+    async updateProduct(name,description,authorId,price,secondName,id){
+        try{
+            const [rows, fields] = await this.#connection.query('UPDATE product SET name = ?, description = ?, author_id = ?,price = ?, second_name = ? WHERE id=?',[name,description,authorId,price,secondName,id]);
         }catch (e){
             console.error('Ошибка запроса: ' + e);
         }finally {

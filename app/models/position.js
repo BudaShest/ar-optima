@@ -6,7 +6,7 @@ module.exports = class Position{
     }
 
 
-
+    //Получить все вакансии
     async getAllPositions(){
         try{
             const [rows,fields] = await this.#connection.query('SELECT * FROM position');
@@ -18,6 +18,7 @@ module.exports = class Position{
         }
     }
 
+    //Добавить вакансию
     async addPosition(name,icon,isMain){
         try{
             await this.#connection.query("INSERT INTO `position` (name, icon, is_main) VALUES (?,?,?)",[name, icon, isMain]);
@@ -28,6 +29,7 @@ module.exports = class Position{
         }
     }
 
+    //Удалить вакансию
     async deletePosition(id){
         try{
             const [rows,fields] = await this.#connection.query('DELETE FROM position WHERE id = ?',[id]);
@@ -36,6 +38,28 @@ module.exports = class Position{
         }finally {
 
         }
+    }
 
+    //Получить вакансию
+    async getPosition(id){
+        try{
+            const [rows,fields] = await this.#connection.query('SELECT * FROM position WHERE id=?',[id]);
+            return rows[0];
+        }catch (e){
+            console.error('Ошибка запроса:' + e)
+        }finally {
+
+        }
+    }
+
+    //Обновить вакансию
+    async updatePosition(name,icon,is_main,id){
+        try{
+            const [rows,fields] = await this.#connection.query('UPDATE position SET name = ?,icon = ?,is_main = ? WHERE id=?',[name,icon,is_main,id]);
+        }catch (e){
+            console.error('Ошибка запроса:' + e)
+        }finally {
+
+        }
     }
 }

@@ -42,11 +42,15 @@
                         <fieldset class="col">
                             <legend>Личные данные</legend>
                             <label for="employ-firstname-input">Имя:</label>
-                            <input name="employFirstname" type="text" id="employ-firstname-input">
+                            <input name="employFirstname" type="text" id="employ-firstname-input" value="{{employFirstname}}">
                             <label for="employ-surname-input">Фамилия:</label>
-                            <input name="employSurname" type="text" id="employ-surname-input">
+                            <input name="employSurname" type="text" id="employ-surname-input" value="{{employSurname}}">
                             <label for="employ-age-input">Возраст:</label>
-                            <input name="employAge" type="number" id="employ-age-input">
+                            <input name="employAge" type="number" id="employ-age-input" value="{{employAge}}">
+                            {{#if isNewAvatar}}
+                            <span>Старое изображение</span>
+                            <img src="/img/uploads/{{employAvatar}}" alt="">
+                            {{/if}}
                             <label for="employ-avatar-input">Аватар:</label>
                             <input name="employAvatar" type="file" id="employ-avatar-input">
                         </fieldset>
@@ -54,18 +58,21 @@
                             <legend>Описание и навыки</legend>
                             <label for="employ-position-select">Должность:</label>
                             <select name="employPosition" id="employ-position-select">
+                                {{#if isNewPosition}}
+                                    <option selected value="{{employPositionId}}">{{employPositionName}}</option>
+                                {{/if}}
                                 {{#each allPositions}}
                                     <option value="{{this.id}}">{{this.name}}</option>
                                 {{/each}}
                             </select>
                             <label for="employ-description-textarea">Описание:</label>
-                            <textarea name="employDescription" id="employ-description-textarea" cols="30" rows="10"></textarea>
+                            <textarea name="employDescription" id="employ-description-textarea" cols="30" rows="10">{{employDescription}}</textarea>
                             <label for="employ-stack-textarea">Стек технологий:</label>
-                            <textarea name="employStack" id="employ-stack-textarea" cols="30" rows="10"></textarea>
+                            <textarea name="employStack" id="employ-stack-textarea" cols="30" rows="10">{{employStack}}</textarea>
                         </fieldset>
                         <div class="row form-controls">
-                            <button>ОК</button>
-                            <button>Стереть</button>
+                            <button type="submit">ОК</button>
+                            <button type="reset">Стереть</button>
                         </div>
                     </form>
                 </div>
@@ -83,7 +90,7 @@
                                     <h3>{{this.name}}</h3>
                                     <h4>{{this.firstname}} {{this.surname}}</h4>
                                     <div class="row">
-                                        <a href="#" class="card-link">Перейти</a>
+                                        <a href="/teammate?teammateId={{this.id}}" class="card-link" target="_blank">Перейти</a>
                                         <img src="/img/uploads/{{this.icon}}" class="card-icon" alt="">
                                     </div>
                                 </div>
@@ -99,11 +106,15 @@
                     <h2>Добавить вакансию</h2>
                     <form action="admin/addPosition" class="col" enctype="multipart/form-data" method="post">
                         <label for="position-name-input">Название:</label>
-                        <input name="positionName" type="text" id="position-name-input">
+                        <input name="positionName" type="text" id="position-name-input" value="{{positionName}}">
+                        {{#if isNewIcon}}
+                        <span>Старая картинка</span>
+                        <img src="/img/uploads/{{positionIcon}}" alt="">
+                        {{/if}}
                         <label for="position-icon-input">Иконка:</label>
                         <input name="positionIcon" type="file" id="position-icon-input">
                         <label for="position-main-checkbox">Ключевая?</label>
-                        <input name="positionIsMain" type="checkbox" id="position-main-checkbox">
+                        <input name="positionIsMain" type="checkbox" id="position-main-checkbox" {{#if positionIsMain}}checked{{/if}}>
                         <div class="row form-controls">
                             <button>ОК</button>
                             <button>Стереть</button>
@@ -122,8 +133,8 @@
                                 </div>
                                 <div class="col card-text">
                                     <h3>{{this.name}}</h3>
-                                    <div class="row">
-                                        <a class="card-link" href="#">Перейти</a>
+                                    <div class="col">
+                                        <span>Ключевая ли вакансия?</span>
                                         <span>{{this.is_main}}</span>
                                     </div>
                                 </div>
@@ -136,7 +147,32 @@
         <section id="admin-users" class="row">
             <div class="col section-part first-part">
                 <div class="col">
-                    <h2>Настройки пользователей</h2>
+                    <h2>Настройки пользователя</h2>
+                    <div class="user-settings col">
+                        <div class="user-settings-top row">
+                            <div class="user-setting-img col">
+                                <img src="/img/uploads/{{userAvatar}}" alt="">
+                            </div>
+                            <div class="user-settings-header col">
+                                <h2>Логин: {{userLogin}}</h2>
+                                <span>Роль: {{userRoleName}}</span>
+                            </div>
+                        </div>
+                        <div class="user-settings-control row">
+                            <form action="" class="row">
+                                <div class="form-controls row">
+                                    <button name="">Забанить</button>
+                                    <button name="">Удалить</button>
+                                </div>
+                            </form>
+                        </div>
+                        <div class="user-settings-products">
+
+                        </div>
+                        <div class="user-settings-services">
+
+                        </div>
+                    </div>
                 </div>
             </div>
             <div class="col section-part second-part">
@@ -146,13 +182,13 @@
                         {{#each allUsers}}
                             <div class="card user row" id="{{this.id}}">
                                 <div class="col card-img">
-                                    <img src="/img/users/{{this.avatar}}" alt="">
+                                    <img src="/img/uploads/{{this.avatar}}" alt="">
                                 </div>
                                 <div class="col card-text">
                                     <h3>{{this.login}}</h3>
                                     <h4>{{this.name}}</h4>
                                     <div class="row">
-                                        <a class="card-link" href="#">Перейти</a>
+                                        <a class="card-link" href="" target="_blank">Перейти</a>
                                     </div>
                                 </div>
                             </div>
@@ -167,21 +203,24 @@
                     <h2>Добавить продукт</h2>
                     <form action="admin/addProduct" class="col" method="post" enctype="multipart/form-data">
                         <label for="product-name-input">Название:</label>
-                        <input name="productName" type="text" id="product-name-input">
+                        <input name="productName" type="text" id="product-name-input" value="{{productName}}">
                         <label for="product-second-name-input">Второй название:</label>
-                        <input name="productSecondName" type="text" id="product-second-name-input">
+                        <input name="productSecondName" type="text" id="product-second-name-input" value="{{productSecondName}}">
                         <label for="product-description-textarea">Описание:</label>
-                        <textarea name="productDescription" id="product-description-textarea" cols="30" rows="10"></textarea>
+                        <textarea name="productDescription" id="product-description-textarea" cols="30" rows="10">{{productDescription}}</textarea>
                         <label for="product-images-input">Картинки:</label>
                         <input name="productImages" type="file" multiple id="product-images-input">
                         <label for="product-author-select">Автор:</label>
                         <select name="productAuthor" id="product-author-select">
+                            {{#if isNewAuthor}}
+                                <option selected value="{{oldAuthorId}}">{{oldAuthorSurname}} {{oldAuthorFirstname}}</option>
+                            {{/if}}
                             {{#each allEmployers}}
                                 <option value="{{this.id}}">{{this.surname}} {{this.firstname}}</option>
                             {{/each}}
                         </select>
                         <label for="product-price-input">Цена:</label>
-                        <input name="productText" type="text" id="product-price-input">
+                        <input name="productText" type="text" id="product-price-input" value="{{productPrice}}">
                         <div class="row form-controls">
                             <button>OK</button>
                             <button>Стереть</button>
@@ -202,7 +241,8 @@
                                     <h3>{{this.name}}</h3>
                                     <h4>{{this.second_name}}</h4>
                                     <div class="row">
-                                        <a class="card-link" href="#">Перейти</a>
+                                        <a class="card-link" href="/product?productId={{this.id}}" target="_blank">Перейти</a>
+                                        <span class="card-price">{{this.price}}₽</span>
                                     </div>
                                 </div>
                             </div>
@@ -217,13 +257,17 @@
                     <h2>Добавить услугу</h2>
                     <form action="admin/addService" class="col" method="post" enctype="multipart/form-data">
                         <label for="service-header-input">Заголовок:</label>
-                        <input name="serviceHeader" type="text" id="service-header-input">
+                        <input name="serviceHeader" type="text" id="service-header-input" value="{{serviceHeader}}">
                         <label for="service-description-textarea">Описание:</label>
-                        <textarea name="serviceDescription" id="service-description-textarea" cols="30" rows="10"></textarea>
+                        <textarea name="serviceDescription" id="service-description-textarea" cols="30" rows="10">{{serviceDescription}}</textarea>
                         <label for="service-image-input">Изображение:</label>
                         <input name="serviceImage" type="file" id="service-image-input">
+                        {{#if isNewImage}}
+                            <span>Старое изображение</span>
+                            <img src="/img/uploads/{{serviceOldImage}}" alt="">
+                        {{/if}}
                         <label for="service-price-input">Цена:</label>
-                        <input name="servicePrice" type="number" id="service-price-input">
+                        <input name="servicePrice" type="number" id="service-price-input" value="{{servicePrice}}">
                         <div class="row form-controls">
                             <button>ОК</button>
                             <button>Стереть</button>
@@ -243,7 +287,8 @@
                                 <div class="col card-text">
                                     <h3>{{this.header}}</h3>
                                     <div class="row">
-                                        <a class="card-link" href="#">Перейти</a>
+                                        <a class="card-link" href="/service?serviceId={{this.id}}">Перейти</a>
+                                        <span class="card-price">{{this.price}}₽</span>
                                     </div>
                                 </div>
                             </div>

@@ -48,6 +48,9 @@
   align-items: center;
   padding: 14px;
   background-color: $accent-white-col;
+  img{
+    max-width: 85%;
+  }
   fieldset{
     border:none;
     margin:8px 0;
@@ -113,8 +116,11 @@
     margin-top: -50px;
     padding: 7px;
     text-align: center;
+    height: 215px;
+    overflow: hidden;
     p{
       height: 110px;
+      overflow: hidden;
     }
     .teammate-icon{
       width: 70px;

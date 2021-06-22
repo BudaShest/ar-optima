@@ -1,8 +1,17 @@
 <div class="modal-menu col">
     <header class="row">
         <div class="col">
-            <img class="user-avatar" src="/img/icons/login.png" alt="">
-            <a href="">Авторизация</a>
+            {{#if isAuthorized}}
+                <a href="#" class="col">
+                    <img class="user-avatar" src="/img/uploads/{{authUserAvatar}}" alt="">
+                    <span>{{authUserLogin}}</span>
+                </a>
+            {{else}}
+                <a href="/auth" class="col">
+                    <img class="user-avatar" src="/img/icons/login.png" alt="">
+                    <span>Авторизация</span>
+                </a>
+            {{/if}}
         </div>
         <div class="col">
             <img src="/img/icons/close-btn.png" alt="">
@@ -18,6 +27,6 @@
         <a href="/#top">Аукцион</a>
         <a href="/products">Все товары</a>
         <a href="/#demo-example">Демо-пример</a>
-        <a href="/#personal-model">Авторизация</a>
+        <a href="/#personal-model">Услуги</a>
     </nav>
 </div>

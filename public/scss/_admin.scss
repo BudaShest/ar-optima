@@ -104,4 +104,27 @@
     opacity: 1;
     transition: 0.4s ease-out;
   }
+  //Секция пользователей
+  #admin-users{
+    .user-settings{
+      justify-content: center;
+      margin:24px 0;
+      .user-settings-top{
+        margin:10px 0;
+        >.col{
+          width: 50%;
+          justify-content: center;
+          align-items: center;
+          img{
+            width: 80%;
+          }
+        }
+
+      }
+      .user-settings-control{
+        margin: 10px 0;
+        justify-content: center;
+      }
+    }
+  }
 }

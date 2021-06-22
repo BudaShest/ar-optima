@@ -179,7 +179,7 @@ body{
       filter: invert(100%);
       margin: 10px;
     }
-    a{
+    span{
       color: white;
     }
   }
@@ -379,7 +379,7 @@ body{
     }
     .main-employers .teammate, .rest-employers .teammate{
       @include teammateCard();
-      margin: 14px 0;
+      margin: 14px;
     }
   }
   //Один тиммейт
@@ -432,6 +432,7 @@ body{
       @include card();
     }
   }
+  //Один товар
   .current-product-container{
     .current-product-top{
       margin:24px 0;
@@ -458,8 +459,15 @@ body{
       }
     }
   }
+  //Один сервис
   .current-service-container{
 
+  }
+  //Форма регистрации и форма автризации
+  .register-form-container, .login-form-container{
+    form{
+      @include form();
+    }
   }
 }
 //Подвал

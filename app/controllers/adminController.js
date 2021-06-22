@@ -1,4 +1,19 @@
+const FILE_PATH = 'C:\\Users\\1644853\\Desktop\\ar-optima\\public\\img\\uploads\\';
+function deleteImg(img){
+    if(img !== "def-avatar.png" && img !== "dev-icon.png" && img !== 'def-employer.png' && img !== "def-service.jpg"){
+        fs.unlink(FILE_PATH + img, (err)=>{
+            if(err){
+                console.error(err);
+            }else{
+                console.log('Файл:' + img + " был успешно удалён!");
+            }
+        });
+    }
+}
+
+
 const connection = require('../../db/connect');
+const fs = require('fs');
 
 const Employee = require('../models/employee');
 const Position = require('../models/position');
@@ -19,13 +34,94 @@ module.exports.getPanel=async function (request,response){
     let products = await productWorker.getAllProducts();
     let services = await serviceWorker.getAllServices();
 
-    response.render('admin-panel.hbs',{
-        allEmployers:employers,
-        allPositions:positions,
-        allUsers:users,
-        allProducts:products,
-        allServices:services
-    })
+    //TODO заменить на свитч?
+    if(request.session.updatedEmployer !== undefined){
+        console.log(request.session.updatedEmployer);
+        response.render('admin-panel.hbs',{
+            allEmployers:employers,
+            allPositions:positions,
+            allUsers:users,
+            allProducts:products,
+            allServices:services,
+            //Форма добавления персонала
+            employFirstname:request.session.updatedEmployer.firstname,
+            employSurname:request.session.updatedEmployer.surname,
+            employAge:request.session.updatedEmployer.age,
+            employDescription:request.session.updatedEmployer.description,
+            employStack:request.session.updatedEmployer.technology_stack,
+            isNewPosition:true,
+            employPositionId:request.session.updatedEmployer.position_id,
+            employPositionName:request.session.updatedEmployer.name,
+            isNewAvatar:true,
+            employAvatar:request.session.updatedEmployer.avatar
+        })
+    }else if(request.session.updatedPosition !== undefined){
+        response.render('admin-panel.hbs',{
+            allEmployers:employers,
+            allPositions:positions,
+            allUsers:users,
+            allProducts:products,
+            allServices:services,
+            //Форма добавления вакансии
+            positionName:request.session.updatedPosition.name,
+            positionIcon:request.session.updatedPosition.icon,
+            positionIsMain:request.session.updatedPosition.is_main,
+            isNewIcon:true
+        })
+    }else if(request.session.updatedUser !== undefined){
+        response.render('admin-panel.hbs', {
+            allEmployers: employers,
+            allPositions: positions,
+            allUsers: users,
+            allProducts: products,
+            allServices: services,
+            //Форма управления пользователями
+            userAvatar: request.session.updatedUser.avatar,
+            userLogin: request.session.updatedUser.login,
+            userRoleName: request.session.updatedUser.name,
+        })
+    }else if(request.session.updatedProduct !== undefined){
+        response.render('admin-panel.hbs',{
+            allEmployers: employers,
+            allPositions: positions,
+            allUsers: users,
+            allProducts: products,
+            allServices: services,
+            //Форма добавления товаров
+            productName:request.session.updatedProduct.name,
+            productSecondName:request.session.updatedProduct.second_name,
+            productDescription:request.session.updatedProduct.description,
+            isNewAuthor:true,
+            oldAuthorId:request.session.updatedProduct.author_id,
+            oldAuthorSurname:request.session.updatedProduct.surname,
+            oldAuthorFirstname:request.session.updatedProduct.firstname,
+            productPrice:request.session.updatedProduct.price
+        })
+    }else if(request.session.updatedService !== undefined){
+        response.render('admin-panel.hbs',{
+            allEmployers: employers,
+            allPositions: positions,
+            allUsers: users,
+            allProducts: products,
+            allServices: services,
+            //Форма добавления услуг
+            serviceHeader:request.session.updatedService.header,
+            serviceDescription:request.session.updatedService.description,
+            isNewImage:true,
+            serviceOldImage:request.session.updatedService.image,
+            servicePrice:request.session.updatedService.price
+        })
+    }else{
+        response.render('admin-panel.hbs',{
+            allEmployers:employers,
+            allPositions:positions,
+            allUsers:users,
+            allProducts:products,
+            allServices:services,
+        })
+    }
+
+
 }
 
 module.exports.addEmployer =async function (request,response){
@@ -35,13 +131,29 @@ module.exports.addEmployer =async function (request,response){
     const positionId = request.body.employPosition;
     const description = request.body.employDescription;
     const stack = request.body.employStack;
-    let avatar = 'employee-def.png';
+    let avatar = 'def-employer.png';
 
-    if(request.file != undefined){
-        avatar = request.file.filename;
+
+    if(request.session.updatedEmployer !== undefined){
+        if(request.file != undefined){
+            avatar = request.file.filename;
+        }else{
+            let oldEmployer = await employeeWorker.getEmployer(request.session.updatedEmployer.id);
+            avatar = oldEmployer.avatar;
+        }
+    }else{
+        if(request.file != undefined){
+            avatar = request.file.filename;
+        }
     }
 
-    await employeeWorker.addEmployer(firstname,surname,age,positionId,avatar,description,stack);
+    if(request.session.updatedEmployer !== undefined){
+        await employeeWorker.updateEmployer(firstname,surname,age,description,avatar,positionId,stack,request.session.updatedEmployer.id);
+        delete request.session.updatedEmployer;
+
+    }else{
+        await employeeWorker.addEmployer(firstname,surname,age,positionId,avatar,description,stack);
+    }
     response.redirect('/admin#admin-employers');
 }
 
@@ -52,12 +164,25 @@ module.exports.addPosition = async function (request, response){
 
     isMain = isMain == "on"?1:0;
 
-    if(request.file != undefined){
-        icon = request.file.filename;
+    if(request.session.updatedPosition !== undefined){
+        if(request.file != undefined){
+            icon = request.file.filename;
+        }else{
+            let oldPosition = await positionWorker.getPosition(request.session.updatedPosition.id);
+            icon = oldPosition.icon;
+        }
+    }else{
+        if(request.file != undefined){
+            icon = request.file.filename;
+        }
     }
 
-
-    await positionWorker.addPosition(name,icon,isMain);
+    if(request.session.updatedPosition !== undefined){
+        await positionWorker.updatePosition(name,icon,isMain,request.session.updatedPosition.id);
+        delete request.session.updatedPosition;
+    }else{
+        await positionWorker.addPosition(name,icon,isMain);
+    }
     response.redirect('/admin#admin-positions');
 }
 
@@ -68,7 +193,14 @@ module.exports.addProduct = async function (request, response){
     const authorId = request.body.productAuthor;
     const price = request.body.productText;
     let fileNames = request.files.map(item=>item.filename);
-    await productWorker.addProduct(name,description,authorId,price,secondName,fileNames);
+
+    //TODO изменение картинок
+    if(request.session.updatedProduct !== undefined){
+        await productWorker.updateProduct(name,description,authorId,price,secondName,request.session.updatedProduct.id);
+        delete request.session.updatedProduct;
+    }else{
+        await productWorker.addProduct(name,description,authorId,price,secondName,fileNames);
+    }
     response.redirect('/admin#admin-products');
 }
 
@@ -78,11 +210,25 @@ module.exports.addService = async function (request, response){
     let image = "def-service.jpg";
     const price = request.body.servicePrice;
 
-    if(request.file != undefined){
-        image = request.file.filename;
+
+    //TODO переделать верхние картинки по этому же принципу и внести в функцию
+    if(request.session.updatedService !== undefined){
+        if(request.file != undefined){
+            image = request.file.filename;
+        }else{
+            let oldService = await serviceWorker.getService(request.session.updatedService.id);
+            image = oldService.image;
+        }
+        await serviceWorker.updateService(header,description,image,price,request.session.updatedService.id);
+        delete request.session.updatedService;
+    }else{
+        if(request.file != undefined){
+            image = request.file.filename;
+        }
+        await serviceWorker.addService(header,description,image,price);
     }
 
-    await serviceWorker.addService(header,description,image,price);
+
     response.redirect('/admin#admin-services');
 
 }
@@ -91,24 +237,63 @@ module.exports.moderate = async function (request,response){
     if(request.body.deleteById !== undefined){
         switch (request.body.moderateContext) {
             case "admin-employers":
-                await employeeWorker.deleteEmployer();
+                let oldEmployer = await employeeWorker.getEmployer(request.body.deleteById);
+                let oldImg = oldEmployer.avatar;
+                deleteImg(oldImg);
+                await employeeWorker.deleteEmployer(request.body.deleteById);
                 response.redirect('/admin#admin-employers');
                 break;
             case "admin-positions":
-                await positionWorker.deletePosition();
+                let oldPosition = await positionWorker.getPosition(request.body.deleteById);
+                let oldIcon = oldPosition.icon;
+                deleteImg(oldIcon);
+                await positionWorker.deletePosition(request.body.deleteById);
                 response.redirect('/admin#admin-positions');
                 break;
             case "admin-users":
-                await userWorker.deleteUser();
+                let oldUser = await userWorker.getUser(request.body.deleteById);
+                let oldAvatar = oldUser.avatar;
+                deleteImg(oldAvatar);
+                await userWorker.deleteUser(request.body.deleteById);
                 response.redirect('/admin#admin-users');
                 break;
             case "admin-products":
                 await productWorker.deleteProduct(request.body.deleteById);
                 response.redirect('/admin#admin-products');
                 break;
+            case "admin-services":
+                await serviceWorker.deleteService(request.body.deleteById);
+                response.redirect('/admin#admin-services');
+                break;
         }
     }else if(request.body.updateById !== undefined){
-
+        switch (request.body.moderateContext){
+            case "admin-employers":
+                let currentEmployer = await employeeWorker.getEmployer(request.body.updateById);
+                request.session.updatedEmployer = currentEmployer;
+                response.redirect('/admin#admin-employers');
+                break;
+            case "admin-positions":
+                let currentPosition = await positionWorker.getPosition(request.body.updateById);
+                request.session.updatedPosition = currentPosition;
+                response.redirect('/admin#admin-positions');
+                break;
+            case "admin-users":
+                let currentUser = await userWorker.getUser(request.body.updateById);
+                request.session.updatedUser = currentUser;
+                response.redirect('/admin#admin-users');
+                break;
+            case "admin-products":
+                let currentProduct = await productWorker.getProduct(request.body.updateById);
+                request.session.updatedProduct = currentProduct;
+                response.redirect('/admin#admin-products');
+                break;
+            case "admin-services":
+                let currentService = await serviceWorker.getService(request.body.updateById);
+                request.session.updatedService = currentService;
+                response.redirect('/admin#admin-services');
+                break;
+        }
     }
 
 }
