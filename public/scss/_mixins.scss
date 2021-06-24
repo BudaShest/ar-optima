@@ -42,12 +42,20 @@
 @mixin form(){
   max-width: 400px;
   width: 100%;
-  border:2px solid $primary-col;
+  border:8px solid $primary-col;
   border-radius: 25px;
   justify-content: space-evenly;
   align-items: center;
   padding: 14px;
   background-color: $accent-white-col;
+  header{
+    justify-content: center;
+    align-items: center;
+    height: 70px;
+    width: 100%;
+    border-bottom:6px solid $primary-col;
+    margin-bottom: 14px;
+  }
   img{
     max-width: 85%;
   }
@@ -167,5 +175,21 @@
         font-weight:bold;
       }
     }
+  }
+}
+
+@mixin volumeShadow($shadow-col){
+  &:hover{
+    box-shadow:
+            1px 1px $shadow-col,
+            2px 2px $shadow-col,
+            3px 3px $shadow-col,
+            4px 4px $shadow-col,
+            5px 5px $shadow-col,
+            6px 6px $shadow-col,
+            7px 7px $shadow-col;
+
+    transform: translate(-7px,-7px);
+    transition: all 0.4s ease-out;
   }
 }

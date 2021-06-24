@@ -8,41 +8,49 @@
     <title>Авторизация</title>
     <link rel="stylesheet" href="/css/style.css">
     <script defer src="/js/script.js"></script>
+    <script defer src="/js/auth-form.js"></script>
 </head>
 <body>
     {{>modalMenu}}
     <div class="wrapper wrapper-main">
         {{>headerLight}}
-        <main class="main row">
-            <div class="register-form-container">
-                <form class="register-form col" action="auth/register" method="post" enctype="multipart/form-data">
-                    <h3>Регистрация</h3>
-                    <label for="reg-login-input">Логин:</label>
-                    <input type="text" id="reg-login-input" name="regLogin">
-                    <label for="reg-password-input">Пароль:</label>
-                    <input type="password" id="reg-password-input" name="regPassword">
-                    <label for="reg-image-input">Аватар:</label>
-                    <input type="file" id="reg-image-input" name="regAvatar">
-                    <div class="row form-controls">
-                        <button type="submit">ОК</button>
-                        <button type="reset">Стереть</button>
-                    </div>
-                </form>
+        <main class="main col">
+            <div class="auth-control row">
+                <button id="reg-btn-show" data-target="register-form-container">Регистрация</button>
+                <button id="auth-btn-show" data-target="login-form-container">Авторизация</button>
             </div>
-            <div class="login-form-container">
-                <form class="login-form col" action="auth/login" method="post">
-                    <h3>Авторизация:</h3>
-                    <label for="log-login-input">Логин:</label>
-                    <input type="text" id="log-login-input" name="logLogin">
-                    <label for="log-password-input">Пароль:</label>
-                    <input type="password" id="log-password-input" name="logPassword">
-                    <div class="row form-controls">
-                        <button type="submit">ОК</button>
-                        <button type="reset">Стереть</button>
-                    </div>
-                </form>
+            <div class="auth-forms-container row">
+                <div class="form-container row register-form-container form-container-active">
+                    <form class="register-form col" action="auth/register" method="post" enctype="multipart/form-data">
+                        <header class="row">
+                            <h3>Регистрация</h3>
+                        </header>
+                        <label for="reg-login-input">Логин:</label>
+                        <input type="text" id="reg-login-input" name="regLogin">
+                        <label for="reg-password-input">Пароль:</label>
+                        <input type="password" id="reg-password-input" name="regPassword">
+                        <label for="reg-image-input">Аватар:</label>
+                        <input type="file" id="reg-image-input" name="regAvatar">
+                        <div class="row form-controls">
+                            <button type="submit">ОК</button>
+                            <button type="reset">Стереть</button>
+                        </div>
+                    </form>
+                </div>
+                <div class="form-container row login-form-container">
+                    <form class="login-form col" action="auth/login" method="post">
+                        <h3>Авторизация:</h3>
+                        <label for="log-login-input">Логин:</label>
+                        <input type="text" id="log-login-input" name="logLogin">
+                        <label for="log-password-input">Пароль:</label>
+                        <input type="password" id="log-password-input" name="logPassword">
+                        <div class="row form-controls">
+                            <button type="submit">ОК</button>
+                            <button type="reset">Стереть</button>
+                        </div>
+                    </form>
+                </div>
             </div>
-
         </main>
         {{>footer}}
     </div>

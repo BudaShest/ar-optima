@@ -133,4 +133,27 @@ module.exports = class Product{
 
         }
     }
+
+    //Добавить 3d-демо
+    async addDemo(productId,model,scene,texture,path){
+        try{
+            const [rows,fields] = await this.#connection.query('INSERT INTO demo (product_id, model, scene, texture, path) VALUES (?,?,?,?,?)',[productId,model,scene,texture,path]);
+        }catch (e){
+            console.error('Ошибка запроса: ' + e);
+        }finally {
+
+        }
+    }
+
+    //Получить 3d-demo
+    async getDemo(productId){
+        try{
+            const [rows,fields] = await this.#connection.query('SELECT * FROM demo WHERE product_id = ?',[productId]);
+            return rows[0];
+        }catch (e){
+            console.error('Ошибка запроса: ' + e);
+        }finally {
+
+        }
+    }
 }

@@ -297,3 +297,46 @@ module.exports.moderate = async function (request,response){
     }
 
 }
+
+module.exports.addDemo = async function(request,response){
+    let model;
+    let scene;
+    let defaultColor;
+    let path = request.body.productDemoPath;
+    let productId = request.body.productDemoId;
+    console.log(request.files);
+    request.files.forEach(item=>{
+        if(item.originalname.includes('.gltf')){
+            model = item.originalname;
+            let newPath = `public\\3d\\${path}\\${model}`;
+            fs.mkdirSync(`public\\3d\\${path}`);
+            fs.rename(item.path, newPath, function(err){
+                if(err){
+                    console.error(err)
+                }
+            });
+        }
+        if(item.originalname.includes('.bin')){
+            scene = item.originalname;
+            let newPath = `public\\3d\\${path}\\${scene}`;
+            fs.rename(item.path, newPath, function(err){
+                if(err){
+                    console.error(err)
+                }
+            })
+        }
+        if(item.originalname.includes('.png')){
+            defaultColor = item.originalname;
+            fs.mkdirSync(`public\\3d\\${path}\\textures`);
+            let newPath = `public\\3d\\${path}\\textures\\${defaultColor}`;
+            fs.rename(item.path,newPath,function(err){
+                if(err){
+                    console.error(err);
+                }
+            })
+        }
+    })
+
+    await productWorker.addDemo(productId,model,scene,defaultColor,path);
+    response.redirect('/admin#admin-products');
+}

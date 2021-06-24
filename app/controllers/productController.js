@@ -10,8 +10,13 @@ const userWorker = new User(connection);
 
 module.exports.getProduct = async function (request, response){
     let product = await productWorker.getProduct(request.query.productId);
+    let productDemo = await productWorker.getDemo(product.id);
     let restServices = await serviceWorker.getAllServices();
     let restProducts = await productWorker.getRestProducts(request.query.productId);
+
+    if(productDemo){
+        product.productDemoPath = productDemo.path + '/' + productDemo.model;
+    }
 
 
 
@@ -33,3 +38,4 @@ module.exports.getProduct = async function (request, response){
         })
     }
 }
+

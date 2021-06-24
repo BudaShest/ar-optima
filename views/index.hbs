@@ -29,25 +29,37 @@
                     </video>
                     <p><strong>Дополненная реальность</strong> – одна из многих технологий взаимодействия человека и компьютера. Ее специфика заключается в том, что она программным образом визуально совмещает два изначально независимых пространства: мир реальных объектов вокруг нас и виртуальный мир, воссозданный на компьютере.</p>
                 </div>
-                <div id="who-we-are" class="col info-part">
+                <div id="who-we-are" class="col info-part content-part">
                     <h2>Кто мы такие?</h2>
+                    <img src="/img/team/team.png" alt="">
                     <p>Мы молодая и активная команда разработчиков и дизайнеров, занимающихся дополненной реалььностью. Мы уверены, что в этой технологии заложен огромный потенциал.
                         <a href="/teammates">По этой ссылке</a> вы сможете ознакомиться со всей нашей командой и прглашёнными художниками.</p>
                     <p>Наша цель сделать дополненную реальность доступнее.</p>
                     <h3>Но где я могу это использовать?</h3>
-<!--                    <div class="row advantages">-->
-<!--                        <div class="advantage col">-->
-<!--                            -->
-<!--                        </div>-->
-<!--                    </div>-->
+                    <div class="row advantages">
+                        <div class="advantage col">
+                            <img src="/img/icons/art.png" alt="Искусство" >
+                            <span>Искусство</span>
+                        </div>
+                        <div class="advantage col">
+                            <img src="/img/icons/gamepad.png" alt="Гейминг" >
+                            <span>Гейминг</span>
+                        </div>
+                        <div class="advantage col">
+                            <img src="/img/icons/comercy.png" alt="Комерция" >
+                            <span>Электронная комерция</span>
+                        </div>
+
+                    </div>
                 </div>
-                <div id="why-its-cool" class="col info-part">
+                <div id="why-its-cool" class="col info-part content-part">
                     <h2>Почему это круто?</h2>
                     <h3>Что такое NFT?</h3>
+                    <img src="/img/icons/nft.png" alt="NFT">
                     <p>Токены представляют собой запись в регистре внутри этой блокчейн-цепочки. Отличительной чертой большинства токенов является принцип взаимозаменяемости. Его можно сравнить с валютой (в том числе криптовалютой): один доллар, один рубль или один биткоин можно с легкостью заменить одним долларом, одним рублем или одним биткоином, принадлежащим другим пользователем.
                         Однако очевидно, что не все цифровые активы являются взаимозаменяемыми. Картина Пабло Пикассо не тождественна произведению Клода Моне, а mp3-файл с песней The Beatles вряд ли можно заменить на запись концерта Эминема. Поэтому для того, чтобы перенести в блокчейн уникальные предметы, и был создан формат невзаимозаменяемых токенов.</p>
-<!--                    <img src="img/nft-info.png" alt="">-->
-<!--                    <p>ff</p>-->
+                    <p>Команда <a href="/">AR-OPTIMA</a> поможет вам в <a href="/service?serviceId=5">в создании собственного цифрового произведения искусства</a> а также в
+                        <a href="/service?serviceId=3">получении NFT-токена на ваше произведение!</a></p>
                 </div>
             </div>
             <div class="col info-nav-container">
@@ -71,7 +83,7 @@
                             <img src="/img/uploads/{{this.avatar}}" alt="Аватарка" class="teammate-img">
                             <div class="col teammate-text">
                                 <h4>{{this.firstname}} {{this.surname}}</h4>
-                                <p>{{this.description}}</p>
+                                <p>{{inputHTML this.description}}</p>
                                 <img src="/img/uploads/{{this.icon}}" class="teammate-icon" alt="Иконка специальности">
                             </div>
                         </div>

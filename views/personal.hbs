@@ -1,0 +1,52 @@
+<!doctype html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <script defer src="/js/script.js"></script>
+    <script defer src="/js/personal.js"></script>
+    <link rel="stylesheet" href="/css/style.css">
+</head>
+<body>
+    {{>modalMenu}}
+    <div class="wrapper wrapper-main">
+        {{>headerLight}}
+        <main class="main">
+            <div class="personal-user-container col">
+                <form action="/personal/update" class="personal-user-settings col" method="post" enctype="multipart/form-data">
+                    <label for="personal-user-login-input">Логин</label>
+                    <div class="row">
+                        <input name="currentUserLogin" type="text" id="personal-user-login-input" readonly class="disabled-input" value="{{currentUserLogin}}">
+                        <img src="/img/icons/pencil.png" data-target="personal-user-login-input" alt="Изменить" class="change-pencil">
+                    </div>
+                    <label for="personal-user-password-input">Сменить пароль</label>
+                    <div class="row">
+                        <input name="currentUserPassword" type="password" id="personal-user-password-input" class="disabled-input" readonly placeholder="Введите новый пароль">
+                        <img src="/img/icons/pencil.png" data-target="personal-user-password-input" alt="Изменить" class="change-pencil">
+                    </div>
+                    <label for="personal-user-avatar-input">Аватар</label>
+                    <div class="col">
+                        <img src="/img/uploads/{{currentUserAvatar}}" alt="Изменить">
+                        <div class="row">
+                            <input name="currentUserAvatar" type="file" readonly id="personal-user-avatar-input" class="disabled-input">
+                            <img src="/img/icons/pencil.png" data-target="personal-user-avatar-input" alt="Изменить" class="change-pencil">
+                        </div>
+                    </div>
+                    <div class="row">
+                        <span>Роль:</span>
+                        <span>{{currentUserRoleName}}</span>
+                    </div>
+                    <div class="form-controls row">
+                        <button>ОК</button>
+                        <button>Стереть</button>
+                    </div>
+                </form>
+            </div>
+        </main>
+        {{>footer}}
+    </div>
+</body>
+</html>

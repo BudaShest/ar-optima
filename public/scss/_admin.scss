@@ -86,6 +86,7 @@
           justify-content: space-evenly;
           .card{
             @include card();
+            @include volumeShadow(lightgrey);
           }
         }
       }

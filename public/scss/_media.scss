@@ -3,7 +3,8 @@
   .wrapper{
     grid-template-columns: repeat(4,minmax(auto,250px));
   }
-  .header, section, .footer{
+
+  .header,.header-light, section, .main, .volume-view, .footer{
     grid-column: 1/5;
   }
 

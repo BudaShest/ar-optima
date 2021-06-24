@@ -63,6 +63,39 @@ module.exports = class User{
         }
     }
 
+    //Обновить логин пользователя
+    async updateUserLogin(login,id){
+        try{
+            const [rows,fields] = await this.#connection.query('UPDATE user SET login = ? WHERE id = ?',[login,id]);
+        }catch(e){
+            console.error('Ошибка запроса: ' + e);
+        }finally {
+
+        }
+    }
+
+    //Обновить аватар
+    async updateUserAvatar(avatar,id){
+        try{
+            const [rows, fields] = await this.#connection.query('UPDATE user SET avatar = ? WHERE id = ?',[avatar,id]);
+        }catch (e){
+            console.error('Ошибка запроса: ' + e);
+        }finally {
+
+        }
+    }
+
+    //Обновить пароль
+    async updateUserPassword(password,id){
+        try{
+            const [rows,fields] = await this.#connection.query('UPDATE user SET password = ? WHERE id=?',[password,id]);
+        }catch (e){
+            console.error('Ошибка запроса: ' + e);
+        }finally {
+
+        }
+    }
+
 
 
 }

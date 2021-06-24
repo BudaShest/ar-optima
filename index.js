@@ -44,6 +44,7 @@ const productsRouter = require('./routes/productsRouter');
 const productRouter = require('./routes/productRouter');
 const serviceRouter = require('./routes/serviceRouter');
 const authRouter = require('./routes/authRouter');
+const personalRouter = require('./routes/personalRouter');
 //2)Привязка объектов к соответсвующим url
 app.use('/', homeRouter);
 app.use('/admin',adminRouter);
@@ -53,6 +54,7 @@ app.use('/products', productsRouter);
 app.use('/product',productRouter);
 app.use('/service', serviceRouter);
 app.use('/auth', authRouter);
+app.use('/personal', personalRouter);
 //Обработка несуществущей страницы
 app.use(function (req,res,hext){
    res.status(404).send('<h1>Not Found</h1>');

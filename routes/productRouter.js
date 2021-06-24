@@ -4,4 +4,5 @@ const productRouter = express.Router();
 
 productRouter.get('/', productController.getProduct);
 
+
 module.exports = productRouter;

@@ -22,7 +22,7 @@ module.exports.register = async function (request, response){
     if(request.file != undefined){
         regAvatar = request.file.filename;
     }
-    console.log(regAvatar);
+
 
     const resPassword = bcrypt.hashSync(regPassword,salt);
 

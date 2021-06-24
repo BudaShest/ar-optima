@@ -226,6 +226,30 @@
                             <button>Стереть</button>
                         </div>
                     </form>
+                    <h3>Добавить 3d-демо</h3>
+                    <form action="admin/addDemo" method="post" enctype="multipart/form-data">
+                        <label for="product-demo-id-input">Товар:</label>
+                        <select name="productDemoId" id="product-demo-id-input">
+                            {{#each allProducts}}
+                                <option value="{{this.id}}">{{this.name}}</option>
+                            {{/each}}
+                        </select>
+                        <fieldset>
+                            <legend>3d - демка</legend>
+                            <label for="product-demo-model-input">Модель</label>
+                            <input name="productDemoFiles" type="file" id="product-demo-model-input">
+                            <label for="product-demo-texture-input">Текстура</label>
+                            <input name="productDemoFiles" type="file" id="product-demo-texture-input">
+                            <label for="product-demo-color-input">Цвет(по умолч.)</label>
+                            <input name="productDemoFiles" type="file" id="product-demo-color-input">
+                            <label for="product-demo-path-input">Название папки</label>
+                            <input name="productDemoPath" type="text" id="product-demo-path-input">
+                        </fieldset>
+                        <div class="row form-controls">
+                            <button>OK</button>
+                            <button>Стереть</button>
+                        </div>
+                    </form>
                 </div>
             </div>
             <div class="col section-part second-part">

@@ -1,5 +1,5 @@
 //1)Модальное меню
-let menuToggler = document.querySelector('.side-menu');
+let menuToggler = document.querySelector('.side-menu .menu-block');
 let modalMenu = document.querySelector('.modal-menu');
 
 menuToggler.addEventListener('click',function(){
