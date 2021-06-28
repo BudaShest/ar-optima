@@ -1,10 +1,7 @@
-const connection = require('../../db/connect');
+const bootstrap = require('../../bootstrap');
 
-const Product = require('../models/product');
-const User = require('../models/user');
-
-const productWorker = new Product(connection);
-const userWorker = new User(connection);
+const productWorker = bootstrap.productWorker;
+const userWorker = bootstrap.userWorker;
 
 module.exports.getAllProducts = async function (request,response){
     let specialProducts = await productWorker.getSpecialProducts();

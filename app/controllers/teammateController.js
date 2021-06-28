@@ -1,12 +1,8 @@
-const connection = require('../../db/connect');
+const bootstrap = require('../../bootstrap');
 
-const Employee = require('../models/employee');
-const Product = require('../models/product');
-const User = require('../models/user');
-
-const employeeWorker = new Employee(connection);
-const productWorker = new Product(connection);
-const userWorker = new User(connection);
+const employeeWorker = bootstrap.employeeWorker;
+const productWorker = bootstrap.productWorker;
+const userWorker = bootstrap.userWorker;
 
 module.exports.getTeammate = async function (request,response){
     let teammate =await employeeWorker.getEmployer(request.query.teammateId);

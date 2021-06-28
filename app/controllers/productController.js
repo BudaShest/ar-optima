@@ -1,12 +1,8 @@
-const connection = require('../../db/connect');
+const bootstrap = require('../../bootstrap');
 
-const Product = require('../models/product');
-const Service = require('../models/service');
-const User = require('../models/user');
-
-const productWorker = new Product(connection);
-const serviceWorker = new Service(connection);
-const userWorker = new User(connection);
+const productWorker = bootstrap.productWorker;
+const serviceWorker = bootstrap.serviceWorker;
+const userWorker = bootstrap.userWorker;
 
 module.exports.getProduct = async function (request, response){
     let product = await productWorker.getProduct(request.query.productId);

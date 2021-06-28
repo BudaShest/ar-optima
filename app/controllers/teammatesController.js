@@ -1,10 +1,7 @@
-const connection = require('../../db/connect');
+const bootstrap = require('../../bootstrap');
 
-const Employee = require('../models/employee');
-const User = require('../models/user');
-
-const employeeWorker = new Employee(connection);
-const userWorker = new User(connection);
+const employeeWorker = bootstrap.employeeWorker;
+const userWorker = bootstrap.userWorker;
 
 module.exports.getAllEmployers = async function (request,response){
     let mainEmployers =await employeeWorker.getMainEmployers();

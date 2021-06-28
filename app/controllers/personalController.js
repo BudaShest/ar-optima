@@ -1,11 +1,8 @@
 const bcrypt = require('bcrypt');
-const connection = require('../../db/connect');
+const bootstrap = require('../../bootstrap');
 
-const Product = require('../models/product');
-const User = require('../models/user');
 
-const productWorker = new Product(connection);
-const userWorker = new User(connection);
+const userWorker = bootstrap.userWorker;
 
 const salt = bcrypt.genSaltSync(10);
 
@@ -46,4 +43,11 @@ module.exports.updateCurrentUser = async function (request,response){
     }
 
     response.redirect('/personal');
+}
+
+module.exports.exit = async function (request,response){
+    if(request.session.authId){
+        delete request.session.authId;
+    }
+    response.redirect('/');
 }

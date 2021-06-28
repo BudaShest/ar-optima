@@ -1,9 +1,8 @@
 const bcrypt = require('bcrypt');
-const connection = require('../../db/connect');
+const bootstrap = require('../../bootstrap');
 
-const User = require('../models/user');
 
-const userWorker = new User(connection);
+const userWorker = bootstrap.userWorker;
 
 module.exports.getForm = async function (request,response){
     response.render('admin-auth.hbs',{

@@ -1,30 +1,10 @@
 const express = require('express');
 const adminController = require('../app/controllers/adminController');
 const adminRouter = express.Router();
+const bootstrap = require('../bootstrap');
+const upload = bootstrap.upload;
+const upload2 = bootstrap.upload2;
 
-/* TODO вынести*/
-const app = express();
-const multer = require('multer');
-app.use(express.static(__dirname));
-
-const storage = multer.diskStorage({
-    destination: 'public/img/uploads',
-    filename: function (req, file,callback){
-        callback(null,Date.now() + "-" + file.originalname);
-    }
-});
-
-const upload = multer({storage:storage})
-/* ------*/
-
-
-const demoStorage = multer.diskStorage({
-    destination:'public/3d',
-    filename:function (req,file,callback){
-        callback(null,file.originalname);
-    }
-})
-const upload2 = multer({storage:demoStorage});
 
 adminRouter.get('/',adminController.getPanel);
 adminRouter.post('/addEmployer',upload.single('employAvatar'),adminController.addEmployer);

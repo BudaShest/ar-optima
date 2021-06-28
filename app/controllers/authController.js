@@ -1,15 +1,13 @@
 const bcrypt = require('bcrypt');
-const connection = require('../../db/connect');
+const bootstrap = require('../../bootstrap');
 
-const User = require('../models/user');
 
-const userWorker = new User(connection);
+
+const userWorker = bootstrap.userWorker;
 
 const salt = bcrypt.genSaltSync(10);
 
 module.exports.getForm = async function (request,response){
-
-
     if(request.session.authError){
         response.render('auth.hbs',{
             authError:request.session.authError

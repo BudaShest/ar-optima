@@ -1,3 +1,4 @@
+//Функция для удаления файла
 const FILE_PATH = 'C:\\Users\\1644853\\Desktop\\ar-optima\\public\\img\\uploads\\';
 function deleteImg(img){
     if(img !== "def-avatar.png" && img !== "dev-icon.png" && img !== 'def-employer.png' && img !== "def-service.jpg"){
@@ -12,22 +13,15 @@ function deleteImg(img){
 }
 
 
-const connection = require('../../db/connect');
+const bootstrap = require('../../bootstrap');
 const fs = require('fs');
 
-const Employee = require('../models/employee');
-const Position = require('../models/position');
-const User = require('../models/user');
-const Product = require('../models/product');
-const Service = require('../models/service');
-const OnWork = require('../models/onWork');
-
-const employeeWorker = new Employee(connection);
-const positionWorker = new Position(connection);
-const userWorker = new User(connection);
-const productWorker = new Product(connection);
-const serviceWorker = new Service(connection);
-const workWorker = new OnWork(connection);
+const employeeWorker = bootstrap.employeeWorker;
+const positionWorker = bootstrap.positionWorker;
+const userWorker = bootstrap.userWorker;
+const productWorker = bootstrap.productWorker;
+const serviceWorker = bootstrap.serviceWorker;
+const workWorker = bootstrap.workWorker;
 
 module.exports.getPanel=async function (request,response){
     if(!request.session.isAdminAuth){

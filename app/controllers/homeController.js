@@ -1,14 +1,9 @@
-const connection = require('../../db/connect');
+const bootstrap = require('../../bootstrap');
 
-const Employee = require('../models/employee');
-const Product = require('../models/product');
-const Service = require('../models/service');
-const User = require('../models/user');
-
-const employeeWorker = new Employee(connection);
-const productWorker = new Product(connection);
-const serviceWorker = new Service(connection);
-const userWorker = new User(connection);
+const employeeWorker = bootstrap.employeeWorker;
+const productWorker = bootstrap.productWorker;
+const serviceWorker = bootstrap.serviceWorker;
+const userWorker = bootstrap.userWorker;
 
 //Контроллер для главной страницы
 module.exports.index =async function (request,response) {
