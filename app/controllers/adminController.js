@@ -245,7 +245,6 @@ module.exports.addProduct = async function (request, response){
     const price = request.body.productText;
     let fileNames = request.files.map(item=>item.filename);
 
-    //TODO изменение картинок
     if(request.session.updatedProduct !== undefined){
         await productWorker.updateProduct(name,description,authorId,price,secondName,request.session.updatedProduct.id);
         delete request.session.updatedProduct;
@@ -267,7 +266,6 @@ module.exports.addService = async function (request, response){
     const price = request.body.servicePrice;
 
 
-    //TODO переделать верхние картинки по этому же принципу и внести в функцию
     if(request.session.updatedService !== undefined){
         if(request.file != undefined){
             image = request.file.filename;

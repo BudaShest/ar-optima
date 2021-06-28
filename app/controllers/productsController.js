@@ -24,3 +24,4 @@ module.exports.getAllProducts = async function (request,response){
         })
     }
 }
+

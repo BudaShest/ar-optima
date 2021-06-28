@@ -3,17 +3,23 @@ const bootstrap = require('../../bootstrap');
 
 
 const userWorker = bootstrap.userWorker;
+const productWorker = bootstrap.productWorker;
 
 const salt = bcrypt.genSaltSync(10);
 
 module.exports.getPersonal = async function (request,response){
 
     if(request.session.authId !== undefined){
-        let currentUser =await userWorker.getUser(request.session.authId);
+        let authorizedUser =await userWorker.getUser(request.session.authId);
+        let userPurchases = await productWorker.getPurchasesByBuyer(request.session.authId);
         response.render('personal.hbs',{
-            currentUserLogin:currentUser.login,
-            currentUserAvatar:currentUser.avatar,
-            currentUserRoleName:currentUser.name
+            currentUserLogin:authorizedUser.login,
+            currentUserAvatar:authorizedUser.avatar,
+            currentUserRoleName:authorizedUser.name,
+            userPurchases:userPurchases,
+            isAuthorized:true,
+            authUserAvatar:authorizedUser.avatar,
+            authUserLogin:authorizedUser.login
         })
     }else{
         response.redirect('/auth');

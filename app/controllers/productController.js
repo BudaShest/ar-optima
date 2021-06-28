@@ -14,10 +14,9 @@ module.exports.getProduct = async function (request, response){
         product.productDemoPath = productDemo.path + '/' + productDemo.model;
     }
 
-
-
     if(request.session.authId !== undefined){
         let authorizedUser = await userWorker.getUser(request.session.authId);
+        product.isAuthorized = true;
         response.render('product.hbs',{
             product:product,
             restProducts:restProducts,
@@ -35,3 +34,10 @@ module.exports.getProduct = async function (request, response){
     }
 }
 
+module.exports.buy = async function (request,response){
+
+    if(request.session.authId){
+        await productWorker.buyProduct(request.session.authId,request.body.productBuyBtn);
+    }
+    response.redirect('/personal');
+}

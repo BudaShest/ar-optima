@@ -14,8 +14,9 @@
     {{>modalMenu}}
     <div class="wrapper wrapper-main">
         {{>headerLight}}
-        <main class="main">
+        <main class="main col">
             <div class="personal-user-container col">
+                <h2>Настройки пользователя</h2>
                 <form action="/personal/update" class="personal-user-settings col" method="post" enctype="multipart/form-data">
                     <label for="personal-user-login-input">Логин</label>
                     <div class="row">
@@ -44,6 +45,24 @@
                         <button>Стереть</button>
                     </div>
                 </form>
+            </div>
+            <h3>Мои покупки:</h3>
+            <div class="row all-user-purchases">
+                {{#each userPurchases}}
+                    <div class="top-product row">
+                        <div class="col top-product-img card-img">
+                            <img src="/img/uploads/{{this.image}}" alt="">
+                        </div>
+                        <div class="col top-product-text card-text">
+                            <h3>{{this.name}}</h3>
+                            <h4>{{this.second_name}}</h4>
+                            <div class="row">
+                                <a class="top-product-link card-link link-to" href="/product?productId={{this.id}}">Перейти</a>
+                                <span class="top-product-price  card-price">{{this.price}}₽</span>
+                            </div>
+                        </div>
+                    </div>
+                {{/each}}
             </div>
         </main>
         {{>footer}}

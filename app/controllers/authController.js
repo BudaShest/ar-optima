@@ -1,8 +1,6 @@
 const bcrypt = require('bcrypt');
 const bootstrap = require('../../bootstrap');
 
-
-
 const userWorker = bootstrap.userWorker;
 
 const salt = bcrypt.genSaltSync(10);
@@ -10,7 +8,10 @@ const salt = bcrypt.genSaltSync(10);
 module.exports.getForm = async function (request,response){
     if(request.session.authError){
         response.render('auth.hbs',{
-            authError:request.session.authError
+            authError:request.session.authError,
+            isAuthorized:true,
+            authUserAvatar:authorizedUser.avatar,
+            authUserLogin:authorizedUser.login
         })
         delete request.session.authError;
     }else{
@@ -40,7 +41,6 @@ module.exports.login = async function (request,response){
     const logLogin = request.body.logLogin;
     const logPassword = request.body.logPassword;
 
-
     const currentUser =await userWorker.searchUser(logLogin);
     if(currentUser){
         if(bcrypt.compareSync(logPassword,currentUser.password)){
@@ -57,7 +57,4 @@ module.exports.login = async function (request,response){
         request.session.authError = 'Нет такого пользователя!';
         response.redirect('/auth#auth-login');
     }
-
-
-
 }

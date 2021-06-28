@@ -156,4 +156,27 @@ module.exports = class Product{
 
         }
     }
+
+    //Купить продукт
+    async buyProduct(userId,productId){
+        try{
+            const [rows,fields] = await this.#connection.query('INSERT INTO purchases (buyer_id, product_id) VALUES (?,?)',[userId,productId]);
+        }catch (e){
+            console.error('Ошибка запроса: ' + e);
+        }finally {
+
+        }
+    }
+
+    //Получить все товары, купленные пользователем
+    async getPurchasesByBuyer(userId){
+        try{
+            const [rows,fields] = await this.#connection.query('SELECT p.id as id, name, description, author_id, price, second_name, image FROM product p INNER JOIN product_images pi ON p.id = pi.product_id INNER JOIN purchases p2 on p.id = p2.product_id WHERE p2.buyer_id  = ? GROUP BY p.id', [userId]);
+            return rows;
+        }catch (e){
+            console.error('Ошибка запроса: ' + e);
+        }finally {
+
+        }
+    }
 }

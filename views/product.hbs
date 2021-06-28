@@ -42,9 +42,9 @@
                         <h4>Описание:</h4>
                         <p>{{inputHTML description}}</p>
                         <div class="row">
-                            <span class="current-product-price">{{price}}₽</span>
+                            <span class="current-product-price">Цена: {{price}}₽</span>
                             {{#if isAuthorized}}
-                            <form action="" method="post">
+                            <form action="product/buy" method="post">
                                 <button name="productBuyBtn" value="{{id}}" id="buy-btn">Купить</button>
                             </form>
                             {{/if}}
