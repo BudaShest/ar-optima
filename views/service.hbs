@@ -22,11 +22,22 @@
                 <img src="/img/uploads/{{image}}" alt="">
                 <p>{{inputHTML description}}</p>
                 <span>{{price}}</span>
+
             </div>
             {{/with}}
-            <form action="" class="col">
-
+            <h3>Свяжитесь с нами для получения услуги</h3>
+            {{#if isAuthorized}}
+            <form action="service/addWork" method="post" class="col form-work">
+                <label for="work-description-input">Ваши пожелания:</label>
+                <textarea name="workDescription" id="work-description-input" cols="30" rows="10"></textarea>
+                <div class="form-controls row">
+                    <button class="btn-pos" name="workAddBtn" value="{{service.id}}">ОК</button>
+                    <button class="btn-neg">Стереть</button>
+                </div>
             </form>
+            {{else}}
+                <p><a href="/auth#auth-login">Авторизуйтесь</a>, чтобы быть с нами на связи</p>
+            {{/if}}
             {{>bottomSlider}}
         </main>
         {{>footer}}

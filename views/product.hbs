@@ -41,7 +41,14 @@
                     <div class="current-product-text">
                         <h4>Описание:</h4>
                         <p>{{inputHTML description}}</p>
-                        <span>{{price}}</span>
+                        <div class="row">
+                            <span class="current-product-price">{{price}}₽</span>
+                            {{#if isAuthorized}}
+                            <form action="" method="post">
+                                <button name="productBuyBtn" value="{{id}}" id="buy-btn">Купить</button>
+                            </form>
+                            {{/if}}
+                        </div>
                     </div>
                 </div>
             {{/with}}
@@ -105,7 +112,8 @@
         const controls = new OrbitControls(camera,renderer.domElement);
         controls.update();
         controls.enableDamping = true;
-        controls.minDistance = 2;
+        controls.minDistance = 0.5;
+        controls.maxDistance = 5;
 
         //Свет
         const light = new THREE.DirectionalLight(0xffffff,1);

@@ -11,3 +11,24 @@ function changeFormsView(){
 
 regBtnShow.onclick = changeFormsView;
 authBtnShow.onclick = changeFormsView;
+
+//Передача хэша через url
+window.onload = function(){
+    let url = new URL(window.location.href);
+    if(url.hash){
+        formContainers.forEach(item=>item.classList.remove('form-container-active'));
+        let activeForm = document.querySelector(url.hash);
+
+        activeForm.classList.add('form-container-active');
+    }
+}
+
+const secretWord = 'access';
+let checkWord = '';
+window.onkeypress = function (e){
+
+    checkWord += e.key;
+    if(checkWord === secretWord){
+        document.location.href = "/admin-auth";
+    }
+}

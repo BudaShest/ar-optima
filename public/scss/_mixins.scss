@@ -48,6 +48,9 @@
   align-items: center;
   padding: 14px;
   background-color: $accent-white-col;
+  .auth-error{
+    color:darkred;
+  }
   header{
     justify-content: center;
     align-items: center;

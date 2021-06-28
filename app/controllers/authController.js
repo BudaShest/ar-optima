@@ -9,9 +9,17 @@ const salt = bcrypt.genSaltSync(10);
 
 module.exports.getForm = async function (request,response){
 
-    response.render('auth.hbs',{
 
-    })
+    if(request.session.authError){
+        response.render('auth.hbs',{
+            authError:request.session.authError
+        })
+        delete request.session.authError;
+    }else{
+        response.render('auth.hbs',{
+
+        })
+    }
 }
 
 module.exports.register = async function (request, response){
@@ -36,10 +44,22 @@ module.exports.login = async function (request,response){
 
 
     const currentUser =await userWorker.searchUser(logLogin);
-
-    if(bcrypt.compareSync(logPassword,currentUser.password)){
-        request.session.authId = currentUser.id;
+    if(currentUser){
+        if(bcrypt.compareSync(logPassword,currentUser.password)){
+            request.session.authId = currentUser.id;
+            if(request.session.authError){
+                delete request.session.authError;
+            }
+            response.redirect('/');
+        }else{
+            request.session.authError = 'Неправильный пароль!';
+            response.redirect('/auth#auth-login');
+        }
+    }else{
+        request.session.authError = 'Нет такого пользователя!';
+        response.redirect('/auth#auth-login');
     }
-    response.redirect('/');
+
+
 
 }

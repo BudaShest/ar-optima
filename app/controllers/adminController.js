@@ -20,19 +20,28 @@ const Position = require('../models/position');
 const User = require('../models/user');
 const Product = require('../models/product');
 const Service = require('../models/service');
+const OnWork = require('../models/onWork');
 
 const employeeWorker = new Employee(connection);
 const positionWorker = new Position(connection);
 const userWorker = new User(connection);
 const productWorker = new Product(connection);
 const serviceWorker = new Service(connection);
+const workWorker = new OnWork(connection);
 
 module.exports.getPanel=async function (request,response){
+    if(!request.session.isAdminAuth){
+        response.redirect('/admin');
+        return;
+    }
+
     let employers =await employeeWorker.getAllEmployers();
     let positions = await positionWorker.getAllPositions();
     let users = await userWorker.getAllUsers();
     let products = await productWorker.getAllProducts();
     let services = await serviceWorker.getAllServices();
+    let works = await workWorker.getAllWorks();
+    let statuses = await workWorker.getAllStatuses();
 
     //TODO заменить на свитч?
     if(request.session.updatedEmployer !== undefined){
@@ -43,6 +52,8 @@ module.exports.getPanel=async function (request,response){
             allUsers:users,
             allProducts:products,
             allServices:services,
+            allWorks:works,
+            allStatuses:statuses,
             //Форма добавления персонала
             employFirstname:request.session.updatedEmployer.firstname,
             employSurname:request.session.updatedEmployer.surname,
@@ -62,6 +73,8 @@ module.exports.getPanel=async function (request,response){
             allUsers:users,
             allProducts:products,
             allServices:services,
+            allWorks:works,
+            allStatuses:statuses,
             //Форма добавления вакансии
             positionName:request.session.updatedPosition.name,
             positionIcon:request.session.updatedPosition.icon,
@@ -75,6 +88,8 @@ module.exports.getPanel=async function (request,response){
             allUsers: users,
             allProducts: products,
             allServices: services,
+            allWorks:works,
+            allStatuses:statuses,
             //Форма управления пользователями
             userAvatar: request.session.updatedUser.avatar,
             userLogin: request.session.updatedUser.login,
@@ -87,6 +102,8 @@ module.exports.getPanel=async function (request,response){
             allUsers: users,
             allProducts: products,
             allServices: services,
+            allWorks:works,
+            allStatuses:statuses,
             //Форма добавления товаров
             productName:request.session.updatedProduct.name,
             productSecondName:request.session.updatedProduct.second_name,
@@ -104,6 +121,8 @@ module.exports.getPanel=async function (request,response){
             allUsers: users,
             allProducts: products,
             allServices: services,
+            allWorks:works,
+            allStatuses:statuses,
             //Форма добавления услуг
             serviceHeader:request.session.updatedService.header,
             serviceDescription:request.session.updatedService.description,
@@ -111,13 +130,36 @@ module.exports.getPanel=async function (request,response){
             serviceOldImage:request.session.updatedService.image,
             servicePrice:request.session.updatedService.price
         })
-    }else{
+    }else if(request.session.updatedWork !== undefined){
+        response.render('admin-panel.hbs',{
+            allEmployers: employers,
+            allPositions: positions,
+            allUsers: users,
+            allProducts: products,
+            allServices: services,
+            allWorks:works,
+            allStatuses:statuses,
+            //Форма настроек заявки
+            workUserAvatar:request.session.updatedWork.user_avatar,
+            workUserLogin:request.session.updatedWork.login,
+            workAuthorId:request.session.updatedWork.author_id,
+            workAuthorAvatar:request.session.updatedWork.employer_avatar,
+            workAuthorFirstname:request.session.updatedWork.firstname,
+            workAuthorSurname:request.session.updatedWork.surname,
+            workStatusId:request.session.updatedWork.status_id,
+            workStatusName:request.session.updatedWork.name,
+            workDescription:request.session.updatedWork.description
+        })
+    }
+    else{
         response.render('admin-panel.hbs',{
             allEmployers:employers,
             allPositions:positions,
             allUsers:users,
             allProducts:products,
             allServices:services,
+            allWorks:works,
+            allStatuses:statuses,
         })
     }
 
@@ -125,6 +167,11 @@ module.exports.getPanel=async function (request,response){
 }
 
 module.exports.addEmployer =async function (request,response){
+    if(!request.session.isAdminAuth){
+        response.redirect('/admin');
+        return;
+    }
+
     const firstname = request.body.employFirstname;
     const surname = request.body.employSurname;
     const age = request.body.employAge;
@@ -158,6 +205,11 @@ module.exports.addEmployer =async function (request,response){
 }
 
 module.exports.addPosition = async function (request, response){
+    if(!request.session.isAdminAuth){
+        response.redirect('/admin');
+        return;
+    }
+
     const name = request.body.positionName;
     let icon = "dev-icon.png";
     let isMain = request.body.positionIsMain;
@@ -187,6 +239,11 @@ module.exports.addPosition = async function (request, response){
 }
 
 module.exports.addProduct = async function (request, response){
+    if(!request.session.isAdminAuth){
+        response.redirect('/admin');
+        return;
+    }
+
     const name = request.body.productName;
     const secondName = request.body.productSecondName;
     const description = request.body.productDescription;
@@ -205,6 +262,11 @@ module.exports.addProduct = async function (request, response){
 }
 
 module.exports.addService = async function (request, response){
+    if(!request.session.isAdminAuth){
+        response.redirect('/admin');
+        return;
+    }
+
     const header = request.body.serviceHeader;
     const description = request.body.serviceDescription;
     let image = "def-service.jpg";
@@ -234,6 +296,11 @@ module.exports.addService = async function (request, response){
 }
 
 module.exports.moderate = async function (request,response){
+    if(!request.session.isAdminAuth){
+        response.redirect('/admin');
+        return;
+    }
+
     if(request.body.deleteById !== undefined){
         switch (request.body.moderateContext) {
             case "admin-employers":
@@ -265,6 +332,7 @@ module.exports.moderate = async function (request,response){
                 await serviceWorker.deleteService(request.body.deleteById);
                 response.redirect('/admin#admin-services');
                 break;
+
         }
     }else if(request.body.updateById !== undefined){
         switch (request.body.moderateContext){
@@ -293,12 +361,22 @@ module.exports.moderate = async function (request,response){
                 request.session.updatedService = currentService;
                 response.redirect('/admin#admin-services');
                 break;
+            case "admin-works":
+                let currentWork = await workWorker.getWork(request.body.updateById);
+                request.session.updatedWork = currentWork;
+                response.redirect('/admin#admin-works');
+                break;
         }
     }
 
 }
 
 module.exports.addDemo = async function(request,response){
+    if(!request.session.isAdminAuth){
+        response.redirect('/admin');
+        return;
+    }
+
     let model;
     let scene;
     let defaultColor;
@@ -339,4 +417,12 @@ module.exports.addDemo = async function(request,response){
 
     await productWorker.addDemo(productId,model,scene,defaultColor,path);
     response.redirect('/admin#admin-products');
+}
+
+module.exports.updateWork = async function(request,response){
+    if(request.session.updatedWork.id){
+        await workWorker.updateWork(request.body.workAuthor,request.body.workStatus,request.session.updatedWork.id);
+        delete request.session.updatedWork;
+    }
+    response.redirect('/admin#admin-works');
 }

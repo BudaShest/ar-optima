@@ -33,6 +33,7 @@ adminRouter.post('/addProduct',upload.array('productImages',3),adminController.a
 adminRouter.post('/addService', upload.single('serviceImage'),adminController.addService);
 adminRouter.post('/moderate', adminController.moderate);
 adminRouter.post('/addDemo',upload2.array('productDemoFiles',3),adminController.addDemo);
+adminRouter.post('/updateWork',adminController.updateWork);
 
 
 module.exports = adminRouter;

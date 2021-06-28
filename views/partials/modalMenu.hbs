@@ -22,11 +22,14 @@
         <button>ОК</button>
     </form>
     <nav class="col">
-        <a href="/#our-team">Наши орлы</a>
+        <a href="/#our-team">#Наши орлы</a>
         <a href="/teammates">Вся команда</a>
-        <a href="/#top">Аукцион</a>
+        <a href="/#top">#Аукцион</a>
         <a href="/products">Все товары</a>
-        <a href="/#demo-example">Демо-пример</a>
-        <a href="/#personal-model">Услуги</a>
+        <a href="/#demo-example">#Демо-пример</a>
+        <a href="/#personal-model">#Услуги</a>
+        {{#if isAuthorized}}
+        <a href="user/exit">Выйти</a>
+        {{/if}}
     </nav>
 </div>

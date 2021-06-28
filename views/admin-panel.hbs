@@ -322,7 +322,78 @@
             </div>
         </section>
         <section id="admin-works" class="row">
+            <div class="col section-part first-part">
+                <div class="col">
+                    <h2>Настройки заявки</h2>
+                    <div class="work-settings">
+                        <span>Заказчик</span>
+                        <div class="row">
+                            <img src="/img/uploads/{{workUserAvatar}}" alt="">
+                            <span>{{workUserLogin}}</span>
+                        </div>
+                        {{#if workAuthorId}}
+                            <span>Исполнитель</span>
+                            <div class="row">
+                                <img src="/img/uploads/{{workAuthorAvatar}}" alt="">
+                                <div class="col">
+                                    <span>{{workAuthorFirstname}}</span>
+                                    <span>{{workAuthorSurname}}</span>
+                                </div>
+                            </div>
+                        {{else}}
+                            <p>Автор не выбран</p>
+                        {{/if}}
+                        <span>Описание:</span>
+                        <p>{{workDescription}}</p>
+                        <div class="row">
+                            <form action="admin/updateWork" class="col" method="post">
+                                <label for="work-author-select">Испольнитель</label>
+                                <select name="workAuthor" id="work-author-select">
+                                        <option value="{{workAuthorId}}" selected>{{workAuthorFirstname}} {{workAuthorSurname}}</option>
+                                    {{#each allEmployers}}
+                                        <option value="{{this.id}}">{{this.firstname}} {{this.surname}}</option>
+                                    {{/each}}
+                                </select>
+                                <label for="work-status-select">Статус</label>
+                                <select name="workStatus" id="work-status-select">
+                                    <option value="{{workStatusId}}" selected>{{workStatusName}}</option>
+                                    {{#each allStatuses}}
+                                        <option value="{{this.id}}">{{this.name}}</option>
+                                    {{/each}}
+                                </select>
+                                <div class="form-controls row">
+                                    <button>OK</button>
+                                    <button>Стереть</button>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
 
+                </div>
+            </div>
+            <div class="col section-part second-part">
+                <div class="col">
+                    <h3>Все заявки</h3>
+                    <div class="all-records all-works row">
+                        {{#each allWorks}}
+                            <div class="card work row" id="{{this.id}}">
+                                <div class="col card-img">
+                                    <img src="/img/uploads/{{this.image}}" alt="">
+                                </div>
+                                <div class="col card-text">
+                                    <h3>{{this.header}}</h3>
+                                    <div class="col">
+                                        <span>Автор</span>
+                                        <span>{{firstname}} {{surname}}</span>
+                                        <span>Цена:</span>
+                                        <span class="card-price">{{this.price}}₽</span>
+                                    </div>
+                                </div>
+                            </div>
+                        {{/each}}
+                    </div>
+                </div>
+            </div>
         </section>
     </div>
 

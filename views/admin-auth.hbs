@@ -1,0 +1,25 @@
+<!doctype html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Авторизация</title>
+    <link rel="stylesheet" href="/css/style.css">
+</head>
+<body>
+    <div class="auth-container row">
+        <form action="admin-auth/adminAuth" method="post">
+            <label for="admin-login-input">Логин:</label>
+            <input name="adminLogin" type="text" id="admin-login-input">
+            <label for="admin-password-input">Пароль:</label>
+            <input name="adminPassword" type="password" id="admin-password-input">
+            <div class="form-controls row">
+                <button>ОК</button>
+                <button>Стереть</button>
+            </div>
+        </form>
+    </div>
+</body>
+</html>

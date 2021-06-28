@@ -128,4 +128,27 @@
       }
     }
   }
+  #admin-works{
+    .work-settings{
+      >span{
+        font-weight: bold;
+      }
+      .row,p, .col{
+        margin: 10px 0;
+      }
+      .row{
+
+        align-items: center;
+        justify-content: space-evenly;
+        height: 200px;
+        img{
+          height: 100%;
+          margin-right: 10px;
+        }
+        form{
+          height: 210px;
+        }
+      }
+    }
+  }
 }
