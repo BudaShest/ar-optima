@@ -5,7 +5,10 @@ const bootstrap = require('../bootstrap');
 const upload = bootstrap.upload;
 
 personalRouter.get('/', personalController.getPersonal);
-personalRouter.post('/update',upload.single('currentUserAvatar'),personalController.updateCurrentUser);
+personalRouter.post('/updateAvatar',upload.single('currentUserAvatar'),personalController.updateUserAvatar);
+personalRouter.post('/updateLogin',personalController.updateUserLogin);
+personalRouter.post('/updatePassword', personalController.updateUserPassword);
+personalRouter.post('/updateEmail', personalController.updateUserEmail);
 personalRouter.get('/exit',personalController.exit);
 
 module.exports = personalRouter;

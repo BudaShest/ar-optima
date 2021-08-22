@@ -17,10 +17,32 @@ module.exports = class User{
         }
     }
 
+    async getAllUserNames(){
+        try{
+            const [rows, fields] = await this.#connection.query('SELECT login FROM user');
+            return rows;
+        }catch (e){
+            console.error('Ошибка запроса: ' + e)
+        }finally {
+
+        }
+    }
+
+    async getAllUserEmails(){
+        try{
+            const [rows, fields] = await this.#connection.query('SELECT email FROM user');
+            return rows;
+        }catch(e){
+            console.error('Ошибка запроса: ' + e);
+        }finally{
+
+        }
+    }
+
     //Получить пользователя
     async getUser(id){
         try{
-            const [rows,fields] = await this.#connection.query('SELECT u.id as id, login, password,avatar,role_id,name FROM user u INNER JOIN roles r ON u.role_id = r.id WHERE u.id = ?',[id]);
+            const [rows,fields] = await this.#connection.query('SELECT u.id as id, login, password,avatar,role_id,name,email FROM user u INNER JOIN roles r ON u.role_id = r.id WHERE u.id = ?',[id]);
             return rows[0];
         }catch (e){
             console.error('Ошибка запроса: ' + e);
@@ -32,7 +54,7 @@ module.exports = class User{
     //Поиск по логину
     async searchUser(login){
         try{
-            const [rows,fields] = await this.#connection.query('SELECT u.id as id, login, password,avatar,role_id,name FROM user u INNER JOIN roles r ON u.role_id = r.id WHERE login = ?',[login]);
+            const [rows,fields] = await this.#connection.query('SELECT u.id as id, login, password,avatar,role_id,name,email FROM user u INNER JOIN roles r ON u.role_id = r.id WHERE login = ?',[login]);
             return rows[0];
         }catch (e){
             console.error('Ошибка запроса: ' + e);
@@ -42,9 +64,9 @@ module.exports = class User{
     }
 
     //Добавить нового пользователя
-    async insertUser(login, password, avatar){
+    async insertUser(login, password, avatar, email){
         try{
-            const [rows,fields] = await this.#connection.query('INSERT INTO user (login, password, avatar) VALUES (?,?,?)',[login, password, avatar]);
+            const [rows,fields] = await this.#connection.query('INSERT INTO user (login, password, avatar, email) VALUES (?,?,?,?)',[login, password, avatar, email]);
         }catch (e){
             console.error('Ошибка запроса: ' + e);
         }finally {
@@ -90,6 +112,17 @@ module.exports = class User{
         try{
             const [rows,fields] = await this.#connection.query('UPDATE user SET password = ? WHERE id=?',[password,id]);
         }catch (e){
+            console.error('Ошибка запроса: ' + e);
+        }finally {
+
+        }
+    }
+
+    //Обновить email
+    async updateUserEmail(email, id){
+        try{
+            const [rows, fields] = await this.#connection.query('UPDATE user SET email = ? WHERE id = ?',[email,id]);
+        }catch(e){
             console.error('Ошибка запроса: ' + e);
         }finally {
 

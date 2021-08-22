@@ -14,6 +14,7 @@ adminRouter.post('/addService', upload.single('serviceImage'),adminController.ad
 adminRouter.post('/moderate', adminController.moderate);
 adminRouter.post('/addDemo',upload2.array('productDemoFiles',3),adminController.addDemo);
 adminRouter.post('/updateWork',adminController.updateWork);
+adminRouter.post('/deleteReview', adminController.deleteReview);
 
 
 module.exports = adminRouter;

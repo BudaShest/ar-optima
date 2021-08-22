@@ -1,11 +1,28 @@
 
 @media screen and (max-width: 1025px){
   .wrapper{
-    grid-template-columns: repeat(4,minmax(auto,250px));
+    grid-template-columns: repeat(4,minmax(auto,1fr));
   }
 
   .header,.header-light, section, .main, .volume-view, .footer{
     grid-column: 1/5;
+  }
+
+  .header{
+      height: 50vh;
+    .logo-container{
+      grid-column: 1/6;
+      .banner{
+        font-size: 2.0em;
+        margin-bottom: 50px;
+      }
+    }
+    .info-container{
+      grid-column: 6/13;
+    }
+    .info-nav-container{
+      display: none;
+    }
   }
 
   #our-team{
@@ -18,5 +35,69 @@
       flex-wrap: wrap;
     }
 
+  }
+
+  .main{
+    .all-products{
+      .special-products, .rest-products{
+        justify-content: center;
+      }
+    }
+  }
+}
+
+@media screen and (max-width: 851px){
+  .header{
+    height: 100vh;
+    .logo-container{
+      grid-column: 1/13;
+      .logo{
+        height: 120px;
+      }
+      .mobile-banner{
+        display: block;
+        max-height: 280px;
+        object-fit: contain;
+        margin: 10px 0;
+      }
+      .banner{
+        text-align: center;
+        font-size: 2em;
+        padding: 0;
+      }
+    }
+    .info-container{
+      display: none;
+    }
+  }
+
+  .main{
+    .current-teammate-container{
+      .current-teammate-top{
+        flex-direction: column;
+        >.col{
+          width: 100%;
+        }
+      }
+    }
+
+    .current-product-container{
+      .current-product-top{
+        flex-direction: column;
+        >.col{
+          width: 100%;
+        }
+      }
+    }
+
+    .current-service-container{
+      padding: 10px;
+    }
+  }
+
+  .footer{
+    .footer-container{
+      justify-content: space-around;
+    }
   }
 }

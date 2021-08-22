@@ -5,7 +5,7 @@
     <meta name="viewport"
           content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Document</title>
+    <title>Админ-панель</title>
     <link rel="stylesheet" href="/css/style.css">
     <script defer src="/js/admin-panel.js"></script>
     <script src="https://cdn.tiny.cloud/1/lx1k5gva7psp1ywffg4ujjonc5dk9q44notypc4ns36d6s45/tinymce/5/tinymce.min.js" referrerpolicy="origin"></script>
@@ -155,6 +155,7 @@
                             </div>
                             <div class="user-settings-header col">
                                 <h2>Логин: {{userLogin}}</h2>
+                                <span>Email: {{userEmail}}</span>
                                 <span>Роль: {{userRoleName}}</span>
                             </div>
                         </div>
@@ -166,11 +167,45 @@
                                 </div>
                             </form>
                         </div>
-                        <div class="user-settings-products">
-
+                        <h3>Покупки пользователя:</h3>
+                        <div class="user-settings-products row">
+                            {{#each userPurchases}}
+                                <div class="top-product row">
+                                    <div class="col top-product-img card-img">
+                                        <img src="/img/uploads/{{this.image}}" alt="">
+                                    </div>
+                                    <div class="col top-product-text card-text">
+                                        <h3>{{this.name}}</h3>
+                                        <h4>{{this.second_name}}</h4>
+                                        <div class="row">
+                                            <a class="top-product-link card-link link-to" href="/product?productId={{this.id}}">Перейти</a>
+                                            <span class="top-product-price  card-price">{{this.price}}₽</span>
+                                        </div>
+                                    </div>
+                                </div>
+                            {{/each}}
                         </div>
+                        <h3>Услуги пользователя</h3>
                         <div class="user-settings-services">
 
+                        </div>
+                        <h3>Комментарии пользователя</h3>
+                        <div class="user-settings-reviews">
+                            {{#each userReviews}}
+                                <div class="user-settings-review row">
+                                    <div class="col">
+                                        <p>{{this.text}}</p>
+                                        <span>{{this.created_at}}</span>
+                                    </div>
+                                    <div class="col">
+                                        <form action="admin/deleteReview" method="post">
+                                            <div class="form-controls">
+                                                <button name="deletedReviewId" value="{{this.id}}">Удалить</button>
+                                            </div>
+                                        </form>
+                                    </div>
+                                </div>
+                            {{/each}}
                         </div>
                     </div>
                 </div>

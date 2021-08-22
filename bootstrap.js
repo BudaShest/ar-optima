@@ -8,6 +8,7 @@ const Position = require('./app/models/position');
 const Product = require('./app/models/product');
 const Service = require('./app/models/service');
 const User = require('./app/models/user');
+const Comment = require('./app/models/comment');
 
 const employeeWorker = new Employee(connection);
 const workWorker = new OnWork(connection);
@@ -15,6 +16,7 @@ const positionWorker = new Position(connection);
 const productWorker = new Product(connection);
 const serviceWorker = new Service(connection);
 const userWorker = new User(connection);
+const commentWorker = new Comment(connection);
 
 module.exports.employeeWorker = employeeWorker;
 module.exports.workWorker = workWorker;
@@ -22,6 +24,7 @@ module.exports.positionWorker = positionWorker;
 module.exports.productWorker = productWorker;
 module.exports.serviceWorker = serviceWorker;
 module.exports.userWorker = userWorker;
+module.exports.commentWorker = commentWorker;
 
 //2)Загрузка файлов(картинки)
 const express = require('express');

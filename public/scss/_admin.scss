@@ -126,6 +126,12 @@
         margin: 10px 0;
         justify-content: center;
       }
+      .user-settings-products{
+        flex-wrap: wrap;
+        .top-product{
+          @include card();
+        }
+      }
     }
   }
   #admin-works{

@@ -7,6 +7,7 @@
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Товар</title>
     <script defer src="/js/script.js"></script>
+    <script defer src="/js/product.js"></script>
     <link rel="stylesheet" href="/css/style.css">
 
     <link rel="stylesheet" href="https://unpkg.com/swiper/swiper-bundle.min.css" />
@@ -52,6 +53,33 @@
                     </div>
                 </div>
             {{/with}}
+            {{#if isAuthorized}}
+            <form action="comment/addComment" method="post" class="current-product-comment-form col">
+                <label for="comment-text-textarea">Комментарий</label>
+                <textarea name="commentText" id="comment-text-textarea" cols="30" rows="10"></textarea>
+                <div class="form-controls row">
+                    <button class="btn-pos" name="commentAddBtn" value="{{product.id}}">ОК</button>
+                    <button class="btn-neg" type="reset">Стереть</button>
+                </div>
+            </form>
+            {{/if}}
+            <h3>Комментари</h3>
+            <div class="current-product-comments col">
+                {{#each comments}}
+                    <div class="comment row">
+                        <div class="row comment-user">
+                            <img class="comment-user-avatar" src="/img/uploads/{{avatar}}" alt="">
+                            <div class="col">
+                                <span class="comment-user-login">{{login}}</span>
+                            </div>
+                        </div>
+                        <div class="col comment-data">
+                            <p class="comment-text">{{text}}</p>
+                            <span class="comment-date">{{created_at}}</span>
+                        </div>
+                    </div>
+                {{/each}}
+            </div>
             <h3>Другие товары и услуги</h3>
             <p>Вертикальные свайпы - навигация по категориям,горизонтальные свайпы - другие позиции в данное категории</p>
             {{>bottomSlider}}
@@ -71,13 +99,56 @@
 
         });
 
-        const horizontalSwiper = new Swiper('.swiper-horizontal-container',{
+        let horizontalSwiper = new Swiper('.swiper-horizontal-container',{
             loop:true,
             navigation: {
                 nextEl: '.swiper-button-next',
                 prevEl: '.swiper-button-prev',
             },
             slidesPerView:3
+        });
+
+        window.addEventListener('resize',function (e){
+            let slidesPerView = 3;
+
+            if(this.innerWidth <= 1000){
+                slidesPerView = 2;
+                if(this.innerWidth < 768){
+                    slidesPerView = 1;
+                }
+            }else{
+                slidesPerView = 3;
+            }
+
+            horizontalSwiper = new Swiper('.swiper-horizontal-container',{
+                loop:true,
+                navigation: {
+                    nextEl: '.swiper-button-next',
+                    prevEl: '.swiper-button-prev',
+                },
+                slidesPerView:slidesPerView
+            });
+        });
+
+        window.addEventListener('load',function (e) {
+            let slidesPerView = 3
+            if (this.innerWidth <= 1000) {
+                slidesPerView = 2;
+                if (this.innerWidth < 768) {
+                    slidesPerView = 1;
+                }
+            } else {
+                slidesPerView = 3;
+            }
+
+            horizontalSwiper = new Swiper('.swiper-horizontal-container', {
+                loop: true,
+                navigation: {
+                    nextEl: '.swiper-button-next',
+                    prevEl: '.swiper-button-prev',
+                },
+                slidesPerView: slidesPerView
+            })
         });
     </script>
 
@@ -98,7 +169,6 @@
         let pathToFile = '/3d/' + document.querySelector('#product-header').dataset.target;
 
         loader.load(pathToFile,function (glb){
-            console.log(glb);
             const root = glb.scene;
             root.scale.set(0.1,0.1,0.1);
             scene.add(root);

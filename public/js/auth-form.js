@@ -6,6 +6,7 @@ const formContainers = document.querySelectorAll('.form-container');
 function changeFormsView(){
     let targetForm = document.querySelector('.'+this.dataset.target);
     formContainers.forEach(item=>item.classList.remove('form-container-active'));
+    console.log(targetForm);
     targetForm.classList.add('form-container-active');
 }
 
@@ -18,7 +19,7 @@ window.onload = function(){
     if(url.hash){
         formContainers.forEach(item=>item.classList.remove('form-container-active'));
         let activeForm = document.querySelector(url.hash);
-
+        console.log(activeForm);
         activeForm.classList.add('form-container-active');
     }
 }

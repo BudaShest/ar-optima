@@ -1,7 +1,7 @@
 /*Стартовая точка приложения*/
 /*Импорт модулей*/
 const express = require('express'); //Подключаем модуль express
-const bodyParser = require('body-parser'); //Модуль
+const bodyParser = require('body-parser'); //Модуль для разбора тела запроса
 const path = require('path');
 const hbs = require('hbs');
 const session = require('express-session');
@@ -46,6 +46,7 @@ const serviceRouter = require('./routes/serviceRouter');
 const authRouter = require('./routes/authRouter');
 const personalRouter = require('./routes/personalRouter');
 const adminAuthRouter = require('./routes/adminAuthRouter');
+const commentRouter = require('./routes/commentRouter');
 //2)Привязка объектов к соответсвующим url
 app.use('/', homeRouter);
 app.use('/admin',adminRouter);
@@ -57,6 +58,7 @@ app.use('/service', serviceRouter);
 app.use('/auth', authRouter);
 app.use('/personal', personalRouter);
 app.use('/admin-auth',adminAuthRouter);
+app.use('/comment',commentRouter);
 //Обработка несуществущей страницы
 app.use(function (req,res,hext){
    res.status(404).send('<h1>Not Found</h1>');

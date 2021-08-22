@@ -22,6 +22,7 @@ const userWorker = bootstrap.userWorker;
 const productWorker = bootstrap.productWorker;
 const serviceWorker = bootstrap.serviceWorker;
 const workWorker = bootstrap.workWorker;
+const commentWorker = bootstrap.commentWorker;
 
 module.exports.getPanel=async function (request,response){
     if(!request.session.isAdminAuth){
@@ -76,6 +77,9 @@ module.exports.getPanel=async function (request,response){
             isNewIcon:true
         })
     }else if(request.session.updatedUser !== undefined){
+        let allUserProducts = await productWorker.getPurchasesByBuyer(request.session.updatedUser.id);
+        let allUserReviews = await commentWorker.getCommentsByAuthor(request.session.updatedUser.id);
+
         response.render('admin-panel.hbs', {
             allEmployers: employers,
             allPositions: positions,
@@ -87,7 +91,10 @@ module.exports.getPanel=async function (request,response){
             //Форма управления пользователями
             userAvatar: request.session.updatedUser.avatar,
             userLogin: request.session.updatedUser.login,
+            userEmail:request.session.updatedUser.email,
             userRoleName: request.session.updatedUser.name,
+            userPurchases: allUserProducts,
+            userReviews: allUserReviews
         })
     }else if(request.session.updatedProduct !== undefined){
         response.render('admin-panel.hbs',{
@@ -417,4 +424,14 @@ module.exports.updateWork = async function(request,response){
         delete request.session.updatedWork;
     }
     response.redirect('/admin#admin-works');
+}
+
+module.exports.deleteReview = async function(request, response){
+    let reviewId = request.body.deletedReviewId;
+
+    if(reviewId){
+        await commentWorker.deleteComment(reviewId);
+    }
+
+    response.redirect('/admin#admin-users')
 }

@@ -36,9 +36,9 @@
                     </div>
                     <div class="current-teammate-text col">
                         <h4>Описание:</h4>
-                        <p>{{description}}</p>
+                        <p>{{inputHTML description}}</p>
                         <h4>Стек технологий:</h4>
-                        <p>{{technology_stack}}</p>
+                        <p>{{inputHTML technology_stack}}</p>
                     </div>
                 </div>
             {{/with}}
@@ -82,13 +82,45 @@
     <script type="module">
         import Swiper from 'https://unpkg.com/swiper/swiper-bundle.esm.browser.min.js';
 
-        const swiper = new Swiper('.swiper-container',{
+        let swiper = new Swiper('.swiper-container',{
             loop:true,
             navigation: {
                 nextEl: '.swiper-button-next',
                 prevEl: '.swiper-button-prev',
             },
             slidesPerView:3
+        })
+
+        window.addEventListener('resize',function (e){
+            if(this.innerWidth <= 1000){
+                swiper = new Swiper('.swiper-container',{
+                    loop:true,
+                    navigation: {
+                        nextEl: '.swiper-button-next',
+                        prevEl: '.swiper-button-prev',
+                    },
+                    slidesPerView:2
+                })
+                if(this.innerWidth < 768){
+                    swiper = new Swiper('.swiper-container',{
+                    loop:true,
+                    navigation: {
+                        nextEl: '.swiper-button-next',
+                        prevEl: '.swiper-button-prev',
+                    },
+                    slidesPerView:1
+                })
+            }
+            }else{
+                swiper = new Swiper('.swiper-container', {
+                    loop: true,
+                    navigation: {
+                        nextEl: '.swiper-button-next',
+                        prevEl: '.swiper-button-prev',
+                    },
+                    slidesPerView: 3
+                })
+            }
         })
     </script>
 </body>

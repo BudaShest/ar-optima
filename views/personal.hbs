@@ -5,7 +5,7 @@
     <meta name="viewport"
           content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Document</title>
+    <title>Личный кабинет</title>
     <script defer src="/js/script.js"></script>
     <script defer src="/js/personal.js"></script>
     <link rel="stylesheet" href="/css/style.css">
@@ -15,36 +15,60 @@
     <div class="wrapper wrapper-main">
         {{>headerLight}}
         <main class="main col">
-            <div class="personal-user-container col">
-                <h2>Настройки пользователя</h2>
-                <form action="/personal/update" class="personal-user-settings col" method="post" enctype="multipart/form-data">
-                    <label for="personal-user-login-input">Логин</label>
-                    <div class="row">
-                        <input name="currentUserLogin" type="text" id="personal-user-login-input" readonly class="disabled-input" value="{{currentUserLogin}}">
-                        <img src="/img/icons/pencil.png" data-target="personal-user-login-input" alt="Изменить" class="change-pencil">
-                    </div>
-                    <label for="personal-user-password-input">Сменить пароль</label>
-                    <div class="row">
-                        <input name="currentUserPassword" type="password" id="personal-user-password-input" class="disabled-input" readonly placeholder="Введите новый пароль">
-                        <img src="/img/icons/pencil.png" data-target="personal-user-password-input" alt="Изменить" class="change-pencil">
-                    </div>
-                    <label for="personal-user-avatar-input">Аватар</label>
-                    <div class="col">
-                        <img src="/img/uploads/{{currentUserAvatar}}" alt="Изменить">
-                        <div class="row">
-                            <input name="currentUserAvatar" type="file" readonly id="personal-user-avatar-input" class="disabled-input">
-                            <img src="/img/icons/pencil.png" data-target="personal-user-avatar-input" alt="Изменить" class="change-pencil">
+            <div class="invoice-error">
+                {{invoiceError}}
+            </div>
+            <div class="personal-user-container row">
+                <div class="col">
+                    <h2>Настройки пользователя</h2>
+                    <form action="/personal/updateAvatar" class="personal-user-settings col" method="post" enctype="multipart/form-data">
+                        <label for="personal-user-avatar-input">Аватар</label>
+                        <div class="col">
+                            <img src="/img/uploads/{{currentUserAvatar}}" alt="Изменить">
+                            <div class="row">
+                                <input name="currentUserAvatar" type="file" readonly id="personal-user-avatar-input" class="disabled-input">
+                                <img src="/img/icons/pencil.png" data-target="personal-user-avatar-input" alt="Изменить" class="change-pencil">
+                            </div>
                         </div>
-                    </div>
-                    <div class="row">
-                        <span>Роль:</span>
-                        <span>{{currentUserRoleName}}</span>
-                    </div>
-                    <div class="form-controls row">
-                        <button>ОК</button>
-                        <button>Стереть</button>
-                    </div>
-                </form>
+                        <div class="form-controls row">
+                            <button>ОК</button>
+                        </div>
+                    </form>
+                </div>
+                <div class="col">
+                    <form action="/personal/updateLogin" class="personal-user-settings col" method="post" >
+                        <label for="personal-user-login-input">Логин</label>
+                        <div class="row">
+                            <input name="currentUserLogin" type="text" id="personal-user-login-input" readonly class="disabled-input" value="{{currentUserLogin}}">
+                            <img src="/img/icons/pencil.png" data-target="personal-user-login-input" alt="Изменить" class="change-pencil">
+                        </div>
+                        <div class="form-controls row">
+                            <button>ОК</button>
+                        </div>
+                    </form>
+
+                    <form action="/personal/updatePassword" class="personal-user-settings col" method="post">
+                        <label for="personal-user-password-input">Сменить пароль</label>
+                        <div class="row">
+                            <input name="currentUserPassword" type="password" id="personal-user-password-input" class="disabled-input" readonly placeholder="Введите новый пароль">
+                            <img src="/img/icons/pencil.png" data-target="personal-user-password-input" alt="Изменить" class="change-pencil">
+                        </div>
+                        <div class="form-controls row">
+                            <button>ОК</button>
+                        </div>
+                    </form>
+
+                    <form action="/personal/updateEmail" class="personal-user-settings col" method="post">
+                        <label for="personal-user-email-input">Сменить email</label>
+                        <div class="row">
+                            <input name="currentUserEmail" type="text" id="personal-user-email-input" class="disabled-input" value="{{currentUserEmail}}" readonly placeholder="Введите новую почту">
+                            <img src="/img/icons/pencil.png" data-target="personal-user-email-input" alt="Изменить" class="change-pencil">
+                        </div>
+                        <div class="form-controls row">
+                            <button>ОК</button>
+                        </div>
+                    </form>
+                </div>
             </div>
             <h3>Мои покупки:</h3>
             <div class="row all-user-purchases">

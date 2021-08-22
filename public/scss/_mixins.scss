@@ -101,6 +101,7 @@
   background-color: white;
   height: 420px;
   overflow: hidden;
+  margin: 14px 10px;
   .teammate-top{
     height: 130px;
     background-color: red;
@@ -142,6 +143,7 @@
 }
 
 @mixin serviceCard(){
+  margin: 14px 0;
   width: 290px;
   height: 460px;
   box-shadow: 2px 4px 8px 0 rgba(0,0,0,0.5);
@@ -194,5 +196,66 @@
 
     transform: translate(-7px,-7px);
     transition: all 0.4s ease-out;
+  }
+}
+
+@mixin mainForm(){
+  padding: 14px;
+  textarea{
+    font-size: 1.05em;
+    padding: 4px;
+  }
+  .form-controls{
+    justify-content: space-evenly;
+    height: 60px;
+    button{
+      height: 100%;
+      width: 50%;
+      font-size: 1.05em;
+      color:white;
+    }
+    .btn-pos{
+      background-color: #2d4972;
+    }
+    .btn-neg{
+      background-color: #c81818;
+    }
+  }
+}
+
+@mixin comment(){
+  height: 100px;
+  border: 4px solid $primary-col;
+  margin: 7px 0;
+  .comment-user{
+    width: 20%;
+    background-color: $primary-col;
+    align-items: center;
+    .comment-user-avatar{
+      height: 100px;
+      width:100px;
+    }
+    .comment-user-login{
+      font-size: 1.05em;
+      font-weight: bold;
+      color:white;
+      margin: 10px;
+    }
+  }
+  .comment-data{
+    padding: 10px;
+    width: 80%;
+    justify-content: space-between;
+
+    .comment-text{
+      word-wrap: break-word;
+      overflow: hidden;
+    }
+    .comment-date{
+
+      margin-top: 5px;
+      font-size: 0.8em;
+      align-self: flex-end;
+    }
   }
 }
