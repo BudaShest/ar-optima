@@ -15,6 +15,9 @@ adminRouter.post('/moderate', adminController.moderate);
 adminRouter.post('/addDemo',upload2.array('productDemoFiles',3),adminController.addDemo);
 adminRouter.post('/updateWork',adminController.updateWork);
 adminRouter.post('/deleteReview', adminController.deleteReview);
+adminRouter.post('/banUser',adminController.banUser);
+adminRouter.post('/unbanUser', adminController.unbanUser);
+
 
 
 module.exports = adminRouter;

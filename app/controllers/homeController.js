@@ -7,6 +7,15 @@ const userWorker = bootstrap.userWorker;
 
 //Контроллер для главной страницы
 module.exports.index =async function (request,response) {
+    //Проверка на то, не забанен ли пользователь //TODO добавить в middleware
+    let bannedIps = await userWorker.getBannedIps();
+    bannedIps = bannedIps.map(item=>item.ip);
+
+    if(bannedIps.includes(request.ip)){
+        response.redirect("http://memesmix.net/media/created/w0l2br.jpg");
+    }
+
+
     let mainEmployers =await employeeWorker.getMainEmployers();
     let topProducts = await productWorker.getTopProducts();
     let topServices = await serviceWorker.getMainServices();

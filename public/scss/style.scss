@@ -165,7 +165,7 @@ body{
   .auth-block{
 
     img{
-      filter: invert(100%);
+
       margin: 10px;
     }
     span{
@@ -239,7 +239,7 @@ body{
       padding-left: 20px;
       .highlighted-text{
         padding: 4px;
-        background-color: red;
+        background-color: #AC3B61;
         color:white;
       }
     }
@@ -355,7 +355,7 @@ body{
 //1)Наша команда
 #our-team{
   align-items: center;
-  background-color:$accent-white-col;
+  background-color:#EEE2DC;
   .team-container{
     max-width: 1280px;
     width: 100%;
@@ -540,7 +540,23 @@ body{
   }
   //Один сервис
   .current-service-container{
-
+    .current-service-header{
+      margin-bottom: 20px;
+    }
+    .current-service-image{
+      max-height: 500px;
+      object-fit: contain;
+      margin: 14px 0;
+    }
+    .current-service-text{
+      margin: 14px 0;
+    }
+    .current-service-price{
+      font-size: 1.5em;
+      color:red;
+      font-weight: bold;
+      margin: 14px 0;
+    }
   }
   //Форма регистрации и форма автризации
   .form-container{
@@ -567,7 +583,8 @@ body{
       font-size: 1.08em;
       width: 140px;
       padding: 10px;
-      background-color: blueviolet;
+      background-color: $primary-blue-col;
+      border: 1px solid white;
       color:white;
     }
   }

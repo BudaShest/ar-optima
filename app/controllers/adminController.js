@@ -38,7 +38,7 @@ module.exports.getPanel=async function (request,response){
     let works = await workWorker.getAllWorks();
     let statuses = await workWorker.getAllStatuses();
 
-    //TODO заменить на свитч?
+
     if(request.session.updatedEmployer !== undefined){
         console.log(request.session.updatedEmployer);
         response.render('admin-panel.hbs',{
@@ -80,6 +80,14 @@ module.exports.getPanel=async function (request,response){
         let allUserProducts = await productWorker.getPurchasesByBuyer(request.session.updatedUser.id);
         let allUserReviews = await commentWorker.getCommentsByAuthor(request.session.updatedUser.id);
 
+        let isBanned = false;
+        let bannedIds = await userWorker.getBannedIds();
+        bannedIds = bannedIds.map(item=>item['user_id']);
+
+        if(bannedIds.includes(request.session.updatedUser.id)){
+            isBanned = true;
+        }
+
         response.render('admin-panel.hbs', {
             allEmployers: employers,
             allPositions: positions,
@@ -93,8 +101,10 @@ module.exports.getPanel=async function (request,response){
             userLogin: request.session.updatedUser.login,
             userEmail:request.session.updatedUser.email,
             userRoleName: request.session.updatedUser.name,
+            userId: request.session.updatedUser.id,
             userPurchases: allUserProducts,
-            userReviews: allUserReviews
+            userReviews: allUserReviews,
+            isBanned:isBanned
         })
     }else if(request.session.updatedProduct !== undefined){
         response.render('admin-panel.hbs',{
@@ -434,4 +444,31 @@ module.exports.deleteReview = async function(request, response){
     }
 
     response.redirect('/admin#admin-users')
+}
+
+module.exports.banUser = async function(request, response){
+    let userId = request.body.btnBanUser;
+    let banReason = request.body.banReason;
+    let bannedIp = request.ip;
+
+    if(banReason === undefined){
+        banReason = null;
+    }
+
+    if(userId){
+
+        await userWorker.banUser(userId,banReason,bannedIp);
+    }
+
+    response.redirect('/admin#admin-users');
+}
+
+module.exports.unbanUser = async function(request, response){
+    let userId = request.body.btnUnbanUser;
+
+    if(userId){
+        await userWorker.unbanUser(userId);
+    }
+
+    response.redirect('/admin#admin-users');
 }

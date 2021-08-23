@@ -11,6 +11,13 @@
   z-index: 3;
   button{
     height: 50%;
+    color:white;
+  }
+  #context-update-btn{
+    background-color: $primary-blue-col;
+  }
+  #context-delete-btn{
+    background-color: $primary-red-col;
   }
 }
 .admin-context-menu-active{
@@ -110,6 +117,7 @@
     .user-settings{
       justify-content: center;
       margin:24px 0;
+      padding: 7px;
       .user-settings-top{
         margin:10px 0;
         >.col{
@@ -125,11 +133,56 @@
       .user-settings-control{
         margin: 10px 0;
         justify-content: center;
+        form{
+          max-width: 100%;
+          height: 80px;
+          .form-controls{
+            .col{
+              padding: 14px;
+            }
+            button{
+              margin-left: 14px;
+            }
+          }
+        }
+        .warning{
+          font-size: 2em;
+          font-weight: bold;
+          color:red;
+          margin-bottom: 14px;
+        }
       }
       .user-settings-products{
-        flex-wrap: wrap;
-        .top-product{
-          @include card();
+        margin: 14px 0;
+        width: 100%;
+        height: 400px;
+        overflow: hidden;
+        >.col{
+          overflow: scroll;
+          .top-product{
+            @include card();
+          }
+        }
+      }
+
+      .user-settings-reviews{
+        margin: 14px 0;
+        width: 100%;
+        height: 400px;
+        overflow: hidden;
+        >.col{
+          overflow: scroll;
+          .user-settings-review{
+            border-bottom: 2px solid $primary-col;
+            margin:10px 0;
+            height: 100px;
+            p{
+              overflow: hidden;
+            }
+            span{
+              font-size: 0.7em;
+            }
+          }
         }
       }
     }

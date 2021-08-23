@@ -43,8 +43,8 @@ window.onload = function (){
 //Контекстное меню
 let contextMenu = document.querySelector('.admin-context-menu');
 let moderateContext = document.querySelector('#contextModerateContext');
-let deleteBtn = document.querySelector('#contextDeleteBtn');
-let updateBtn = document.querySelector('#contextUpdateBtn');
+let deleteBtn = document.querySelector('#context-delete-btn');
+let updateBtn = document.querySelector('#context-update-btn');
 
 window.addEventListener('contextmenu',function (e){
     e.preventDefault();

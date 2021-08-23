@@ -59,6 +59,9 @@ app.use('/auth', authRouter);
 app.use('/personal', personalRouter);
 app.use('/admin-auth',adminAuthRouter);
 app.use('/comment',commentRouter);
+
+
+
 //Обработка несуществущей страницы
 app.use(function (req,res,hext){
    res.status(404).send('<h1>Not Found</h1>');

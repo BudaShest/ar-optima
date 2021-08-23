@@ -18,11 +18,10 @@
         <main class="main">
             {{#with service}}
             <div class="current-service-container col">
-                <h2>{{header}}</h2>
-                <img src="/img/uploads/{{image}}" alt="">
-                <p>{{inputHTML description}}</p>
-                <span>{{price}}</span>
-
+                <h2 class="current-service-header">{{header}}</h2>
+                <img class="current-service-image" src="/img/uploads/{{image}}" alt="Картина услуги">
+                <p class="current-service-text">{{inputHTML description}}</p>
+                <span class="current-service-price">Цена: {{price}}₽</span>
             </div>
             {{/with}}
             <h3>Свяжитесь с нами для получения услуги</h3>

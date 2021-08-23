@@ -129,6 +129,46 @@ module.exports = class User{
         }
     }
 
+    async banUser(userId, reason, ip){
+        try{
+            const [rows, fields] = await this.#connection.query('INSERT INTO banned (user_id, reason, ip) VALUES (?,?,?)',[userId, reason, ip]);
+        }catch (e){
+            console.error('Ошибка запроса: ' + e);
+        }finally {
 
+        }
+    }
+
+    async unbanUser(userId){
+        try{
+            const [rows, fields] = await this.#connection.query('DELETE FROM banned WHERE user_id = ?',[userId]);
+        }catch (e){
+            console.error('Ошибка запроса: ' + e);
+        }finally {
+
+        }
+    }
+
+    async getBannedIps(){
+        try{
+            const [rows, fields] = await this.#connection.query('SELECT ip FROM banned');
+            return rows;
+        }catch (e){
+            console.error('Ошибка запроса: ' + e);
+        }finally {
+
+        }
+    }
+
+    async getBannedIds(){
+        try{
+            const [rows, fields] = await this.#connection.query('SELECT user_id FROM banned');
+            return rows;
+        }catch (e){
+            console.error('Ошибка запроса: ' + e);
+        }finally {
+
+        }
+    }
 
 }
