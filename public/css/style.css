@@ -669,6 +669,7 @@ form #buy-btn {
 
 body {
   font-family: PoiretOne, "sans-serif";
+  font-weight: 580;
   font-size: 18px;
 }
 
@@ -955,10 +956,16 @@ body {
   width: 100px;
 }
 .header .logo-container .logo a {
+  padding-left: 10px;
   font-size: 1.5em;
   font-family: PoiretOne, "sans-serif";
   font-weight: bold;
   color: white;
+}
+.header .logo-container .logo span {
+  padding-left: 10px;
+  color: white;
+  font-size: 0.8em;
 }
 .header .logo-container .mobile-banner {
   display: none;
@@ -968,6 +975,7 @@ body {
   font-family: "Montserrat", sans-serif;
   z-index: 1;
   padding-left: 20px;
+  margin-bottom: 40px;
 }
 .header .logo-container .banner .highlighted-text {
   padding: 4px;
@@ -1047,7 +1055,10 @@ body {
 }
 .header .info-container #what-is-it p {
   padding: 14px;
-  font-size: 1.1em;
+  font-size: 1em;
+  border: 2px solid #415167;
+  z-index: 2;
+  background-color: white;
 }
 .header .info-nav-container {
   -ms-grid-column: 11;
@@ -1163,12 +1174,12 @@ body {
   overflow: hidden;
 }
 #our-team .team-container .teammate .teammate-text .teammate-description {
-  height: 110px;
+  height: 125px;
   overflow: hidden;
 }
 #our-team .team-container .teammate .teammate-text .teammate-icon {
-  width: 70px;
-  height: 70px;
+  width: 50px;
+  height: 50px;
   -ms-flex-item-align: center;
       -ms-grid-row-align: center;
       align-self: center;
@@ -1413,12 +1424,12 @@ body {
   overflow: hidden;
 }
 .main .all-employers .main-employers .teammate .teammate-text .teammate-description, .main .all-employers .rest-employers .teammate .teammate-text .teammate-description {
-  height: 110px;
+  height: 125px;
   overflow: hidden;
 }
 .main .all-employers .main-employers .teammate .teammate-text .teammate-icon, .main .all-employers .rest-employers .teammate .teammate-text .teammate-icon {
-  width: 70px;
-  height: 70px;
+  width: 50px;
+  height: 50px;
   -ms-flex-item-align: center;
       -ms-grid-row-align: center;
       align-self: center;
@@ -2049,6 +2060,11 @@ body {
   font-weight: bold;
 }
 
+@media screen and (max-width: 1460px) {
+  .header .logo-container .banner {
+    margin-bottom: 120px;
+  }
+}
 @media screen and (max-width: 1025px) {
   .wrapper {
     -ms-grid-columns: (minmax(auto, 1fr))[4];
@@ -2071,12 +2087,15 @@ body {
   }
   .header .logo-container .banner {
     font-size: 2em;
-    margin-bottom: 50px;
+    margin-bottom: 100px;
   }
   .header .info-container {
     -ms-grid-column: 6;
     -ms-grid-column-span: 7;
     grid-column: 6/13;
+  }
+  .header .info-container #what-is-it p {
+    padding: 5px;
   }
   .header .info-nav-container {
     display: none;

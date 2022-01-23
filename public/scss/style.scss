@@ -103,6 +103,7 @@ form{
 //Тело:
 body{
   font-family: PoiretOne, 'sans-serif';
+  font-weight: 580;
   font-size: 18px;
 }
 //Модальное меню
@@ -199,6 +200,7 @@ body{
   }
 }
 
+
 //Шапка
 .header{
   border: 1px solid $primary-col;
@@ -225,10 +227,16 @@ body{
         width: 100px;
       }
       a{
+        padding-left: 10px;
         font-size: 1.5em;
         font-family: PoiretOne, 'sans-serif';
         font-weight: bold;
         color:white;
+      }
+      span{
+        padding-left: 10px;
+        color: white;
+        font-size: 0.8em;
       }
     }
     .mobile-banner{
@@ -239,6 +247,7 @@ body{
       font-family: 'Montserrat', sans-serif;
       z-index: 1;
       padding-left: 20px;
+      margin-bottom: 40px;
       .highlighted-text{
         padding: 4px;
         background-color: #AC3B61;
@@ -304,7 +313,10 @@ body{
     #what-is-it{
       p{
         padding: 14px;
-        font-size: 1.1em;
+        font-size: 1em;
+        border:2px solid $primary-col;
+        z-index: 2;
+        background-color: white;
       }
     }
     #who-we-are{
