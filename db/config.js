@@ -1,6 +1,6 @@
 module.exports = {
     host: 'localhost',
     user:'mysql',
-    database:'optima',
+    database:'ar-optima',
     password:'mysql'
 }

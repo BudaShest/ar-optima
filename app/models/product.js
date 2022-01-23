@@ -54,10 +54,11 @@ module.exports = class Product{
     }
 
     //Добавить продукт
-    async addProduct(name,description,authorId,price,secondName,images){
+    async addProduct(name,description,authorId,price,secondName,image){
         try{
             let [rows,fields] = await this.#connection.query('INSERT INTO `product` (name, description, author_id, price, second_name) VALUES (?,?,?,?,?)',[name,description,authorId,price,secondName]);
-            images.forEach(item=>this.addProductImage(rows.insertId,item));
+            // [...images].forEach(item=>this.addProductImage(rows.insertId, item));
+            await this.addProductImage(rows.insertId, image);
         }catch (e){
             console.error('Ошибка запроса: ' + e);
         }finally{
@@ -124,9 +125,10 @@ module.exports = class Product{
     }
 
     //Обновить продукт
-    async updateProduct(name,description,authorId,price,secondName,id){
+    async updateProduct(name,description,authorId,price,secondName,id,image){
         try{
             const [rows, fields] = await this.#connection.query('UPDATE product SET name = ?, description = ?, author_id = ?,price = ?, second_name = ? WHERE id=?',[name,description,authorId,price,secondName,id]);
+            await this.#connection.query('UPDATE product_images SET image = ? WHERE product_id = ?', [image, id]);
         }catch (e){
             console.error('Ошибка запроса: ' + e);
         }finally {

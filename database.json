@@ -1,0 +1,9 @@
+{
+  "dev": {
+    "driver": "mysql",
+    "user": "mysql",
+    "password": "mysql",
+    "multipleStatements": true,
+    "database": "ar-optima"
+  }
+}

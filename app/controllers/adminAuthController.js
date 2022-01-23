@@ -14,7 +14,7 @@ module.exports.adminAuth = async function (request,response){
     let currentUser = await userWorker.searchUser(request.body.adminLogin);
     if(currentUser){
         if(bcrypt.compareSync(request.body.adminPassword, currentUser.password)){
-            if(currentUser.role_id === 3){
+            if(currentUser.role_id === 2){
                 request.session.isAdminAuth = true;
                 response.redirect('/admin')
             }else{

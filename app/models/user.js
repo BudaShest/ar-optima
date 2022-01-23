@@ -8,7 +8,7 @@ module.exports = class User{
     //Получить всех пользователей
     async getAllUsers(){
         try{
-            const [rows,fields] =await this.#connection.query('SELECT u.id as id, login, password,avatar,role_id,name FROM user u INNER JOIN roles r ON u.role_id = r.id');
+            const [rows,fields] =await this.#connection.query('SELECT u.id as id, login, password,avatar,role_id,name FROM user u INNER JOIN role r ON u.role_id = r.id');
             return rows;
         }catch (e){
             console.error('Ошибка запроса: ' + e)
@@ -42,7 +42,7 @@ module.exports = class User{
     //Получить пользователя
     async getUser(id){
         try{
-            const [rows,fields] = await this.#connection.query('SELECT u.id as id, login, password,avatar,role_id,name,email FROM user u INNER JOIN roles r ON u.role_id = r.id WHERE u.id = ?',[id]);
+            const [rows,fields] = await this.#connection.query('SELECT u.id as id, login, password,avatar,role_id,name,email FROM user u INNER JOIN role r ON u.role_id = r.id WHERE u.id = ?',[id]);
             return rows[0];
         }catch (e){
             console.error('Ошибка запроса: ' + e);
@@ -54,7 +54,7 @@ module.exports = class User{
     //Поиск по логину
     async searchUser(login){
         try{
-            const [rows,fields] = await this.#connection.query('SELECT u.id as id, login, password,avatar,role_id,name,email FROM user u INNER JOIN roles r ON u.role_id = r.id WHERE login = ?',[login]);
+            const [rows,fields] = await this.#connection.query('SELECT u.id as id, login, password,avatar,role_id,name,email FROM user u INNER JOIN role r ON u.role_id = r.id WHERE login = ?',[login]);
             return rows[0];
         }catch (e){
             console.error('Ошибка запроса: ' + e);

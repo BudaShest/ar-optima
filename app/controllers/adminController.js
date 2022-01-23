@@ -1,5 +1,7 @@
+const path = require('path');
 //Функция для удаления файла
-const FILE_PATH = 'C:\\Users\\1644853\\Desktop\\ar-optima\\public\\img\\uploads\\';
+const FILE_PATH = process.cwd() + '\\public\\\\img\\\\uploads\\';
+console.log("fileDir: " + FILE_PATH);
 function deleteImg(img){
     if(img !== "def-avatar.png" && img !== "dev-icon.png" && img !== 'def-employer.png' && img !== "def-service.jpg"){
         fs.unlink(FILE_PATH + img, (err)=>{
@@ -194,6 +196,8 @@ module.exports.addEmployer =async function (request,response){
 
     if(request.session.updatedEmployer !== undefined){
         if(request.file != undefined){
+            let oldEmpAvatar = request.session.updatedEmployer.avatar;
+            deleteImg(oldEmpAvatar);
             avatar = request.file.filename;
         }else{
             let oldEmployer = await employeeWorker.getEmployer(request.session.updatedEmployer.id);
@@ -229,6 +233,8 @@ module.exports.addPosition = async function (request, response){
 
     if(request.session.updatedPosition !== undefined){
         if(request.file != undefined){
+            let oldIcon = request.session.updatedPosition.icon;
+            deleteImg(oldIcon);
             icon = request.file.filename;
         }else{
             let oldPosition = await positionWorker.getPosition(request.session.updatedPosition.id);
@@ -249,6 +255,7 @@ module.exports.addPosition = async function (request, response){
     response.redirect('/admin#admin-positions');
 }
 
+
 module.exports.addProduct = async function (request, response){
     if(!request.session.isAdminAuth){
         response.redirect('/admin');
@@ -260,13 +267,27 @@ module.exports.addProduct = async function (request, response){
     const description = request.body.productDescription;
     const authorId = request.body.productAuthor;
     const price = request.body.productText;
-    let fileNames = request.files.map(item=>item.filename);
+    // let fileNames = request.files.map(item=>item.filename);
+    let fileName = request.files[0].filename;
 
     if(request.session.updatedProduct !== undefined){
-        await productWorker.updateProduct(name,description,authorId,price,secondName,request.session.updatedProduct.id);
+        if(request.files[0].filename != undefined){
+            let oldProdImage = request.session.updatedProduct.image;
+            console.log('oldProdImage ' + oldProdImage);
+            deleteImg(oldProdImage);
+            fileName = request.files[0].filename;
+        }
+    }else{
+        if(request.files[0].filename != undefined){
+            fileName = request.files[0].filename;
+        }
+    }
+
+    if(request.session.updatedProduct !== undefined){
+        await productWorker.updateProduct(name,description,authorId,price,secondName,request.session.updatedProduct.id,fileName);
         delete request.session.updatedProduct;
     }else{
-        await productWorker.addProduct(name,description,authorId,price,secondName,fileNames);
+        await productWorker.addProduct(name,description,authorId,price,secondName,fileName);
     }
     response.redirect('/admin#admin-products');
 }
@@ -285,6 +306,8 @@ module.exports.addService = async function (request, response){
 
     if(request.session.updatedService !== undefined){
         if(request.file != undefined){
+            let oldImage = request.session.updatedService.image;
+            deleteImg(oldImage);
             image = request.file.filename;
         }else{
             let oldService = await serviceWorker.getService(request.session.updatedService.id);
@@ -334,10 +357,16 @@ module.exports.moderate = async function (request,response){
                 response.redirect('/admin#admin-users');
                 break;
             case "admin-products":
+                let oldProduct = await productWorker.getProduct(request.body.deleteById);
+                let oldProductImage = oldProduct.image;
+                deleteImg(oldProductImage)
                 await productWorker.deleteProduct(request.body.deleteById);
                 response.redirect('/admin#admin-products');
                 break;
             case "admin-services":
+                let oldService = await serviceWorker.getService(request.body.deleteById);
+                let oldImage = oldService.image;
+                deleteImg(oldImage);
                 await serviceWorker.deleteService(request.body.deleteById);
                 response.redirect('/admin#admin-services');
                 break;
