@@ -1,12 +1,8 @@
 <!doctype html>
 <html lang="ru">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport"
-          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
-    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    {{> head}}
     <title>Админ-панель</title>
-    <link rel="stylesheet" href="/css/style.css">
     <script defer src="/js/admin-panel.js"></script>
     <script src="https://cdn.tiny.cloud/1/lx1k5gva7psp1ywffg4ujjonc5dk9q44notypc4ns36d6s45/tinymce/5/tinymce.min.js" referrerpolicy="origin"></script>
 </head>
@@ -17,7 +13,7 @@
         <button name="deleteById" id="context-delete-btn">Удалить</button>
     </form>
     <div class="admin-toggler">
-
+        <img src="/img/icons/menu.png" alt="Навгиация">
     </div>
     <div class="admin-modal col">
         <header class="row">

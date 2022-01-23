@@ -45,6 +45,8 @@ a{
 //7)swiper
 .another-records{
   .swiper-container{
+    overflow: hidden;
+
     .personal-card{
       @include serviceCard();
     }

@@ -22,7 +22,7 @@ module.exports = class Employee{
     //Получить главных сотрудников(орлов)
     async getMainEmployers(){
         try {
-            const [rows,fields] = await this.#connection.query('SELECT e.id AS id,firstname,surname,description,avatar,position_id,technology_stack,name,icon FROM employee e INNER JOIN position p ON e.position_id = p.id WHERE is_main = 1 ORDER BY e.id LIMIT 3');
+            const [rows,fields] = await this.#connection.query('SELECT e.id AS id,firstname,surname,description,avatar,position_id,technology_stack,name,icon FROM employee e INNER JOIN position p ON e.position_id = p.id WHERE is_main = 1 ORDER BY e.id LIMIT 4');
             return rows;
         }catch (e){
             console.error('Ошбика запроса: ' + e);

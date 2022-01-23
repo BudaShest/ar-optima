@@ -1,12 +1,8 @@
 <!DOCTYPE html>
 <html lang="ru">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport"
-          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
-    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    {{> head}}
     <title>AR-OPTIMA</title>
-    <link rel="stylesheet" href="/css/style.css">
     <script defer src="/js/homepage.js"></script>
     <script defer src="/js/script.js"></script>
 </head>
@@ -85,7 +81,7 @@
                             <img src="/img/uploads/{{this.avatar}}" alt="Аватарка" class="teammate-img">
                             <div class="col teammate-text">
                                 <h4>{{this.firstname}} {{this.surname}}</h4>
-                                <p>{{inputHTML this.description}}</p>
+                                <div class="teammate-description">{{inputHTML this.description}}</div>
                                 <img src="/img/uploads/{{this.icon}}" class="teammate-icon" alt="Иконка специальности">
                             </div>
                         </div>
@@ -131,7 +127,7 @@
                         <img src="/img/uploads/{{this.image}}" alt="" class="personal-card-img">
                         <div class="personal-card-text">
                             <h3>{{this.header}}</h3>
-                            <p>{{inputHTML this.description}}</p>
+                            <div class="personal-card-description">{{inputHTML this.description}}</div>
                             <div class="row">
                                 <a href="/service?serviceId={{this.id}}" class="personal-card-link link-to">Перейти</a>
                                 <span class="personal-card-price price">от {{this.price}}₽</span>

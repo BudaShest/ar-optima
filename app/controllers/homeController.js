@@ -8,7 +8,7 @@ const userWorker = bootstrap.userWorker;
 //Контроллер для главной страницы
 module.exports.index =async function (request,response) {
     //Проверка на то, не забанен ли пользователь //TODO добавить в middleware
-    let bannedIps = await userWorker.getBannedIps();
+    let bannedIps = await userWorker.getBannedIps() ?? [];
     bannedIps = bannedIps.map(item=>item.ip);
 
     if(bannedIps.includes(request.ip)){

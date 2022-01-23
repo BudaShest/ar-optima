@@ -31,6 +31,9 @@
   height: 70px;
   position: fixed;
   background-color: $primary-col;
+  img{
+    width: 100%;
+  }
 }
 .admin-modal{
   background-color: $primary-col;
