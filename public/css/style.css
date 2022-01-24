@@ -119,7 +119,7 @@
       -ms-flex-align: center;
           align-items: center;
   padding: 20px 14px;
-  background-color: #EDC7B7;
+  background-color: #edc7b7;
 }
 .admin-wrapper section > .section-part > .col form .auth-error {
   color: darkred;
@@ -1207,6 +1207,8 @@ body {
   -webkit-box-pack: space-evenly;
       -ms-flex-pack: space-evenly;
           justify-content: space-evenly;
+  width: 100%;
+  max-width: 1600px;
 }
 #top .top-container .top-product {
   width: 350px;
@@ -1698,7 +1700,7 @@ body {
       -ms-flex-align: center;
           align-items: center;
   padding: 20px 14px;
-  background-color: #EDC7B7;
+  background-color: #edc7b7;
 }
 .main .form-container form .auth-error {
   color: darkred;
@@ -1961,7 +1963,7 @@ body {
       -ms-flex-align: center;
           align-items: center;
   padding: 20px 14px;
-  background-color: #EDC7B7;
+  background-color: #edc7b7;
 }
 .auth-container form .auth-error {
   color: darkred;
