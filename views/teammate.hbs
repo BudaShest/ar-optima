@@ -62,9 +62,6 @@
                     <!-- If we need pagination -->
                     <div class="swiper-pagination"></div>
 
-                    <!-- If we need navigation buttons -->
-                    <div class="swiper-button-prev"></div>
-                    <div class="swiper-button-next"></div>
 
                 </div>
             </div>
@@ -115,6 +112,38 @@
                 })
             }
         })
+
+        window.addEventListener('load',function (e) {
+            if(this.innerWidth <= 1000){
+                swiper = new Swiper('.swiper-container',{
+                    loop:true,
+                    navigation: {
+                        nextEl: '.swiper-button-next',
+                        prevEl: '.swiper-button-prev',
+                    },
+                    slidesPerView:2
+                })
+                if(this.innerWidth < 768){
+                    swiper = new Swiper('.swiper-container',{
+                        loop:true,
+                        navigation: {
+                            nextEl: '.swiper-button-next',
+                            prevEl: '.swiper-button-prev',
+                        },
+                        slidesPerView:1
+                    })
+                }
+            }else{
+                swiper = new Swiper('.swiper-container', {
+                    loop: true,
+                    navigation: {
+                        nextEl: '.swiper-button-next',
+                        prevEl: '.swiper-button-prev',
+                    },
+                    slidesPerView: 3
+                })
+            }
+        });
     </script>
 </body>
 </html>

@@ -918,6 +918,66 @@ body {
   height: 100vh;
 }
 
+.wrapper-main-with-transparent {
+  -ms-grid-rows: 120px auto 1fr 100px;
+  grid-template-rows: 120px auto 1fr 100px;
+}
+.wrapper-main-with-transparent .transparent-banner {
+  color: white;
+  -ms-grid-column: 1;
+  -ms-grid-column-span: 6;
+  grid-column: 1/7;
+  background-image: url("../img/transparent-black.jpg");
+  background-attachment: fixed;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  padding: 30px 0;
+}
+.wrapper-main-with-transparent .transparent-banner .transparent-banner-description {
+  width: 100%;
+  max-width: 1024px;
+  background-color: rgba(0, 0, 0, 0.7);
+  padding: 30px;
+  margin: 14px;
+}
+.wrapper-main-with-transparent .transparent-banner > .row {
+  -webkit-box-pack: space-evenly;
+      -ms-flex-pack: space-evenly;
+          justify-content: space-evenly;
+  -ms-flex-wrap: wrap;
+      flex-wrap: wrap;
+  margin: 40px 0;
+  width: 100%;
+}
+.wrapper-main-with-transparent .transparent-banner > .row .transparent-block {
+  background-color: rgba(0, 0, 0, 0.7);
+  max-width: 400px;
+  padding: 30px;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+}
+.wrapper-main-with-transparent .transparent-banner > .row .transparent-block h4 {
+  margin: 14px 0;
+}
+.wrapper-main-with-transparent .transparent-banner > .row .transparent-block p {
+  padding: 10px;
+}
+.wrapper-main-with-transparent .transparent-banner > .row .transparent-block img {
+  -webkit-filter: invert(100%);
+          filter: invert(100%);
+  margin: 20px 0;
+  max-width: 60%;
+}
+.wrapper-main-with-transparent .transparent-banner .transparent-banner-link {
+  background-color: rgba(0, 0, 0, 0.7);
+  color: white;
+  text-decoration: underline;
+  font-size: 1.2em;
+  padding: 10px;
+}
+
 .header {
   border: 1px solid #415167;
   -ms-grid-column: 1;
@@ -1569,6 +1629,21 @@ body {
 .main .current-product-container .current-product-top .current-product-header > * {
   margin: 10px 0;
 }
+.main .current-product-container .current-product-top .current-product-header .current-product-author {
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  text-decoration: underline;
+}
+.main .current-product-container .current-product-top .current-product-header .current-product-author img {
+  margin: 10px;
+  width: 60px;
+  height: 60px;
+  border-radius: 50%;
+  -o-object-fit: contain;
+     object-fit: contain;
+  background-color: #edc7b7;
+}
 .main .current-product-container .current-product-text {
   margin: 20px;
 }
@@ -1585,6 +1660,7 @@ body {
   margin: 14px 0;
 }
 .main .current-product-container .current-product-text .row .current-product-price {
+  font-weight: bold;
   font-size: 1.2em;
   color: red;
   margin: 14px 0;
@@ -1618,7 +1694,7 @@ body {
   margin: 24px 0;
 }
 .main .current-product-comments .comment {
-  height: 100px;
+  height: 110px;
   border: 4px solid #415167;
   margin: 7px 0;
 }
@@ -1631,6 +1707,7 @@ body {
 }
 .main .current-product-comments .comment .comment-user .comment-user-avatar {
   height: 100px;
+  padding: 10px;
   width: 100px;
 }
 .main .current-product-comments .comment .comment-user .comment-user-login {
@@ -1670,6 +1747,11 @@ body {
 }
 .main .current-service-container .current-service-text {
   margin: 14px 0;
+}
+.main .current-service-container .current-service-text img {
+  max-width: 600px;
+  margin: 20px 0;
+  width: 100%;
 }
 .main .current-service-container .current-service-price {
   font-size: 1.5em;
@@ -1910,6 +1992,61 @@ body {
   width: 70px;
   height: 70px;
 }
+.main .all-user-purchases .work {
+  width: 350px;
+  height: 170px !important;
+  background-color: rgba(252, 237, 237, 0.8);
+  margin: 14px;
+}
+.main .all-user-purchases .work .card-img {
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  background-color: #EEE2DC;
+  width: 130px;
+}
+.main .all-user-purchases .work .card-img img {
+  max-height: 80%;
+  max-width: 100%;
+}
+.main .all-user-purchases .work .card-text {
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -webkit-box-pack: space-evenly;
+      -ms-flex-pack: space-evenly;
+          justify-content: space-evenly;
+  text-align: center;
+}
+.main .all-user-purchases .work .card-text h3 {
+  max-width: 200px;
+  padding: 4px;
+}
+.main .all-user-purchases .work .card-text .row {
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+}
+.main .all-user-purchases .work .card-text .row .card-link {
+  background-color: red;
+  color: white;
+  padding: 8px 12px;
+  margin-right: 15px;
+}
+.main .all-user-purchases .work .card-text .row .card-price {
+  color: red;
+  font-weight: bold;
+}
+.main .all-user-purchases .work .card-text .row .card-icon {
+  width: 70px;
+  height: 70px;
+}
 .main .form-work {
   padding: 14px;
 }
@@ -2025,6 +2162,61 @@ body {
   background-color: #AC3B61;
 }
 
+.service-form {
+  padding: 14px;
+  margin: 30px 0;
+}
+.service-form textarea {
+  font-size: 1.05em;
+  padding: 4px;
+}
+.service-form .form-controls {
+  -webkit-box-pack: space-evenly;
+      -ms-flex-pack: space-evenly;
+          justify-content: space-evenly;
+  height: 60px;
+}
+.service-form .form-controls button {
+  height: 100%;
+  width: 50%;
+  font-size: 1.05em;
+  color: white;
+}
+.service-form .form-controls .btn-pos {
+  background-color: #123C69;
+}
+.service-form .form-controls .btn-neg {
+  background-color: #AC3B61;
+}
+.service-form fieldset {
+  padding: 14px;
+  background-color: #edc7b7;
+  -ms-flex-wrap: wrap;
+      flex-wrap: wrap;
+}
+.service-form fieldset label {
+  margin: 6px;
+}
+.service-form fieldset label input {
+  -webkit-transform: scale(2);
+          transform: scale(2);
+}
+.service-form fieldset label:first-child {
+  width: 50%;
+  font-weight: bolder;
+}
+.service-form fieldset select, .service-form fieldset input {
+  margin: 14px;
+  padding: 5px;
+  font-size: 1.06em;
+}
+.service-form .row {
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  max-width: 100%;
+}
+
 .footer {
   border: 2px solid white;
   -ms-grid-column: 1;
@@ -2118,6 +2310,10 @@ body {
         -ms-flex-pack: center;
             justify-content: center;
   }
+
+  .service-form fieldset label:first-child {
+    width: 100%;
+  }
 }
 @media screen and (max-width: 851px) {
   .header {
@@ -2147,6 +2343,14 @@ body {
     display: none;
   }
 
+  .main h3 {
+    margin: 10px;
+  }
+  .main .all-employers .main-employers, .main .all-employers .rest-employers {
+    -webkit-box-pack: center;
+        -ms-flex-pack: center;
+            justify-content: center;
+  }
   .main .current-teammate-container .current-teammate-top {
     -webkit-box-orient: vertical;
     -webkit-box-direction: normal;

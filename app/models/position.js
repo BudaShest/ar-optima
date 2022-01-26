@@ -13,8 +13,6 @@ module.exports = class Position{
             return rows;
         }catch (e){
             console.error('Ошибка запроса: ' + e)
-        }finally {
-            // console.log()
         }
     }
 
@@ -24,8 +22,6 @@ module.exports = class Position{
             await this.#connection.query("INSERT INTO `position` (name, icon, is_main) VALUES (?,?,?)",[name, icon, isMain]);
         }catch(e){
             console.error('Ошибка запроса: ' + e);
-        }finally {
-
         }
     }
 
@@ -35,8 +31,6 @@ module.exports = class Position{
             const [rows,fields] = await this.#connection.query('DELETE FROM position WHERE id = ?',[id]);
         }catch (e){
             console.error('Ошибка запроса: ' + e);
-        }finally {
-
         }
     }
 
@@ -47,8 +41,6 @@ module.exports = class Position{
             return rows[0];
         }catch (e){
             console.error('Ошибка запроса:' + e)
-        }finally {
-
         }
     }
 
@@ -58,8 +50,6 @@ module.exports = class Position{
             const [rows,fields] = await this.#connection.query('UPDATE position SET name = ?,icon = ?,is_main = ? WHERE id=?',[name,icon,is_main,id]);
         }catch (e){
             console.error('Ошибка запроса:' + e)
-        }finally {
-
         }
     }
 }

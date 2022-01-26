@@ -11,8 +11,6 @@ module.exports = class Service{
             return rows;
         }catch (e){
             console.error('Ошибка запроса: ' + e)
-        }finally{
-
         }
     }
 
@@ -22,8 +20,6 @@ module.exports = class Service{
             return rows;
         }catch (e){
             console.error('Ошибка запроса: ' + e)
-        }finally{
-
         }
     }
 
@@ -32,8 +28,6 @@ module.exports = class Service{
             const [rows,fields] = await this.#connection.query('INSERT INTO service (header, description, image, price) VALUES (?,?,?,?)',[header,description,image,price]);
         }catch (e) {
             console.error('Ошибка запроса: ' + e);
-        }finally {
-
         }
     }
 
@@ -43,8 +37,6 @@ module.exports = class Service{
             return rows[0];
         }catch (e){
             console.error('Ошибка запроса: ' + e);
-        }finally {
-
         }
     }
 
@@ -54,8 +46,6 @@ module.exports = class Service{
             return rows;
         }catch (e){
             console.error('Ошибка запроса: ' + e);
-        }finally {
-
         }
     }
 
@@ -64,8 +54,6 @@ module.exports = class Service{
             const [rows,fields] = await this.#connection.query('DELETE FROM service WHERE id = ?',[id]);
         }catch(e){
             console.error('Ошибка запроса: ' + e);
-        }finally {
-
         }
     }
 
@@ -75,8 +63,6 @@ module.exports = class Service{
 
         }catch (e){
             console.error('Ошибка запроса: ' + e);
-        }finally {
-
         }
     }
 }

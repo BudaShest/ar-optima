@@ -199,6 +199,56 @@ body{
     height: 100vh;
   }
 }
+//Обёртка для страниц с баннером !Только как дополнение к .wrapper-main
+.wrapper-main-with-transparent{
+  grid-template-rows: 120px auto 1fr 100px;
+  .transparent-banner{
+    color:white;
+    grid-column: 1/7;
+    background-image: url("../img/transparent-black.jpg");
+    background-attachment: fixed;
+    align-items: center;
+    padding: 30px 0;
+    .transparent-banner-description{
+      width: 100%;
+      max-width: 1024px;
+      background-color: rgba(0,0,0,0.7);
+      padding: 30px;
+      margin: 14px;
+    }
+    >.row{
+      justify-content: space-evenly;
+      flex-wrap:wrap;
+      margin:40px 0;
+      width: 100%;
+      .transparent-block{
+        background-color: rgba(0,0,0,0.7);
+        max-width: 400px;
+        padding: 30px;
+        align-items: center;
+        h4{
+          margin:14px 0;
+        }
+        p{
+          padding: 10px;
+        }
+        img{
+          filter:invert(100%);
+          margin: 20px 0;
+          max-width: 60%;
+        }
+      }
+
+    }
+    .transparent-banner-link{
+      background-color: rgba(0,0,0,0.7);
+      color:white;
+      text-decoration: underline;
+      font-size: 1.2em;
+      padding: 10px;
+    }
+  }
+}
 
 
 //Шапка
@@ -519,6 +569,18 @@ body{
         >*{
           margin:10px 0;
         }
+        .current-product-author{
+          align-items: center;
+          text-decoration: underline;
+          img{
+            margin: 10px;
+            width: 60px;
+            height: 60px;
+            border-radius: 50%;
+            object-fit: contain;
+            background-color: $accent-brown-col;
+          }
+        }
       }
     }
     .current-product-text{
@@ -533,6 +595,7 @@ body{
         justify-content: space-evenly;
         margin: 14px 0;
         .current-product-price{
+          font-weight: bold;
           font-size: 1.2em;
           color:red;
           margin: 14px 0;
@@ -566,6 +629,12 @@ body{
     }
     .current-service-text{
       margin: 14px 0;
+      img{
+        max-width: 600px;
+        margin: 20px 0;
+        width: 100%;
+
+      }
     }
     .current-service-price{
       font-size: 1.5em;
@@ -663,6 +732,9 @@ body{
     .top-product{
       @include card();
     }
+    .work{
+      @include card();
+    }
   }
   .form-work{
     @include mainForm();
@@ -682,6 +754,35 @@ body{
   height: 100vh;
   form{
     @include form();
+  }
+}
+
+.service-form{
+  @include mainForm();
+  margin:30px 0;
+  fieldset{
+    padding: 14px;
+    background-color: $accent-brown-col;
+    flex-wrap: wrap;
+    label{
+      margin:6px;
+      input{
+        transform: scale(2);
+      }
+      &:first-child{
+        width: 50%;
+        font-weight: bolder;
+      }
+    }
+    select, input{
+      margin: 14px;
+      padding: 5px;
+      font-size: 1.06em;
+    }
+  }
+  .row{
+    align-items: center;
+    max-width: 100%;
   }
 }
 

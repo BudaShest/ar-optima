@@ -29,9 +29,10 @@
 
                             <h3>{{second_name}}</h3>
 
-                            <div class="current-product-author row">
+                            <a href="/teammate?teammateId={{author_id}}" class="current-product-author row">
+                                <img src="/img/uploads/{{avatar}}" alt="">
                                 <span>{{firstname}} {{surname}}</span>
-                            </div>
+                            </a>
                         </div>
                     </div>
                     <div class="current-product-text">
@@ -41,7 +42,7 @@
                             <span class="current-product-price">Цена: {{price}}₽</span>
                             {{#if isAuthorized}}
                             <form action="product/buy" method="post">
-                                <button name="productBuyBtn" value="{{id}}" id="buy-btn">Купить</button>
+                                <button name="productBuyBtn" value="{{id}}" id="buy-btn">Добавить в корзину</button>
                             </form>
                             {{/if}}
                         </div>

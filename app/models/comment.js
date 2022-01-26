@@ -10,8 +10,6 @@ module.exports = class Comment{
             const [rows,fields] =await this.#connection.query('INSERT INTO `comment` (author_id, product_id, text) VALUES (?,?,?)',[authorId,productId,text]);
         }catch (e){
             console.error('Ошибка запроса: ' + e);
-        }finally {
-
         }
     }
 
@@ -20,8 +18,6 @@ module.exports = class Comment{
             const [rows, fields] =await this.#connection.query('DELETE FROM comment WHERE id = ?',[id]);
         }catch (e){
             console.error('Ошибка запроса: ' + e);
-        }finally {
-
         }
     }
 
@@ -31,8 +27,6 @@ module.exports = class Comment{
             return rows;
         }catch (e){
             console.error('Ошибка запроса: ' + e);
-        }finally {
-
         }
     }
 
@@ -42,8 +36,6 @@ module.exports = class Comment{
             return rows;
         }catch (e){
             console.error('Ошибка запроса: ' + e);
-        }finally {
-
         }
     }
 }

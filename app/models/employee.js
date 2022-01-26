@@ -13,9 +13,6 @@ module.exports = class Employee{
             return rows;
         }catch (e){
             console.error('Ошибка запроса: ' + e);
-        }finally {
-            //Результат запроса + закрывать подключение к бд
-            console.log();
         }
     }
 
@@ -26,8 +23,6 @@ module.exports = class Employee{
             return rows;
         }catch (e){
             console.error('Ошбика запроса: ' + e);
-        }finally {
-
         }
     }
 
@@ -38,8 +33,6 @@ module.exports = class Employee{
             return rows;
         }catch (e){
             console.error('Ошбика запроса: ' + e);
-        }finally {
-
         }
     }
 
@@ -49,8 +42,6 @@ module.exports = class Employee{
             await this.#connection.query('INSERT INTO employee (firstname, surname, age, description, avatar, position_id, technology_stack) VALUES (?,?,?,?,?,?,?)',[firstName,surname,age,description,avatar,positionId,stack]);
         }catch (e){
             console.error('Ошибка запроса:' + e);
-        }finally {
-
         }
     }
 
@@ -61,8 +52,6 @@ module.exports = class Employee{
             return rows[0];
         }catch (e){
             console.error('Ошибка запроса:' + e);
-        }finally {
-
         }
 
     }
@@ -73,8 +62,6 @@ module.exports = class Employee{
 
         }catch (e){
             console.error('Ошибка запроса: ' + e);
-        }finally {
-
         }
     }
 
@@ -84,8 +71,6 @@ module.exports = class Employee{
             return rows;
         }catch (e){
             console.error('Ошибка запроса: ' + e);
-        }finally {
-
         }
     }
 

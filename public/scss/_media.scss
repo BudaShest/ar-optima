@@ -59,6 +59,17 @@
       }
     }
   }
+
+  .service-form{
+    fieldset{
+      label{
+        &:first-child{
+          width: 100%;
+
+        }
+      }
+    }
+  }
 }
 
 @media screen and (max-width: 851px){
@@ -87,6 +98,14 @@
   }
 
   .main{
+    h3{
+      margin: 10px;
+    }
+    .all-employers{
+      .main-employers, .rest-employers{
+        justify-content: center;
+      }
+    }
     .current-teammate-container{
       .current-teammate-top{
         flex-direction: column;

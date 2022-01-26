@@ -12,8 +12,6 @@ module.exports = class User{
             return rows;
         }catch (e){
             console.error('Ошибка запроса: ' + e)
-        }finally {
-
         }
     }
 
@@ -23,8 +21,6 @@ module.exports = class User{
             return rows;
         }catch (e){
             console.error('Ошибка запроса: ' + e)
-        }finally {
-
         }
     }
 
@@ -34,8 +30,6 @@ module.exports = class User{
             return rows;
         }catch(e){
             console.error('Ошибка запроса: ' + e);
-        }finally{
-
         }
     }
 
@@ -46,8 +40,6 @@ module.exports = class User{
             return rows[0];
         }catch (e){
             console.error('Ошибка запроса: ' + e);
-        }finally {
-
         }
     }
 
@@ -58,8 +50,6 @@ module.exports = class User{
             return rows[0];
         }catch (e){
             console.error('Ошибка запроса: ' + e);
-        }finally {
-
         }
     }
 
@@ -69,8 +59,6 @@ module.exports = class User{
             const [rows,fields] = await this.#connection.query('INSERT INTO user (login, password, avatar, email) VALUES (?,?,?,?)',[login, password, avatar, email]);
         }catch (e){
             console.error('Ошибка запроса: ' + e);
-        }finally {
-
         }
     }
 
@@ -80,8 +68,6 @@ module.exports = class User{
             const [rows,fields] = await this.#connection.query('DELETE FROM user WHERE id = ?',[id]);
         }catch (e){
             console.error('Ошибка запроса: ' + e);
-        }finally {
-
         }
     }
 
@@ -91,8 +77,6 @@ module.exports = class User{
             const [rows,fields] = await this.#connection.query('UPDATE user SET login = ? WHERE id = ?',[login,id]);
         }catch(e){
             console.error('Ошибка запроса: ' + e);
-        }finally {
-
         }
     }
 
@@ -102,8 +86,6 @@ module.exports = class User{
             const [rows, fields] = await this.#connection.query('UPDATE user SET avatar = ? WHERE id = ?',[avatar,id]);
         }catch (e){
             console.error('Ошибка запроса: ' + e);
-        }finally {
-
         }
     }
 
@@ -113,8 +95,6 @@ module.exports = class User{
             const [rows,fields] = await this.#connection.query('UPDATE user SET password = ? WHERE id=?',[password,id]);
         }catch (e){
             console.error('Ошибка запроса: ' + e);
-        }finally {
-
         }
     }
 
@@ -124,8 +104,6 @@ module.exports = class User{
             const [rows, fields] = await this.#connection.query('UPDATE user SET email = ? WHERE id = ?',[email,id]);
         }catch(e){
             console.error('Ошибка запроса: ' + e);
-        }finally {
-
         }
     }
 
@@ -134,8 +112,6 @@ module.exports = class User{
             const [rows, fields] = await this.#connection.query('INSERT INTO banned (user_id, reason, ip) VALUES (?,?,?)',[userId, reason, ip]);
         }catch (e){
             console.error('Ошибка запроса: ' + e);
-        }finally {
-
         }
     }
 
@@ -144,8 +120,6 @@ module.exports = class User{
             const [rows, fields] = await this.#connection.query('DELETE FROM banned WHERE user_id = ?',[userId]);
         }catch (e){
             console.error('Ошибка запроса: ' + e);
-        }finally {
-
         }
     }
 
@@ -155,8 +129,6 @@ module.exports = class User{
             return rows;
         }catch (e){
             console.error('Ошибка запроса: ' + e);
-        }finally {
-
         }
     }
 
@@ -166,8 +138,6 @@ module.exports = class User{
             return rows;
         }catch (e){
             console.error('Ошибка запроса: ' + e);
-        }finally {
-
         }
     }
 

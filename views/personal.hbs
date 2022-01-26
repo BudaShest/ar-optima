@@ -84,6 +84,28 @@
                     </div>
                 {{/each}}
             </div>
+            <h3>Мои заявки</h3>
+            <div class="row all-user-purchases">
+                {{#each userWorks}}
+                    <div class="card work row" id="{{this.id}}">
+                        <div class="col card-img">
+                            <img src="/img/uploads/{{this.image}}" alt="">
+                        </div>
+                        <div class="col card-text">
+                            <h3>{{this.header}}</h3>
+                            <div class="col">
+                                <span>Автор</span>
+                                <span>{{firstname}} {{surname}}</span>
+                                <span>Цена:</span>
+                                <span class="card-price">{{this.price}}₽</span>
+                                <span>Статус: {{status}}</span>
+
+                            </div>
+                        </div>
+                    </div>
+                {{/each}}
+            </div>
+
         </main>
         {{>footer}}
     </div>

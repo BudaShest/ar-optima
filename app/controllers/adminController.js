@@ -268,14 +268,15 @@ module.exports.addProduct = async function (request, response){
     const authorId = request.body.productAuthor;
     const price = request.body.productText;
     // let fileNames = request.files.map(item=>item.filename);
-    let fileName = request.files[0].filename;
+    let fileName = 'def-service';
 
     if(request.session.updatedProduct !== undefined){
-        if(request.files[0].filename != undefined){
+        if(request.files[0] && request.files[0].filename != undefined){
             let oldProdImage = request.session.updatedProduct.image;
-            console.log('oldProdImage ' + oldProdImage);
             deleteImg(oldProdImage);
             fileName = request.files[0].filename;
+        }else{
+            fileName = request.session.updatedProduct.image;
         }
     }else{
         if(request.files[0].filename != undefined){
@@ -370,6 +371,9 @@ module.exports.moderate = async function (request,response){
                 await serviceWorker.deleteService(request.body.deleteById);
                 response.redirect('/admin#admin-services');
                 break;
+            case "admin-works":
+                await workWorker.deleteWork(request.body.deleteById);
+                response.redirect('/admin#admin-works');
 
         }
     }else if(request.body.updateById !== undefined){

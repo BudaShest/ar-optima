@@ -4,6 +4,7 @@ const bootstrap = require('../../bootstrap');
 
 const userWorker = bootstrap.userWorker;
 const productWorker = bootstrap.productWorker;
+const onWorkWorker = bootstrap.workWorker;
 
 const salt = bcrypt.genSaltSync(10);
 
@@ -12,6 +13,7 @@ module.exports.getPersonal = async function (request,response){
     if(request.session.authId !== undefined){
         let authorizedUser =await userWorker.getUser(request.session.authId);
         let userPurchases = await productWorker.getPurchasesByBuyer(request.session.authId);
+        let userWorks = await onWorkWorker.getWorksByCustomer(request.session.authId);
 
         if(request.session.updateError){
             response.render('personal.hbs',{
@@ -20,6 +22,7 @@ module.exports.getPersonal = async function (request,response){
                 currentUserRoleName:authorizedUser.name,
                 currentUserEmail:authorizedUser.email,
                 userPurchases:userPurchases,
+                userWorks:userWorks,
                 isAuthorized:true,
                 authUserAvatar:authorizedUser.avatar,
                 authUserLogin:authorizedUser.login,
@@ -31,6 +34,7 @@ module.exports.getPersonal = async function (request,response){
                 currentUserAvatar:authorizedUser.avatar,
                 currentUserRoleName:authorizedUser.name,
                 currentUserEmail:authorizedUser.email,
+                userWorks:userWorks,
                 userPurchases:userPurchases,
                 isAuthorized:true,
                 authUserAvatar:authorizedUser.avatar,

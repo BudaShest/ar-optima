@@ -11,8 +11,6 @@ module.exports = class OnWork{
             const [rows,fields] = await this.#connection.query('INSERT INTO on_work (customer_id, author_id, service_id, status_id, description) VALUES (?,?,?,1,?)',[customerId,authorId,serviceId,description]);
         }catch (e){
             console.error('Ошибка запроса: ' + e)
-        }finally {
-
         }
     }
 
@@ -22,19 +20,15 @@ module.exports = class OnWork{
             const [rows,fields] = await this.#connection.query('UPDATE on_work SET author_id = ?, status_id = ? WHERE id = ?',[authorId, statusId,id]);
         }catch (e){
             console.error('Ошибка запроса: ' + e)
-        }finally {
-
         }
     }
 
     //Удалить задачу
-    async deleteWork(){
+    async deleteWork(id){
         try{
-
+            const [rows,fields] = await this.#connection.query('DELETE FROM on_work WHERE id = ?',[id]);
         }catch (e){
             console.error('Ошибка запроса: ' + e)
-        }finally {
-
         }
     }
 
@@ -45,8 +39,6 @@ module.exports = class OnWork{
             return rows;
         }catch (e){
             console.error('Ошибка запроса: ' + e)
-        }finally {
-
         }
     }
 
@@ -57,8 +49,6 @@ module.exports = class OnWork{
             return rows[0];
         }catch (e){
             console.error('Ошибка запроса: ' + e)
-        }finally {
-
         }
     }
 
@@ -69,8 +59,16 @@ module.exports = class OnWork{
             return rows;
         }catch (e){
             console.error('Ошибка запроса: ' + e)
-        }finally {
+        }
+    }
 
+    //Получить заявки пользователя
+    async getWorksByCustomer(id){
+        try{
+            const [rows, fields] = await this.#connection.query('SELECT o.id as id,image,header,firstname,surname,price,s2.name as status FROM on_work o INNER JOIN service s ON o.service_id = s.id INNER JOIN user u ON o.customer_id = u.id LEFT JOIN employee e ON o.author_id = e.id INNER JOIN status s2 on o.status_id = s2.id WHERE o.customer_id=?', [id]);
+            return rows;
+        }catch (e){
+            console.error('Ошибка запроса: ' + e);
         }
     }
 }

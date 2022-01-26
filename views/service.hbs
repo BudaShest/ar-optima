@@ -15,20 +15,101 @@
             <div class="current-service-container col">
                 <h2 class="current-service-header">{{header}}</h2>
                 <img class="current-service-image" src="/img/uploads/{{image}}" alt="Картина услуги">
-                <p class="current-service-text">{{inputHTML description}}</p>
+                <div class="current-service-text">{{inputHTML description}}</div>
                 <span class="current-service-price">Цена: {{price}}₽</span>
             </div>
             {{/with}}
             <h3>Свяжитесь с нами для получения услуги</h3>
             {{#if isAuthorized}}
-            <form action="service/addWork" method="post" class="col form-work">
-                <label for="work-description-input">Ваши пожелания:</label>
-                <textarea name="workDescription" id="work-description-input" cols="30" rows="10"></textarea>
-                <div class="form-controls row">
-                    <button class="btn-pos" name="workAddBtn" value="{{service.id}}" type="submit">ОК</button>
-                    <button class="btn-neg" type="reset">Стереть</button>
-                </div>
-            </form>
+                {{#if isSiteDeveloping}}
+                    <form class="service-form" action="service/addWork" method="post">
+                        <input type="checkbox" checked value="true" name="isNewServiceWork" hidden>
+                        <fieldset class="row">
+                            <label for="dev-type-select">Какой сайт вам нужен?</label>
+                            <select id="dev-type-select" name="devType">
+                                <option>Сайт-визитка</option>
+                                <option>Сайт-компании</option>
+                                <option>Промо-сайт</option>
+                                <option>Интернет-магазин</option>
+                                <option>Портал</option>
+                                <option>Доска объявлений</option>
+                                <option>Блог</option>
+                            </select>
+                        </fieldset>
+                        <fieldset class="row">
+                            <label for="dev-description-textarea">Опишите цель и тематику сайта</label>
+                            <textarea id="dev-description-textarea" name="devDescription" cols="30" rows="10"></textarea>
+                        </fieldset>
+                        <fieldset class="row">
+                            <label>Будете ли вы продавать прямо с сайта?</label>
+                            <label>
+                                <input name="devSelling" value="Да" type="radio">Да
+                            </label>
+                            <label>
+                                <input name="devSelling" value="Нет" type="radio">Нет
+                            </label>
+                        </fieldset>
+                        <fieldset class="row">
+                            <label>Тип дизайна</label>
+                            <label>
+                                <input name="devDesign" value="Индивидуальный" type="radio">Индивидуальный
+                            </label>
+                            <label>
+                                <input name="devDesign" value="Готовый" type="radio">Готовый
+                            </label>
+                        </fieldset>
+                        <fieldset class="row">
+                            <label>Какие материалы есть для наполнения сайта?</label>
+                            <label>
+                                <input name="devMedia" value="Тексты" type="checkbox">Тексты
+                            </label>
+                            <label>
+                                <input name="devMedia" value="Картинки" type="checkbox">Картинки
+                            </label>
+                            <label>
+                                <input name="devMedia" value="Видео" type="checkbox">Видео
+                            </label>
+                            <label>
+                                <input name="devMedia" value="Ничего" type="checkbox">Ничего
+                            </label>
+                        </fieldset>
+                        <fieldset class="row">
+                            <label>Есть ли у Вас свой домен?</label>
+                            <label>
+                                <input name="devDomen" value="Да" type="radio">Да
+                            </label>
+                            <label>
+                                <input name="devDomen" value="Нет" type="radio">Нет
+                            </label>
+                        </fieldset>
+                        <fieldset class="row">
+                            <label>Планируете ли Вы продвигать свой сайт?</label>
+                            <label>
+                                <input name="devPromotion" value="Да" type="radio">Да
+                            </label>
+                            <label>
+                                <input name="devPromotion" value="Нет" type="radio">Нет
+                            </label>
+                        </fieldset>
+                        <fieldset class="row">
+                            <label id="dev-deadline-input">Дата работы</label>
+                            <input id="dev-deadline-input" name="devDeadline" type="date">
+                            <div class="form-controls row">
+                                <button class="btn-pos" name="workAddBtn" value="{{service.id}}" type="submit">Оставить заявку</button>
+                                <button class="btn-neg" type="reset">Стереть</button>
+                            </div>
+                        </fieldset>
+                    </form>
+                {{else}}
+                    <form action="service/addWork" method="post" class="col form-work">
+                        <label for="work-description-input">Ваши пожелания:</label>
+                        <textarea name="workDescription" id="work-description-input" cols="30" rows="10"></textarea>
+                        <div class="form-controls row">
+                            <button class="btn-pos" name="workAddBtn" value="{{service.id}}" type="submit">Оставить заявку</button>
+                            <button class="btn-neg" type="reset">Стереть</button>
+                        </div>
+                    </form>
+                {{/if}}
             {{else}}
                 <p><a href="/auth#auth-login">Авторизуйтесь</a>, чтобы быть с нами на связи</p>
             {{/if}}
@@ -66,10 +147,6 @@
 
             horizontalSwiper = new Swiper('.swiper-horizontal-container', {
                 loop: true,
-                navigation: {
-                    nextEl: '.swiper-button-next',
-                    prevEl: '.swiper-button-prev',
-                },
                 slidesPerView: slidesPerView
             })
         });
@@ -88,10 +165,6 @@
 
             horizontalSwiper = new Swiper('.swiper-horizontal-container', {
                 loop: true,
-                navigation: {
-                    nextEl: '.swiper-button-next',
-                    prevEl: '.swiper-button-prev',
-                },
                 slidesPerView: slidesPerView
             });
         });

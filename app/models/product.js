@@ -8,7 +8,7 @@ module.exports = class Product{
     //Получить все товары
     async getAllProducts(){
         try{
-           const [rows,fields] = await this.#connection.query('SELECT p.id as id, name, description, author_id, price, second_name, image FROM product p INNER JOIN product_images pi ON p.id = pi.product_id GROUP BY p.id');
+           const [rows,fields] = await this.#connection.query('SELECT p.id as id, name, description, author_id, price, second_name, image FROM product p INNER JOIN product_images pi ON p.id = pi.product_id');
            return rows;
         }catch (e){
             console.error('Ошибка запроса: ' + e);
@@ -20,7 +20,7 @@ module.exports = class Product{
     //Получить топ 8 товаров
     async getTopProducts(){
         try{
-            const [rows,fields] = await this.#connection.query('SELECT p.id as id, name, description, author_id, price, second_name, image FROM product p INNER JOIN product_images pi ON p.id = pi.product_id GROUP BY p.id LIMIT 8');
+            const [rows,fields] = await this.#connection.query('SELECT p.id as id, name, description, author_id, price, second_name, image FROM product p INNER JOIN product_images pi ON p.id = pi.product_id LIMIT 8');
             return rows;
         }catch (e){
             console.error('Ошибка запроса: ' + e);
@@ -32,7 +32,7 @@ module.exports = class Product{
     //Получить продукты от приглашённых художников
     async getSpecialProducts(){
         try{
-            let [rows,fields] = await this.#connection.query('SELECT p.id as id, name, p.description as description, author_id, price, second_name, image FROM product p INNER JOIN product_images pi ON p.id = pi.product_id INNER JOIN employee e ON p.author_id = e.id WHERE e.position_id = 317 GROUP BY p.id');
+            let [rows,fields] = await this.#connection.query('SELECT p.id as id, name, p.description as description, author_id, price, second_name, image FROM product p INNER JOIN product_images pi ON p.id = pi.product_id INNER JOIN employee e ON p.author_id = e.id WHERE e.position_id = 8');
             return rows;
         }catch (e){
             console.error('Ошибка запроса: ' + e);
@@ -44,7 +44,7 @@ module.exports = class Product{
     //Получить обычные товары
     async getNotSpecialProducts(){
         try{
-            let [rows,fields] = await this.#connection.query('SELECT p.id as id, name, p.description as description, author_id, price, second_name, image FROM product p INNER JOIN product_images pi ON p.id = pi.product_id INNER JOIN employee e ON p.author_id = e.id WHERE e.position_id != 317 GROUP BY p.id');
+            let [rows,fields] = await this.#connection.query('SELECT p.id as id, name, p.description as description, author_id, price, second_name, image FROM product p INNER JOIN product_images pi ON p.id = pi.product_id INNER JOIN employee e ON p.author_id = e.id WHERE e.position_id != 8');
             return rows;
         }catch (e){
             console.error('Ошибка запроса: ' + e);
@@ -72,20 +72,16 @@ module.exports = class Product{
             await this.#connection.query('INSERT INTO product_images (product_id, image) VALUES (?,?)',[productId,image])
         }catch (e){
             console.error('Ошибка запроса: ' + e)
-        }finally {
-
         }
     }
 
     //Получить продукт
     async getProduct(productId){
         try{
-            const [rows,fields] = await this.#connection.query('SELECT p.id as id, name, p.description as description, author_id, price, second_name, image, firstname,surname FROM product p INNER JOIN product_images pi ON p.id = pi.product_id INNER JOIN employee e ON p.author_id = e.id WHERE p.id = ?', [productId]);
+            const [rows,fields] = await this.#connection.query('SELECT p.id as id, name, p.description as description, author_id, price, second_name, image, firstname,surname, avatar FROM product p INNER JOIN product_images pi ON p.id = pi.product_id INNER JOIN employee e ON p.author_id = e.id WHERE p.id = ?', [productId]);
             return rows[0];
         }catch (e){
             console.error('Ошибка запроса: ' + e)
-        }finally {
-
         }
     }
 
@@ -96,8 +92,6 @@ module.exports = class Product{
             return rows;
         }catch (e){
             console.error('Ошибка запроса: ' + e)
-        }finally {
-
         }
     }
 
@@ -108,8 +102,6 @@ module.exports = class Product{
             return rows;
         }catch (e){
             console.error('Ошибка запроса: ' + e);
-        }finally {
-
         }
     }
 
@@ -119,8 +111,6 @@ module.exports = class Product{
             const [rows, fields] = await this.#connection.query('DELETE FROM product WHERE id = ?',[id]);
         }catch (e){
             console.error('Ошибка запроса: ' + e);
-        }finally {
-
         }
     }
 
@@ -131,8 +121,6 @@ module.exports = class Product{
             await this.#connection.query('UPDATE product_images SET image = ? WHERE product_id = ?', [image, id]);
         }catch (e){
             console.error('Ошибка запроса: ' + e);
-        }finally {
-
         }
     }
 
@@ -142,8 +130,6 @@ module.exports = class Product{
             const [rows,fields] = await this.#connection.query('INSERT INTO demo (product_id, model, scene, texture, path) VALUES (?,?,?,?,?)',[productId,model,scene,texture,path]);
         }catch (e){
             console.error('Ошибка запроса: ' + e);
-        }finally {
-
         }
     }
 
@@ -154,8 +140,6 @@ module.exports = class Product{
             return rows[0];
         }catch (e){
             console.error('Ошибка запроса: ' + e);
-        }finally {
-
         }
     }
 
@@ -165,8 +149,6 @@ module.exports = class Product{
             const [rows,fields] = await this.#connection.query('INSERT INTO purchases (buyer_id, product_id) VALUES (?,?)',[userId,productId]);
         }catch (e){
             console.error('Ошибка запроса: ' + e);
-        }finally {
-
         }
     }
 
@@ -177,8 +159,6 @@ module.exports = class Product{
             return rows;
         }catch (e){
             console.error('Ошибка запроса: ' + e);
-        }finally {
-
         }
     }
 }
