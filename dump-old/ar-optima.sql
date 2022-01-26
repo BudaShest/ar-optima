@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Хост: 127.0.0.1:3306
--- Время создания: Янв 26 2022 г., 21:32
+-- Время создания: Янв 24 2022 г., 09:58
 -- Версия сервера: 10.3.22-MariaDB
 -- Версия PHP: 7.4.5
 
@@ -53,11 +53,7 @@ CREATE TABLE `comment` (
 --
 
 INSERT INTO `comment` (`id`, `author_id`, `product_id`, `text`, `created_at`) VALUES
-(2, 2, 20, 'Самое время пойти в поход.', '2022-01-22 10:09:04'),
-(3, 2, 22, 'Нужно быть аккуратнее с этим.....', '2022-01-22 10:09:04'),
-(4, 1, 19, 'Просто обожаю олдскульные приставочки)))', '2022-01-22 10:09:04'),
-(5, 2, 19, 'Да, мне тоже нравится.', '2022-01-22 10:09:04'),
-(6, 2, 18, 'Самая красивая лисичка в мире.', '2022-01-22 10:09:04');
+(1, 1, 15, 'Моя любимая тема..........', '2022-01-22 10:09:04');
 
 -- --------------------------------------------------------
 
@@ -70,7 +66,7 @@ CREATE TABLE `demo` (
   `product_id` int(11) NOT NULL,
   `model` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
   `scene` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `texture` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `texture` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
   `path` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
@@ -83,8 +79,7 @@ INSERT INTO `demo` (`id`, `product_id`, `model`, `scene`, `texture`, `path`) VAL
 (3, 15, 'scene.gltf', 'scene.bin', 'Material.001_baseColor.png', 'nintendo'),
 (4, 16, 'scene.gltf', 'scene.bin', 'default_baseColor.png', 'shiba'),
 (7, 21, 'scene.gltf', 'scene.bin', 'Material_baseColor.png', 'firekiller'),
-(9, 22, 'scene.gltf', 'scene.bin', 'Material_baseColor.png', 'greenade'),
-(10, 23, 'scene.gltf', 'scene.bin', 'Shiba-inu_baseColor.png', 'doggy');
+(9, 22, 'scene.gltf', 'scene.bin', 'Material_baseColor.png', 'greenade');
 
 -- --------------------------------------------------------
 
@@ -97,10 +92,10 @@ CREATE TABLE `employee` (
   `firstname` varchar(30) COLLATE utf8mb4_unicode_ci NOT NULL,
   `surname` varchar(30) COLLATE utf8mb4_unicode_ci NOT NULL,
   `age` int(2) DEFAULT NULL,
-  `description` text COLLATE utf8mb4_unicode_ci NOT NULL DEFAULT 'Наш новый сотрудник',
+  `description` text COLLATE utf8mb4_unicode_ci NOT NULL,
   `avatar` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT 'def-employer.png',
   `position_id` int(11) NOT NULL DEFAULT 1,
-  `technology_stack` text COLLATE utf8mb4_unicode_ci NOT NULL DEFAULT 'Что-то вроде умеет...'
+  `technology_stack` text COLLATE utf8mb4_unicode_ci NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 --
@@ -108,10 +103,11 @@ CREATE TABLE `employee` (
 --
 
 INSERT INTO `employee` (`id`, `firstname`, `surname`, `age`, `description`, `avatar`, `position_id`, `technology_stack`) VALUES
-(1, 'Александр', 'Титов', 22, '<p>Автор идеи и генеральный директор компании AR-OPTIMA. Неплохой человек, наверное....</p>', '1642847302736-admin.jpg', 1, '<hr />\r\n<pre>* HTML<br /><span style=\"font-family: -apple-system, BlinkMacSystemFont, \'Segoe UI\', Roboto, Oxygen, Ubuntu, Cantarell, \'Open Sans\', \'Helvetica Neue\', sans-serif;\">* </span>CSS<br /><span style=\"font-family: -apple-system, BlinkMacSystemFont, \'Segoe UI\', Roboto, Oxygen, Ubuntu, Cantarell, \'Open Sans\', \'Helvetica Neue\', sans-serif;\">* </span>JS<br /><span style=\"font-family: -apple-system, BlinkMacSystemFont, \'Segoe UI\', Roboto, Oxygen, Ubuntu, Cantarell, \'Open Sans\', \'Helvetica Neue\', sans-serif;\">* </span>PHP<br /><span style=\"font-family: -apple-system, BlinkMacSystemFont, \'Segoe UI\', Roboto, Oxygen, Ubuntu, Cantarell, \'Open Sans\', \'Helvetica Neue\', sans-serif;\">* </span>Python<br /><span style=\"font-family: -apple-system, BlinkMacSystemFont, \'Segoe UI\', Roboto, Oxygen, Ubuntu, Cantarell, \'Open Sans\', \'Helvetica Neue\', sans-serif;\">* </span>C#<br /><span style=\"font-family: -apple-system, BlinkMacSystemFont, \'Segoe UI\', Roboto, Oxygen, Ubuntu, Cantarell, \'Open Sans\', \'Helvetica Neue\', sans-serif;\">* </span>React<br /><span style=\"font-family: -apple-system, BlinkMacSystemFont, \'Segoe UI\', Roboto, Oxygen, Ubuntu, Cantarell, \'Open Sans\', \'Helvetica Neue\', sans-serif;\">* </span>Redux<br /><span style=\"font-family: -apple-system, BlinkMacSystemFont, \'Segoe UI\', Roboto, Oxygen, Ubuntu, Cantarell, \'Open Sans\', \'Helvetica Neue\', sans-serif;\">* </span>Laravel<br /><span style=\"font-family: -apple-system, BlinkMacSystemFont, \'Segoe UI\', Roboto, Oxygen, Ubuntu, Cantarell, \'Open Sans\', \'Helvetica Neue\', sans-serif;\">* </span>VueYii<br /><span style=\"font-family: -apple-system, BlinkMacSystemFont, \'Segoe UI\', Roboto, Oxygen, Ubuntu, Cantarell, \'Open Sans\', \'Helvetica Neue\', sans-serif;\">* </span>AJAX<br /><span style=\"font-family: -apple-system, BlinkMacSystemFont, \'Segoe UI\', Roboto, Oxygen, Ubuntu, Cantarell, \'Open Sans\', \'Helvetica Neue\', sans-serif;\">* </span>Docker<br /><span style=\"font-family: -apple-system, BlinkMacSystemFont, \'Segoe UI\', Roboto, Oxygen, Ubuntu, Cantarell, \'Open Sans\', \'Helvetica Neue\', sans-serif;\">* </span>Git<br /><span style=\"font-family: -apple-system, BlinkMacSystemFont, \'Segoe UI\', Roboto, Oxygen, Ubuntu, Cantarell, \'Open Sans\', \'Helvetica Neue\', sans-serif;\">* </span>MySql<br /><span style=\"font-family: -apple-system, BlinkMacSystemFont, \'Segoe UI\', Roboto, Oxygen, Ubuntu, Cantarell, \'Open Sans\', \'Helvetica Neue\', sans-serif;\">* </span>PgSql<br /><span style=\"font-family: -apple-system, BlinkMacSystemFont, \'Segoe UI\', Roboto, Oxygen, Ubuntu, Cantarell, \'Open Sans\', \'Helvetica Neue\', sans-serif;\">* </span>Flask<br /><span style=\"font-family: -apple-system, BlinkMacSystemFont, \'Segoe UI\', Roboto, Oxygen, Ubuntu, Cantarell, \'Open Sans\', \'Helvetica Neue\', sans-serif;\">* </span>Codeception<br /><span style=\"font-family: -apple-system, BlinkMacSystemFont, \'Segoe UI\', Roboto, Oxygen, Ubuntu, Cantarell, \'Open Sans\', \'Helvetica Neue\', sans-serif;\">* </span>PHP Unit<br /><span style=\"font-family: -apple-system, BlinkMacSystemFont, \'Segoe UI\', Roboto, Oxygen, Ubuntu, Cantarell, \'Open Sans\', \'Helvetica Neue\', sans-serif;\">* </span>Docker</pre>\r\n<hr />\r\n<p>&nbsp;</p>'),
-(2, 'Артём', 'Якушкин', 27, '<p>Быть хорошим художником - не просто. Годы обучения, творческие терзания и постоянный поиск себя - это лишь верхушка айсберга. Не все способны пройти этот путь до конца не потреяв самого себя...<br /><strong>Но это точно не про Артёма!</strong></p>\r\n<p>Помимо того, что Артём является высококлассным художником, он остаётся открытым к общению, добрым и позитивным человеком.<br />Он поможет вам в создании собственного уникального дизайна вашего продукта, будь то веб-сайт, или даже 3d-модель.</p>', '1642926636243-art.jpg', 6, '<hr />\r\n<pre>* Blender<br /><br /><span style=\"font-family: -apple-system, BlinkMacSystemFont, \'Segoe UI\', Roboto, Oxygen, Ubuntu, Cantarell, \'Open Sans\', \'Helvetica Neue\', sans-serif;\">* </span>3d-max<br /><br /><span style=\"font-family: -apple-system, BlinkMacSystemFont, \'Segoe UI\', Roboto, Oxygen, Ubuntu, Cantarell, \'Open Sans\', \'Helvetica Neue\', sans-serif;\">* </span>Figma<br /><br /><span style=\"font-family: -apple-system, BlinkMacSystemFont, \'Segoe UI\', Roboto, Oxygen, Ubuntu, Cantarell, \'Open Sans\', \'Helvetica Neue\', sans-serif;\">* </span>Photoshop<br /><br /><span style=\"font-family: -apple-system, BlinkMacSystemFont, \'Segoe UI\', Roboto, Oxygen, Ubuntu, Cantarell, \'Open Sans\', \'Helvetica Neue\', sans-serif;\">* </span>Corel<br /><br /><span style=\"font-family: -apple-system, BlinkMacSystemFont, \'Segoe UI\', Roboto, Oxygen, Ubuntu, Cantarell, \'Open Sans\', \'Helvetica Neue\', sans-serif;\">* </span>GIMP</pre>\r\n<hr />\r\n<p>&nbsp;</p>'),
+(1, 'Александр', 'Титов', 22, '<p>Автор идеи и генеральный директор компании AR-OPTIMA. Неплохой человек, наверное....</p>', '1642847302736-admin.jpg', 1, '<p>HTML, CSS, JS, PHP, Python, C#, React, Redux, Laravel, Vue, Yii, AJAX, Docker, Git, MySql, PgSql, Flask, Codeception, PHP Unit</p>'),
+(2, 'Артём', 'Якушкин', 27, '<p>Быть хорошим художником - не просто. Годы обучения, творческие терзания и постоянный поиск себя - это лишь верхушка айсберга. Не все способны пройти этот путь до конца не потреяв самого себя...<br /><strong>Но это точно не про Артёма!</strong></p>\r\n<p>Помимо того, что Артём является высококлассным художником, он остаётся открытым к общению, добрым и позитивным человеком.<br />Он поможет вам в создании собственного уникального дизайна вашего продукта, будь то веб-сайт, или даже 3d-модель.</p>', '1642926636243-art.jpg', 6, '<p>Blender, 3d-max, Figma, Photoshop, Corel, GIMP</p>'),
 (3, 'Анна', 'Макарова', 24, '<p><strong>Анна - специалист по работе с клиентами.</strong></p>\r\n<p>И это не пустые слова. Во-первых, Анна, действительно специалист, во-вторых, она действительно работает с клиентами и делает это на самом высоком уровне.</p>\r\n<p>Каким бы сложным не был Ваш проект, вместе с Анной Вы можете быть уверены, что он будет доведён до своего завершения в самые оптимальные сроки.</p>', '1642928203140-e4d8f8d8fc3c1808.jpg', 7, '<hr />\r\n<pre>* Организаторские способности.<br />\r\n* Внимательное и щепетильный отношение к деталям и срокам.<br />\r\n* Способность генерировать идеи и находить нестандартные решения.<br />\r\n* Умение работать с возражениями и вести переговоры.</pre>\r\n<hr />\r\n<pre>&nbsp;</pre>'),
 (4, 'Артемий', 'Лебедев', 46, '<p><strong>Арте́мий Андре́евич Ле́бедев</strong> (род. 13 февраля 1975, Москва, СССР) &mdash; российский дизайнер, изобретатель, предприниматель, блогер, путешественник и автор &laquo;Ководства&raquo; &mdash; руководства по веб-дизайну. Основатель, совладелец и генеральный директор &laquo;WebDesign&raquo;, впоследствии переименованной в Студию Артемия Лебедева.</p>\r\n<p>Артём - великолепный художник, творческая личность, но очень специфичный человлек... Не переживайте, вам не придётся&nbsp;</p>', '1642932761098-fahga[[f.jpg', 8, '<hr />\r\n<pre>* Умение широко мыслить.\r\n<span style=\"font-family: -apple-system, BlinkMacSystemFont, \'Segoe UI\', Roboto, Oxygen, Ubuntu, Cantarell, \'Open Sans\', \'Helvetica Neue\', sans-serif;\">* </span>Умение мыслить гипотезами.\r\n<span style=\"font-family: -apple-system, BlinkMacSystemFont, \'Segoe UI\', Roboto, Oxygen, Ubuntu, Cantarell, \'Open Sans\', \'Helvetica Neue\', sans-serif;\">* </span>Готовность к изменениям и проблемам.\r\n<span style=\"font-family: -apple-system, BlinkMacSystemFont, \'Segoe UI\', Roboto, Oxygen, Ubuntu, Cantarell, \'Open Sans\', \'Helvetica Neue\', sans-serif;\">* </span>Навыки UI-дизайна.\r\n<span style=\"font-family: -apple-system, BlinkMacSystemFont, \'Segoe UI\', Roboto, Oxygen, Ubuntu, Cantarell, \'Open Sans\', \'Helvetica Neue\', sans-serif;\">* </span>Навыки frontend-разработки.\r\n<span style=\"font-family: -apple-system, BlinkMacSystemFont, \'Segoe UI\', Roboto, Oxygen, Ubuntu, Cantarell, \'Open Sans\', \'Helvetica Neue\', sans-serif;\">* </span>Знание базовых принципов визуального дизайна.</pre>\r\n<hr />\r\n<pre>&nbsp;</pre>'),
+(5, 'Михей', 'Гронский', 26, '<p>Миша - однозначно <strong>самый добый и позитивный человек</strong> в нашей команде. Но это не главные его преимущества. Прежде всего, Михаил - <strong>профессионал своего дела</strong>, веб-разработчик со стажем. До нас Миша занимался коммерческой разработкой веб-сайтов. У нас он преимущественно занимается тем же, но периодически принимает активное участие в создании 3d-моделей.</p>\r\n<p>Как и все в нашей команде, Михаил верит, что <a title=\"NFT-технологии\" href=\"https://ru.wikipedia.org/wiki/%D0%9D%D0%B5%D0%B2%D0%B7%D0%B0%D0%B8%D0%BC%D0%BE%D0%B7%D0%B0%D0%BC%D0%B5%D0%BD%D1%8F%D0%B5%D0%BC%D1%8B%D0%B9_%D1%82%D0%BE%D0%BA%D0%B5%D0%BD\" target=\"_blank\" rel=\"noopener\">NFT-технологии</a> имеют огромный потеницал. Именно поэтому он с нами, именно поэтому мы с ним.</p>', '1642943232031-c0c0bcf8fdbf3990.jpg', 9, '<hr />\r\n<pre>* PHP<br />* Laravel<br />* Yii<br />* Vue<br />* React<br />* Redux<br />* Angular<br />* Ajax<br />* HTML<br />* CSS<br />* C++</pre>\r\n<hr />\r\n<pre>&nbsp;</pre>'),
 (6, 'Руфина', 'Трифонова', 19, '<p>Руфина - молодой разработчик и только начинает свой путь в <strong>IT-отрасли. </strong>Но несмотря на молодой возраст, Руфина - очень хороший программист.&nbsp;</p>', '1642943779122-ffc3db81bd811800.jpg', 9, '<hr />\r\n<pre style=\"margin-top: 0px; margin-bottom: 0px; padding: 0px; box-sizing: border-box; font-size: 18px;\">* HTML<br style=\"margin: 0px; padding: 0px; box-sizing: border-box;\" />* Vue<br style=\"margin: 0px; padding: 0px; box-sizing: border-box;\" />* React<br style=\"margin: 0px; padding: 0px; box-sizing: border-box;\" />* Redux<br style=\"margin: 0px; padding: 0px; box-sizing: border-box;\" />* CSS</pre>\r\n<hr />\r\n<pre style=\"margin-top: 0px; margin-bottom: 0px; padding: 0px; box-sizing: border-box; font-size: 18px;\">&nbsp;</pre>');
 
 -- --------------------------------------------------------
@@ -155,9 +151,9 @@ INSERT INTO `migrations` (`id`, `name`, `run_on`) VALUES
 CREATE TABLE `on_work` (
   `id` int(11) NOT NULL,
   `customer_id` int(11) NOT NULL,
-  `author_id` int(11) DEFAULT NULL,
+  `author_id` int(11) NOT NULL,
   `service_id` int(11) NOT NULL,
-  `status_id` int(11) NOT NULL DEFAULT 1,
+  `status_id` int(11) NOT NULL,
   `description` text COLLATE utf8mb4_unicode_ci DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
@@ -194,7 +190,7 @@ INSERT INTO `position` (`id`, `name`, `icon`, `is_main`) VALUES
 CREATE TABLE `product` (
   `id` int(11) NOT NULL,
   `name` varchar(30) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `description` text COLLATE utf8mb4_unicode_ci NOT NULL DEFAULT 'Продукт комапнии AR-OPTIMA',
+  `description` text COLLATE utf8mb4_unicode_ci NOT NULL,
   `author_id` int(11) DEFAULT NULL,
   `price` int(11) NOT NULL,
   `second_name` varchar(50) COLLATE utf8mb4_unicode_ci DEFAULT NULL
@@ -213,8 +209,7 @@ INSERT INTO `product` (`id`, `name`, `description`, `author_id`, `price`, `secon
 (19, 'Original Gameboy', '<p>Да, да, да, ещё одна модель старой <strong>игровой приставки из детства</strong>. Просто автор очень любит ретро-гейминг. И очень надеется, что и Вы тоже. Ведь что может быть лучше убить пару тройку часов за Зельдой или Покемонами... Правильно, ничего. Так что приобретайте эту модель в вашу коллекцию и давайте ностальгировать вместе!</p>', 1, 11200, 'Готов к игре!'),
 (20, 'Палатка', '<p>Такая палатка - мечта любого путешественника. В ней можно с комфортом отдохнуть на природе, пережить непогоду, поспать на свежем воздухе. Это всё, что Вам нужно для счастья.</p>', 1, 4300, 'Идеально для походов'),
 (21, 'Огнетушитель', '<p>Добавьте в вашу коллекцию немного пожарной безопасности!</p>', 3, 3400, 'Тушит огонь.'),
-(22, 'Граната', '<p>Да, это настощая граната, да, она может взорваться. Да ладно, это была шутка. Это всего лишь 3d-модель игрушечной гранаты, так что взорваться ей не суждено. Можете выдохнуть и расслабиться.</p>', 4, 24000, 'Взрвыается'),
-(23, 'Догги', '<p>Возможно, увидев ещё одну модель собачки, Вы можете возразть: \"Да сколько можно уже?\" Отвечаем: можно ещё больше. Ведь кому могут надоесть эти милые меховые создания? Вот и мы думаем, что никому, поэтому, пожалуй, пойдём сделаем ещё одну модель собачки....</p>\r\n<p>А вы не упустите возможность добавить её в свою коллекцию, ведь её нарисовал сам Артёмий Лебедев!</p>', 4, 34000, 'Ещё одна собачуля');
+(22, 'Граната', '<p>Ещё чо то</p>', 4, 24000, 'Взрвыается');
 
 -- --------------------------------------------------------
 
@@ -241,8 +236,7 @@ INSERT INTO `product_images` (`id`, `product_id`, `image`) VALUES
 (43, 19, '1642947149146-gb.png'),
 (44, 20, '1642953000698-pal.png'),
 (45, 21, '1642953438731-firekiller.png'),
-(46, 22, '1642955009851-greenade.png'),
-(47, 23, '1643218740327-doggy.png');
+(46, 22, '1642955009851-greenade.png');
 
 -- --------------------------------------------------------
 
@@ -260,9 +254,7 @@ CREATE TABLE `purchases` (
 --
 
 INSERT INTO `purchases` (`buyer_id`, `product_id`) VALUES
-(1, 15),
-(1, 15),
-(1, 18);
+(1, 15);
 
 -- --------------------------------------------------------
 
@@ -292,7 +284,7 @@ INSERT INTO `role` (`id`, `name`) VALUES
 CREATE TABLE `service` (
   `id` int(11) NOT NULL,
   `header` varchar(128) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `description` text COLLATE utf8mb4_unicode_ci NOT NULL DEFAULT 'Просто сервис...',
+  `description` text COLLATE utf8mb4_unicode_ci NOT NULL,
   `image` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL DEFAULT 'def-service.jpg',
   `price` int(6) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
@@ -303,9 +295,7 @@ CREATE TABLE `service` (
 
 INSERT INTO `service` (`id`, `header`, `description`, `image`, `price`) VALUES
 (1, 'Сайт под ключ', '<p><strong>Создайте свой сайт!</strong></p>\r\n<p>Команда AR-OPTIMA предоставляет качественние услуги создания сайтов любой сложности под ключ. С нами вы можете быть уверены в том, что Ваш бизнес расцветёт!</p>\r\n<p>&nbsp;</p>\r\n<hr />\r\n<pre><br />* Сайты - визитки<br /><br />* Корпоративные порталы<br /><br />* Форумы<br /><br />* Интернет-магазины<br /><br /></pre>\r\n<hr />\r\n<p><img src=\"https://impulse-design.com.ua/images/sajt-pod-kluch/sajt-pod-kluch1-min.png\" alt=\"Сайт под ключ\" width=\"690\" height=\"478\" /><br />Просто свяжитесь с нами!</p>\r\n<p><em>С любовью, AR-OPTIMA.</em></p>', '1642851189363-—Pngtree—programming and web technology vector_4089305.png', 15000),
-(6, 'Ваше цифровое произведение', '<p><strong>Наша команда поможет вам в создании собственного цифрового шедевра!</strong></p>\r\n<p>Наверняка, многие из вас уже слышали об <a href=\"https://ru.wikipedia.org/wiki/%D0%9D%D0%B5%D0%B2%D0%B7%D0%B0%D0%B8%D0%BC%D0%BE%D0%B7%D0%B0%D0%BC%D0%B5%D0%BD%D1%8F%D0%B5%D0%BC%D1%8B%D0%B9_%D1%82%D0%BE%D0%BA%D0%B5%D0%BD\" target=\"_blank\" rel=\"noopener\">NFT</a>. За последние годы эта технология массово проникла на рынок и в современную массовую культуру.&nbsp;</p>\r\n<p><strong>NFT-токен</strong> позволяет закрепить право владения цифровым произведением. Конечно, <em>любой человек</em> сможет воссоздать точно такое же произведение, но наличие токена также позволяет определить оригинал произведения.&nbsp;</p>\r\n<p>Сейчас уще существует огромное множество различных<strong> NFT-площадок</strong>, где вы можете приобрести права на цифровые произведения искусства.&nbsp;<br /><br /></p>\r\n<p><strong>Наша команда не только готова помочь вам в создании своего произведения. Мы также поможем вам зарегистрировать на него исключительные права.</strong></p>', '1642856375374-first-stage.png', 5000),
-(7, 'Оформление NFT', '<p><strong>У вас уже есть собственное цифровое произведение?</strong> Это просто отлично! Команда \"AR-OPTIMA\" с радостью поможет вам с оформлением NFT-токена для него!&nbsp;</p>\r\n<p>Просто оставьте свои пожелания в форме ниже и нажмите кнопку \"<strong>Оставить заявку</strong>\".</p>', '1643221499118-second-stage.png', 1000),
-(8, 'AR-визуализация', '<p>У Вас уже есть собственное цифровое произведение и Вы владеете токеном на него? Это замечательно! Мы же со своей стороны можем реализовать AR-визуализацию вашего произведения.</p>\r\n<p>Пускай ваша цировая коллекция будет украшать Ваш дом!</p>', '1643221654588-third-stage.png', 7000);
+(6, 'Ваше цифровое произведение', '<p><strong>Наша команда поможет вам в создании собственного цифрового шедевра!</strong></p>\r\n<p>Наверняка, многие из вас уже слышали об <a href=\"https://ru.wikipedia.org/wiki/%D0%9D%D0%B5%D0%B2%D0%B7%D0%B0%D0%B8%D0%BC%D0%BE%D0%B7%D0%B0%D0%BC%D0%B5%D0%BD%D1%8F%D0%B5%D0%BC%D1%8B%D0%B9_%D1%82%D0%BE%D0%BA%D0%B5%D0%BD\" target=\"_blank\" rel=\"noopener\">NFT</a>. За последние годы эта технология массово проникла на рынок и в современную массовую культуру.&nbsp;</p>\r\n<p><strong>NFT-токен</strong> позволяет закрепить право владения цифровым произведением. Конечно, <em>любой человек</em> сможет воссоздать точно такое же произведение, но наличие токена также позволяет определить оригинал произведения.&nbsp;</p>\r\n<p>Сейчас уще существует огромное множество различных<strong> NFT-площадок</strong>, где вы можете приобрести права на цифровые произведения искусства.&nbsp;<br /><br /></p>\r\n<p><strong>Наша команда не только готова помочь вам в создании своего произведения. Мы также поможем вам зарегистрировать на него исключительные права.</strong></p>', '1642856375374-first-stage.png', 5000);
 
 -- --------------------------------------------------------
 
@@ -317,15 +307,6 @@ CREATE TABLE `status` (
   `id` int(11) NOT NULL,
   `name` varchar(70) COLLATE utf8mb4_unicode_ci NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
-
---
--- Дамп данных таблицы `status`
---
-
-INSERT INTO `status` (`id`, `name`) VALUES
-(1, 'В работе'),
-(3, 'Завершена'),
-(2, 'Приостановлена');
 
 -- --------------------------------------------------------
 
@@ -347,8 +328,7 @@ CREATE TABLE `user` (
 --
 
 INSERT INTO `user` (`id`, `login`, `password`, `avatar`, `role_id`, `email`) VALUES
-(1, 'admin', '$2b$10$C.RsmzwXzasZlUmx0U6M0OX0S8QUhkj2.5DzbBGDuntCNxapmna9.', '1642846189871-def-admin.png', 2, 'budashest@gmail.com'),
-(2, 'testUser', '$2b$10$AUOTqn5oerqu6KgJQI2b1OUpUUMznjOYu7iwsWEWQcNKIhBnuC2DO', '1643218825964-123.jpg', 1, 'test@mail.ru');
+(1, 'admin', '$2b$10$C.RsmzwXzasZlUmx0U6M0OX0S8QUhkj2.5DzbBGDuntCNxapmna9.', '1642846189871-def-admin.png', 2, 'admin@mail.ru');
 
 --
 -- Индексы сохранённых таблиц
@@ -467,19 +447,19 @@ ALTER TABLE `user`
 -- AUTO_INCREMENT для таблицы `banned`
 --
 ALTER TABLE `banned`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
 
 --
 -- AUTO_INCREMENT для таблицы `comment`
 --
 ALTER TABLE `comment`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 
 --
 -- AUTO_INCREMENT для таблицы `demo`
 --
 ALTER TABLE `demo`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
 
 --
 -- AUTO_INCREMENT для таблицы `employee`
@@ -497,7 +477,7 @@ ALTER TABLE `migrations`
 -- AUTO_INCREMENT для таблицы `on_work`
 --
 ALTER TABLE `on_work`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
 
 --
 -- AUTO_INCREMENT для таблицы `position`
@@ -509,13 +489,13 @@ ALTER TABLE `position`
 -- AUTO_INCREMENT для таблицы `product`
 --
 ALTER TABLE `product`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=24;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=23;
 
 --
 -- AUTO_INCREMENT для таблицы `product_images`
 --
 ALTER TABLE `product_images`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=48;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=47;
 
 --
 -- AUTO_INCREMENT для таблицы `role`
@@ -527,19 +507,19 @@ ALTER TABLE `role`
 -- AUTO_INCREMENT для таблицы `service`
 --
 ALTER TABLE `service`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
 
 --
 -- AUTO_INCREMENT для таблицы `status`
 --
 ALTER TABLE `status`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
 
 --
 -- AUTO_INCREMENT для таблицы `user`
 --
 ALTER TABLE `user`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 
 --
 -- Ограничения внешнего ключа сохраненных таблиц
