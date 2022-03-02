@@ -30,7 +30,7 @@ SET time_zone = "+00:00";
 CREATE TABLE `banned` (
   `id` int(11) NOT NULL,
   `user_id` int(11) NOT NULL,
-  `reason` text COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `reason` text COLLATE utf8mb4_unicode_ci NULL,
   `ip` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
@@ -97,10 +97,10 @@ CREATE TABLE `employee` (
   `firstname` varchar(30) COLLATE utf8mb4_unicode_ci NOT NULL,
   `surname` varchar(30) COLLATE utf8mb4_unicode_ci NOT NULL,
   `age` int(2) DEFAULT NULL,
-  `description` text COLLATE utf8mb4_unicode_ci NOT NULL DEFAULT 'Наш новый сотрудник',
+  `description` text COLLATE utf8mb4_unicode_ci NOT NULL,
   `avatar` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT 'def-employer.png',
   `position_id` int(11) NOT NULL DEFAULT 1,
-  `technology_stack` text COLLATE utf8mb4_unicode_ci NOT NULL DEFAULT 'Что-то вроде умеет...'
+  `technology_stack` text COLLATE utf8mb4_unicode_ci NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 --
@@ -158,7 +158,7 @@ CREATE TABLE `on_work` (
   `author_id` int(11) DEFAULT NULL,
   `service_id` int(11) NOT NULL,
   `status_id` int(11) NOT NULL DEFAULT 1,
-  `description` text COLLATE utf8mb4_unicode_ci DEFAULT NULL
+  `description` text COLLATE utf8mb4_unicode_ci NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 -- --------------------------------------------------------
@@ -194,7 +194,7 @@ INSERT INTO `position` (`id`, `name`, `icon`, `is_main`) VALUES
 CREATE TABLE `product` (
   `id` int(11) NOT NULL,
   `name` varchar(30) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `description` text COLLATE utf8mb4_unicode_ci NOT NULL DEFAULT 'Продукт комапнии AR-OPTIMA',
+  `description` text COLLATE utf8mb4_unicode_ci NOT NULL,
   `author_id` int(11) DEFAULT NULL,
   `price` int(11) NOT NULL,
   `second_name` varchar(50) COLLATE utf8mb4_unicode_ci DEFAULT NULL
@@ -292,7 +292,7 @@ INSERT INTO `role` (`id`, `name`) VALUES
 CREATE TABLE `service` (
   `id` int(11) NOT NULL,
   `header` varchar(128) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `description` text COLLATE utf8mb4_unicode_ci NOT NULL DEFAULT 'Просто сервис...',
+  `description` text COLLATE utf8mb4_unicode_ci NOT NULL,
   `image` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL DEFAULT 'def-service.jpg',
   `price` int(6) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
